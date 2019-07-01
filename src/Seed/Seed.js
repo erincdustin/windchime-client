@@ -39,32 +39,32 @@ function Seed(props) {
       )
     })
   
-    // const mappedTargetValence = options.map((valenceOption, index) => {
-    //   if (valenceOption === '') {
-    //     return <option key={index} value={''}>n/a</option>
-    //   }
-    //   return(
-    //     <option key={index} value={valenceOption}>{valenceOption * 10}</option>
-    //   )
-    // })
+    const mappedTargetValence = options.map((valenceOption, index) => {
+      if (valenceOption === '') {
+        return <option key={index} value={''}>n/a</option>
+      }
+      return(
+        <option key={index} value={valenceOption}>{valenceOption * 10}</option>
+      )
+    })
   
-    // const mappedTargetTempo = options.map((tempoOption, index) => {
-    //   if (tempoOption === '') {
-    //     return <option key={index} value={''}>n/a</option>
-    //   }
-    //   return(
-    //     <option key={index} value={tempoOption}>{tempoOption * 10}</option>
-    //   )
-    // })
+    const mappedTargetTempo = options.map((tempoOption, index) => {
+      if (tempoOption === '') {
+        return <option key={index} value={''}>n/a</option>
+      }
+      return(
+        <option key={index} value={tempoOption}>{tempoOption * 10}</option>
+      )
+    })
   
-    // const mappedTargetPopularity = options.map((popularityOption, index) => {
-    //   if (popularityOption === '') {
-    //     return <option key={index} value={''}>n/a</option>
-    //   }
-    //   return(
-    //     <option key={index} value={popularityOption * 100}>{popularityOption * 10}</option>
-    //   )
-    // })
+    const mappedTargetPopularity = options.map((popularityOption, index) => {
+      if (popularityOption === '') {
+        return <option key={index} value={''}>n/a</option>
+      }
+      return(
+        <option key={index} value={popularityOption * 100}>{popularityOption * 10}</option>
+      )
+    })
 
   return (
     <div>
@@ -72,18 +72,13 @@ function Seed(props) {
       <div>{mappedGenres}</div>
       <h3>Select Playlist Values Manually:</h3>
       <label htmlFor="targetEnergy">Select Target Energy:</label>
-      <select name="targetEnergy" onChange={event => {
-        console.log(event.target.value);
-        props.setEnergy(event.target.value);
-      }}>
-        {mappedTargetEnergy}
-      </select>
-      {/* <label htmlFor="targetValence">Select Target Happiness:</label>
-      <select name="targetValence" onChange={event => { this.setState({ targetValence: Number(event.target.value) }) }}>{mappedTargetValence}</select>
+      <select name="targetEnergy" onChange={event => props.setEnergy(event.target.value)}>{mappedTargetEnergy}</select>
+      <label htmlFor="targetValence">Select Target Happiness:</label>
+      <select name="targetValence" onChange={event => props.setValence(event.target.value)}>{mappedTargetValence}</select>
       <label htmlFor="targetTempo">Select Target Tempo:</label>
-      <select name="targetTempo" onChange={event => { this.setState({ targetTempo: Number(event.target.value) }) }}>{mappedTargetTempo}</select>
+      <select name="targetTempo" onChange={event => props.setTempo(event.target.value)}>{mappedTargetTempo}</select>
       <label htmlFor="targetPopularity">Select Target Popularity:</label>
-      <select name="targetPopularity" onChange={event => { this.setState({ targetPopularity: Number(event.target.value) }) }}>{mappedTargetPopularity}</select> */}
+      <select name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
       <button onClick={()=> props.getGenrePlaylist()}>Get Playlist!</button>
     </div>
   );

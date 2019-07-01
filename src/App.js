@@ -9,7 +9,7 @@ class App extends React.Component {
       songs: null,
       locationKey: '15038_PC',
       weather: null,
-      genreChoice: 'acoustic',
+      genreChoice: null,
       id: null,
       // topArtists: null,
       playlistId: null,
@@ -140,15 +140,26 @@ class App extends React.Component {
 
   handleSetGenre = (genreChoice) => {
     this.setState({ genreChoice });
-    console.log(this.state);
   }
 
   handleSetEnergy = (energyLevel) => {
     this.setState({ targetEnergy: Number(energyLevel) });
-    console.log(this.state.targetEnergy);
+  }
+
+  handleSetValence = (valenceLevel) => {
+    this.setState({ targetValence: Number(valenceLevel) });
+  }
+
+  handleSetTempo = (tempoLevel) => {
+    this.setState({ targetTempo: Number(tempoLevel) });
+  }
+
+  handleSetPopularity = (popularityLevel) => {
+    this.setState({ targetPopularity: Number(popularityLevel) });
   }
 
   render() {
+    console.log(this.state);
   return (
     <div className="App">            
       <header className="App__header">
@@ -156,7 +167,7 @@ class App extends React.Component {
       </header>
       <main className="App__main">
         <section className="Options">
-          <PlaylistOptions searchWeather= {this.handleSearchWeather} weather={this.state.weather} setGenre={this.handleSetGenre} setEnergy={this.handleSetEnergy} getGenrePlaylist={this.handleGenrePlaylist}/>
+          <PlaylistOptions searchWeather= {this.handleSearchWeather} weather={this.state.weather} setGenre={this.handleSetGenre} setEnergy={this.handleSetEnergy} setValence={this.handleSetValence} setTempo={this.handleSetTempo} setPopularity={this.handleSetPopularity} getGenrePlaylist={this.handleGenrePlaylist}/>
         </section>
         <section>
           <PlaylistResults playlistId={this.state.playlistId} snapshot={this.state.snapshot}/>
