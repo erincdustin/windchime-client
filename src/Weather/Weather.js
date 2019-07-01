@@ -23,6 +23,7 @@ function Weather(props) {
           onClick={()=> props.searchWeather()}
             className="btn btn-default" type="button">Get Weather</button>
       </span>
+      <br />
       <div>Temp: {((weather.Temperature.Metric.Value) * (9/5)) + 32} degrees, 
             Precipitation: {weather.HasPrecipitation}, 
             Cloud Cover: {weather.CloudCover}, 

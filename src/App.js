@@ -5,20 +5,19 @@ import PlaylistResults from './PlaylistResults/PlaylistResults';
 
 class App extends React.Component {
   state= {
-      accessToken: '',
+      accessToken: 'BQCo1nKM7aZ3q6X9OsKErEEqj2Hnwh4chqj9ePIDpdNNVtpMvu93neDK1QjRmce5EboxbPuqT0PmdpOJzZRaQT0bl6aQZonBcjcOHpkELk3rfTWBifHfZNXXwAPhyLGRcS6E5nhD6i7bfN7VeUK-R-iW3RA5Oon10ru8t-46YA1lENncT4k9TPUesvotYmp6p8rBpog',
       songs: null,
       locationKey: '15038_PC',
       weather: null,
-      genreChoice: null,
+      genreChoice: 'acoustic',
       id: null,
-      topArtists: null,
+      // topArtists: null,
       playlistId: null,
       snapshot: null,
-      targetEnergy: '',
-      targetValence: '',
+      targetEnergy: .3,
+      targetValence: .3,
       targetTempo: '',
-      targetDance: '',
-      targetPopularity: '',
+      targetPopularity: 20,
   };
 
   handleGenrePlaylist = () => {
@@ -128,9 +127,7 @@ class App extends React.Component {
       })
   }
 
-  handleSearchWeather = () => {
-    console.log('this.state', this.state);
-   
+  handleSearchWeather = () => {   
     const WEATHER_BASE_URL = `http://dataservice.accuweather.com/currentconditions/v1/${this.state.locationKey}?apikey=HGhQvGsArNhNHkbK4EAnuX09P8mP8Qk8&language=en-us&details=true`;
 
     fetch(WEATHER_BASE_URL)
@@ -139,7 +136,13 @@ class App extends React.Component {
         console.log(res);
         const weather = res[0];
         this.setState({ weather })
+        console.log(this.state);
       })
+  }
+
+  setGenre = (genreChoice) => {
+    this.setState({ genreChoice });
+    console.log(this.state);
   }
 
   render() {
@@ -150,7 +153,7 @@ class App extends React.Component {
       </header>
       <main className="App__main">
         <section className="Options">
-          <PlaylistOptions searchWeather= {this.handleSearchWeather} weather={this.state.weather}/>
+          <PlaylistOptions searchWeather= {this.handleSearchWeather} weather={this.state.weather} setGenre={this.setGenre} getGenrePlaylist={this.handleGenrePlaylist}/>
         </section>
         <section>
           <PlaylistResults playlistId={this.state.playlistId} snapshot={this.state.snapshot}/>
