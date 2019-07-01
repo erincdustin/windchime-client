@@ -1,11 +1,11 @@
 import React from 'react';
+import queryString from 'query-string';
 import Header from './Header/Header';
 import PlaylistOptions from './PlaylistOptions/PlaylistOptions';
 import PlaylistResults from './PlaylistResults/PlaylistResults';
 
 class App extends React.Component {
   state= {
-      accessToken: 'BQCo1nKM7aZ3q6X9OsKErEEqj2Hnwh4chqj9ePIDpdNNVtpMvu93neDK1QjRmce5EboxbPuqT0PmdpOJzZRaQT0bl6aQZonBcjcOHpkELk3rfTWBifHfZNXXwAPhyLGRcS6E5nhD6i7bfN7VeUK-R-iW3RA5Oon10ru8t-46YA1lENncT4k9TPUesvotYmp6p8rBpog',
       songs: null,
       locationKey: '15038_PC',
       weather: null,
@@ -25,7 +25,9 @@ class App extends React.Component {
 
     const BASE_URL = `https://api.spotify.com/v1/recommendations?seed_genres=${this.state.genreChoice}`;
     let FETCH_URL = BASE_URL;
-
+    let parsed = queryString.parse(window.location.search);
+    let accessToken = parsed.access_token;
+   
     if (this.state.targetEnergy !== '') {
       FETCH_URL += `&target_energy=${this.state.targetEnergy}`;
     }
@@ -38,8 +40,6 @@ class App extends React.Component {
     if (this.state.targetPopularity !== '') {
       FETCH_URL += `&target_popularity=${this.state.targetPopularity}`;
     }
-    
-    const accessToken = this.state.accessToken;
 
     const myOptions = {
       method: 'GET',
@@ -73,7 +73,6 @@ class App extends React.Component {
           console.log(this.state.id);
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
-          const accessToken = this.state.accessToken;
           const newDate = new Date();
           const playlistBody = JSON.stringify({ name: `Wind Chime ${newDate}` })
 
@@ -105,7 +104,6 @@ class App extends React.Component {
               console.log(mappedSongs);
             }
             const URL = `https://api.spotify.com/v1/playlists/${this.state.playlistId}/tracks?uris=${mappedSongs}`;
-            const accessToken = this.state.accessToken;
 
             const myOptions = {
               method: 'POST',
@@ -140,9 +138,14 @@ class App extends React.Component {
       })
   }
 
-  setGenre = (genreChoice) => {
+  handleSetGenre = (genreChoice) => {
     this.setState({ genreChoice });
     console.log(this.state);
+  }
+
+  handleSetEnergy = (energyLevel) => {
+    this.setState({ targetEnergy: Number(energyLevel) });
+    console.log(this.state.targetEnergy);
   }
 
   render() {
@@ -153,7 +156,7 @@ class App extends React.Component {
       </header>
       <main className="App__main">
         <section className="Options">
-          <PlaylistOptions searchWeather= {this.handleSearchWeather} weather={this.state.weather} setGenre={this.setGenre} getGenrePlaylist={this.handleGenrePlaylist}/>
+          <PlaylistOptions searchWeather= {this.handleSearchWeather} weather={this.state.weather} setGenre={this.handleSetGenre} setEnergy={this.handleSetEnergy} getGenrePlaylist={this.handleGenrePlaylist}/>
         </section>
         <section>
           <PlaylistResults playlistId={this.state.playlistId} snapshot={this.state.snapshot}/>

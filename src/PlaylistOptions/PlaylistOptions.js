@@ -6,7 +6,7 @@ function PlaylistResults(props) {
   return (
     <div>
       <Weather searchWeather={props.searchWeather} weather={props.weather}/>
-      <Seed setGenre={props.setGenre} getGenrePlaylist={props.getGenrePlaylist}/>
+      <Seed setGenre={props.setGenre} getGenrePlaylist={props.getGenrePlaylist} setEnergy={props.setEnergy}/>
     </div>
   );
 }
