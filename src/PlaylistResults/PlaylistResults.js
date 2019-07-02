@@ -10,6 +10,7 @@ function PlayListResults(props) {
 
   return (
     <div >
+      <h3>Playlist Results:</h3>
       {playlist}
     </div>
   );

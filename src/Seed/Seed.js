@@ -68,18 +68,23 @@ function Seed(props) {
 
   return (
     <div>
-      <h3>Set Playlist Options:</h3>
+      <h3>Pick a Genre:</h3>
       <div>{mappedGenres}</div>
+      
+      <h3>Get Playlist</h3>
+      <button onClick={()=> props.getGenrePlaylist()}>Go!</button>
+
       <h3>Select Playlist Values Manually:</h3>
-      <label htmlFor="targetEnergy">Select Target Energy:</label>
-      <select name="targetEnergy" onChange={event => props.setEnergy(event.target.value)}>{mappedTargetEnergy}</select>
-      <label htmlFor="targetValence">Select Target Happiness:</label>
-      <select name="targetValence" onChange={event => props.setValence(event.target.value)}>{mappedTargetValence}</select>
-      <label htmlFor="targetTempo">Select Target Tempo:</label>
-      <select name="targetTempo" onChange={event => props.setTempo(event.target.value)}>{mappedTargetTempo}</select>
-      <label htmlFor="targetPopularity">Select Target Popularity:</label>
-      <select name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
-      <button onClick={()=> props.getGenrePlaylist()}>Get Playlist!</button>
+      <form>
+        <label htmlFor="targetEnergy">Select Target Energy:</label>
+        <select value={props.targetEnergy} name="targetEnergy" onChange={event => props.setEnergy(event.target.value)}>{mappedTargetEnergy}</select>
+        <label htmlFor="targetValence">Select Target Happiness:</label>
+        <select value={props.targetValence} name="targetValence" onChange={event => props.setValence(event.target.value)}>{mappedTargetValence}</select>
+        <label htmlFor="targetTempo">Select Target Tempo:</label>
+        <select value={props.targetTempo} name="targetTempo" onChange={event => props.setTempo(event.target.value)}>{mappedTargetTempo}</select>
+        <label htmlFor="targetPopularity">Select Target Popularity:</label>
+        <select value={props.targetPopularity} name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
+      </form>
     </div>
   );
 }
