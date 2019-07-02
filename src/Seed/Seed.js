@@ -30,6 +30,7 @@ function Seed(props) {
       1
     ];
 
+    //DRY up mapped parameter functions!
     const mappedTargetEnergy = options.map((energyOption, index) => {
       if (energyOption === '') {
         return <option key={index} value={''}>n/a</option>
@@ -70,9 +71,11 @@ function Seed(props) {
     <div>
       <h3>Pick a Genre:</h3>
       <div>{mappedGenres}</div>
-      
-      <h3>Get Playlist</h3>
+      <h3> </h3>
       <button onClick={()=> props.getGenrePlaylist()}>Go!</button>
+
+      <h3>OR Use your Top Artists:</h3>
+      <button onClick={()=> props.getArtistPlaylist()}>Go!</button>
 
       <h3>Select Playlist Values Manually:</h3>
       <form>

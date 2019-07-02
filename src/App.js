@@ -6,12 +6,13 @@ import PlaylistResults from './PlaylistResults/PlaylistResults';
 
 class App extends React.Component {
   state= {
+      error: '',
       songs: null,
-      locationKey: '15038_PC',
+      locationKey: null,
       weather: null,
       genreChoice: null,
       id: null,
-      // topArtists: null,
+      topArtists: null,
       playlistId: null,
       snapshot: null,
       targetEnergy: '',
@@ -52,7 +53,10 @@ class App extends React.Component {
     };
 
     fetch(FETCH_URL, myOptions)
-      .then(response => response.json())
+      .then(res => (!res.ok)
+      ? res.json().then(e => Promise.reject(e))
+      : res.json()
+  )
       .then(res => {
         const songs = res.tracks;        
         this.setState({ songs });
@@ -67,14 +71,17 @@ class App extends React.Component {
           cache: 'default'
         };
         return fetch('https://api.spotify.com/v1/me', myOptions)
-        .then(res => res.json())
+        .then(res => (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
         .then(res=> {
           this.setState({ id: res.id })
           console.log(this.state.id);
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
-          const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime ${newDate}` })
+          // const newDate = new Date();
+          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${this.state.weather.WeatherText}` })
 
           const myOptions = {
             method: 'POST',
@@ -88,7 +95,10 @@ class App extends React.Component {
           };
 
           return fetch(PLAYLIST_URL, myOptions)
-          .then(res => res.json())
+          .then(res => (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
           .then(res=> {
             this.setState({ playlistId: res.id });
             console.log(this.state.playlistId);
@@ -116,12 +126,18 @@ class App extends React.Component {
             };
 
             fetch(URL, myOptions)
-            .then(res => res.json())
+            .then(res => (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
             .then(res=> {
               this.setState({ snapshot: res.snapshot_id});
             })
           })
         })
+      })
+      .catch(error => {
+        this.setState({error});
       })
   }
 
@@ -141,7 +157,10 @@ class App extends React.Component {
     };
 
     fetch(ARTISTS_URL, myOptions)
-      .then(res => res.json())
+      .then(res => (!res.ok)
+      ? res.json().then(e => Promise.reject(e))
+      : res.json()
+  )
       .then(res=> {
         const artists = res.items;
         const artistString = artists.map(artist => {
@@ -179,7 +198,10 @@ class App extends React.Component {
       };
 
       return fetch(NEW_FETCH_URL, myOptions)
-        .then(response => response.json())
+        .then(res => (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
         .then(res => {
           const songs = res.tracks;        
           this.setState({ songs });
@@ -194,7 +216,10 @@ class App extends React.Component {
           cache: 'default'
         };
         return fetch('https://api.spotify.com/v1/me', myOptions)
-        .then(res => res.json())
+        .then(res => (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
         .then(res=> {
           this.setState({ id: res.id })
           console.log(this.state.id);
@@ -202,8 +227,8 @@ class App extends React.Component {
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let parsed = queryString.parse(window.location.search);
           let accessToken = parsed.access_token;
-          const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime ${newDate}` })
+          // const newDate = new Date();
+          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.weather.WeatherText}` })
 
           const myOptions = {
             method: 'POST',
@@ -217,7 +242,10 @@ class App extends React.Component {
           };
 
           return fetch(PLAYLIST_URL, myOptions)
-          .then(res => res.json())
+          .then(res => (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
           .then(res=> {
             this.setState({ playlistId: res.id });
             console.log(this.state.playlistId);
@@ -247,13 +275,19 @@ class App extends React.Component {
             };
 
             fetch(URL, myOptions)
-            .then(res => res.json())
+            .then(res => (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
             .then(res=> {
               this.setState({ snapshot: res.snapshot_id});
             })
           })
         })
       })
+    })
+    .catch(error => {
+      this.setState({error});
     })
   }
 
@@ -275,6 +309,29 @@ class App extends React.Component {
           console.log(res);
           const weather = res[0];
           this.setState({ weather })
+          if(weather.CloudCover <= 25) {
+            this.setState({ targetValence: .8 })
+            this.setState({ targetTempo: .8 })
+            this.setState({ targetEnergy: .8 })
+          }
+          if(weather.CloudCover > 25 && weather.CloudCover < 50) {
+            this.setState({ targetValence: .6 })
+            this.setState({ targetTempo: .6 })
+            this.setState({ targetEnergy: .6 })
+          }
+          if(weather.CloudCover > 50 && weather.CloudCover < 75) {
+            this.setState({ targetValence: .4 })
+            // this.setState({ targetTempo: .4 })
+            this.setState({ targetEnergy: .4 })
+          }
+          if(weather.CloudCover > 75) {
+            this.setState({ targetValence: .2 })
+            // this.setState({ targetTempo: .2 })
+            this.setState({ targetEnergy: .2 })
+          }
+          // if(weather.PrecipitationType) {
+          //   this.setState({ targetValence: .4 })
+          // }
           console.log(this.state);
         })
       })
@@ -303,6 +360,7 @@ class App extends React.Component {
 
   render() {
     console.log(this.state);
+    console.log(process.env.API_KEY);
   return (
     <div className="App">            
       <header className="App__header">
@@ -310,10 +368,11 @@ class App extends React.Component {
       </header>
       <main className="App__main">
         <section className="Options">
-          <PlaylistOptions searchCity= {this.handleSearchCity} weather={this.state.weather} setGenre={this.handleSetGenre} setEnergy={this.handleSetEnergy} setValence={this.handleSetValence} setTempo={this.handleSetTempo} setPopularity={this.handleSetPopularity} getGenrePlaylist={this.handleGenrePlaylist} targetEnergy={this.state.targetEnergy} targetValence={this.state.targetValence} targetTempo={this.state.targetTempo} targetPopularity={this.state.targetPopularity}/>
+          <PlaylistOptions searchCity= {this.handleSearchCity} weather={this.state.weather} setGenre={this.handleSetGenre} setEnergy={this.handleSetEnergy} setValence={this.handleSetValence} setTempo={this.handleSetTempo} setPopularity={this.handleSetPopularity} getArtistPlaylist={this.handleArtistPlaylist} getGenrePlaylist={this.handleGenrePlaylist} targetEnergy={this.state.targetEnergy} targetValence={this.state.targetValence} targetTempo={this.state.targetTempo} targetPopularity={this.state.targetPopularity}/>
         </section>
         <section>
           <PlaylistResults playlistId={this.state.playlistId} snapshot={this.state.snapshot}/>
+          {this.state.error}
         </section>
       </main>
     </div>

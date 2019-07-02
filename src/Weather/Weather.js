@@ -2,31 +2,30 @@ import React from 'react';
 
 function Weather(props) {
   let weather = {
+    IsDayTime: null,
     Temperature: {
-      Metric: {
+      Imperial: {
         Value: null,
       },
     HasPrecipitation: null,
     },
     CloudCover: null,
     PrecipitationType: null,
+    WeatherText: null,
   }
   let weatherResults = '';
 
   if(props.weather !== null) {
     weather = props.weather;
-    if (weather.HasPrecipitation === true) {
-      weatherResults=  
+    // let timeOfDay = '';
+    // let precipitation = '';
+    // (weather.IsDayTime === true) ? timeOfDay= <p>Daytime</p> : timeOfDay= <p>Nighttime</p>;
+    // (weather.HasPrecipitation === true) ? precipitation= <p>{weather.PrecipitationType}</p> : precipitation='';
+    
+    weatherResults=  
         <div>
-          <p>{Math.round(((weather.Temperature.Metric.Value) * (9/5)) + 32)} Degrees</p>
-          <p>{weather.CloudCover}% Cloud Cover</p>
-          <p>{weather.PrecipitationType}</p>
-        </div>
-  }
-  weatherResults=  
-        <div>
-          <p>{Math.round(((weather.Temperature.Metric.Value) * (9/5)) + 32)} Degrees</p>
-          <p>{weather.CloudCover}% Cloud Cover</p>
+          <p>{weather.Temperature.Imperial.Value} Degrees</p>
+          <p>{weather.WeatherText}</p>
         </div>
 }
 
