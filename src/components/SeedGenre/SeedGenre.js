@@ -1,5 +1,5 @@
 import React from 'react';
-import GenreList from '../GenreList';
+import GenreList from '../../GenreList';
 
 function SeedGenre(props) {
 

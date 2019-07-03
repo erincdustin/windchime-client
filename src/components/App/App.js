@@ -1,9 +1,12 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom'
 import queryString from 'query-string';
-import Header from './Header/Header';
-import PlaylistOptions from './PlaylistOptions/PlaylistOptions';
-import PlaylistResults from './PlaylistResults/PlaylistResults';
-
+import Header from '../Header/Header';
+import PlaylistOptions from '../PlaylistOptions/PlaylistOptions';
+import PlaylistResults from '../PlaylistResults/PlaylistResults';
+import Redirect from '../../routes/Redirect';
+import TokenService from '../../services/token-service';
+ 
 class App extends React.Component {
   state= {
       error: '',
@@ -19,15 +22,17 @@ class App extends React.Component {
       targetValence: '',
       targetTempo: '',
       targetPopularity: '',
+      // maxEnergy: '',
+      // maxValence: '',
+      // maxTempo: '',
   };
 
   handleGenrePlaylist = () => {
     console.log('this.state', this.state);
+    let accessToken = TokenService.getAuthToken();
 
     const BASE_URL = `https://api.spotify.com/v1/recommendations?seed_genres=${this.state.genreChoice}`;
     let FETCH_URL = BASE_URL;
-    let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
    
     if (this.state.targetEnergy !== '') {
       FETCH_URL += `&target_energy=${this.state.targetEnergy}`;
@@ -80,6 +85,7 @@ class App extends React.Component {
           console.log(this.state.id);
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
+          let accessToken = TokenService.getAuthToken();
           // const newDate = new Date();
           const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${this.state.weather.WeatherText}` })
 
@@ -137,14 +143,14 @@ class App extends React.Component {
         })
       })
       .catch(error => {
-        this.setState({error});
+        // this.setState({error});
+        console.log(error)
       })
   }
 
-  handleArtistPlaylist = () => {
+ handleArtistPlaylist = () => {
     const ARTISTS_URL = 'https://api.spotify.com/v1/me/top/artists?limit=5'
-    let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
+    let accessToken = TokenService.getAuthToken();
     
     const myOptions = {
       method: 'GET',
@@ -171,8 +177,9 @@ class App extends React.Component {
       
       const NEW_BASE_URL = `https://api.spotify.com/v1/recommendations?seed_artists=${this.state.topArtists}`;
       let NEW_FETCH_URL = NEW_BASE_URL;
-      let parsed = queryString.parse(window.location.search);
-      let accessToken = parsed.access_token;
+      // let parsed = queryString.parse(window.location.search);
+      // let accessToken = parsed.access_token;
+      let accessToken = TokenService.getAuthToken();
 
       if (this.state.targetEnergy !== '') {
         NEW_FETCH_URL += `&target_energy=${this.state.targetEnergy}`;
@@ -225,8 +232,9 @@ class App extends React.Component {
           console.log(this.state.id);
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
-          let parsed = queryString.parse(window.location.search);
-          let accessToken = parsed.access_token;
+          let accessToken = TokenService.getAuthToken();
+          // let parsed = queryString.parse(window.location.search);
+          // let accessToken = parsed.access_token;
           // const newDate = new Date();
           const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.weather.WeatherText}` })
 
@@ -261,8 +269,9 @@ class App extends React.Component {
               console.log(mappedSongs);
             }
             const URL = `https://api.spotify.com/v1/playlists/${this.state.playlistId}/tracks?uris=${mappedSongs}`;
-            let parsed = queryString.parse(window.location.search);
-            let accessToken = parsed.access_token;
+            // let parsed = queryString.parse(window.location.search);
+            // let accessToken = parsed.access_token;
+            let accessToken = TokenService.getAuthToken();
 
             const myOptions = {
               method: 'POST',
@@ -287,7 +296,8 @@ class App extends React.Component {
       })
     })
     .catch(error => {
-      this.setState({error});
+      // this.setState({error});
+      console.log(error)
     })
   }
 
@@ -361,6 +371,11 @@ class App extends React.Component {
   render() {
     console.log(this.state);
     console.log(process.env.API_KEY);
+    let error = '';
+    if (this.state.error) {
+      error = this.state.error;
+    }
+    
   return (
     <div className="App">            
       <header className="App__header">
@@ -372,7 +387,12 @@ class App extends React.Component {
         </section>
         <section>
           <PlaylistResults playlistId={this.state.playlistId} snapshot={this.state.snapshot}/>
-          {this.state.error}
+          {error}
+        </section>
+        <section>
+          <Route 
+          exact path={'/redirect'}
+          component={Redirect} />
         </section>
       </main>
     </div>
