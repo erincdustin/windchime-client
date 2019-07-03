@@ -1,5 +1,6 @@
 import React from 'react';
 import GenreList from '../../GenreList';
+import { Link } from 'react-router-dom';
 
 function SeedGenre(props) {
 
@@ -22,6 +23,8 @@ function SeedGenre(props) {
       <div>{mappedGenres}</div>
       <h3> </h3>
       <button onClick={()=> props.getGenrePlaylist()}>Go!</button>
+      <button><Link to="/playlistSetup">Back to Playlist Options</Link></button>
+      <button><Link to="/getWeather">Start Over</Link></button>
     </div>
   );
 }

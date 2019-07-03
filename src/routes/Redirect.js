@@ -8,8 +8,9 @@ export default class Redirect extends React.Component {
     super (props);
     let parsed = queryString.parse(window.location.search);
     let TOKEN_KEY = parsed.access_token;
+    console.log(TOKEN_KEY)
     TokenService.saveAuthToken(TOKEN_KEY);
-    props.history.push('/')
+    props.history.push('/getWeather')
   }
 
   render() {

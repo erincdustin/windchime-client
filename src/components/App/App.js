@@ -1,11 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
+import config from '../../config'
 import queryString from 'query-string';
 import Header from '../Header/Header';
-import PlaylistOptions from '../PlaylistOptions/PlaylistOptions';
-import PlaylistResults from '../PlaylistResults/PlaylistResults';
 import Redirect from '../../routes/Redirect';
 import TokenService from '../../services/token-service';
+import HomePage from '../../routes/HomePage';
+import LandingPage from '../../routes/LandingPage';
+import PlaylistSetup from '../../routes/PlaylistSetup';
+import GenreOption from '../../routes/GenreOption';
+import ArtistOption from '../../routes/ArtistOption';
+import PastPlaylists from '../../routes/PastPlaylists'
  
 class App extends React.Component {
   state= {
@@ -22,10 +27,29 @@ class App extends React.Component {
       targetValence: '',
       targetTempo: '',
       targetPopularity: '',
-      // maxEnergy: '',
-      // maxValence: '',
-      // maxTempo: '',
   };
+
+  componentDidMount() {
+    let accessToken = TokenService.getAuthToken();
+    const myOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      },
+      mode: 'cors',
+      cache: 'default'
+    };
+
+    return fetch('https://api.spotify.com/v1/me', myOptions)
+    .then(res => (!res.ok)
+    ? res.json().then(e => Promise.reject(e))
+    : res.json()
+)
+    .then(res=> {
+      this.setState({ id: res.id })
+      console.log(this.state.id);
+    })};
 
   handleGenrePlaylist = () => {
     console.log('this.state', this.state);
@@ -87,7 +111,7 @@ class App extends React.Component {
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
           // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${this.state.weather.WeatherText}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice}` })
 
           const myOptions = {
             method: 'POST',
@@ -131,13 +155,61 @@ class App extends React.Component {
               cache: 'default'
             };
 
-            fetch(URL, myOptions)
+            return fetch(URL, myOptions)
             .then(res => (!res.ok)
             ? res.json().then(e => Promise.reject(e))
             : res.json()
         )
             .then(res=> {
               this.setState({ snapshot: res.snapshot_id});
+
+              const URL= `${config.API_ENDPOINT}/users`
+              const userBody= JSON.stringify({
+                id: this.state.id
+              })
+              console.log(userBody);
+              const myOptions = {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body:userBody
+              };
+
+              return fetch(URL, myOptions)
+              .then(res => (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
+          .then(res => {
+            console.log(`${res.id} added`);
+
+            const URL= `${config.API_ENDPOINT}/playlists`
+              const playlistBody= JSON.stringify({
+                playlist_id: this.state.playlistId,
+                user_id: this.state.id
+              });
+
+              console.log(playlistBody);
+
+              const myOptions = {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: playlistBody
+              };
+
+              return fetch(URL, myOptions)
+              .then(res => (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
+          .then(res => {
+            console.log(`User playlist ${res.playlist_id} added`);
+
+                })
+              })
             })
           })
         })
@@ -382,17 +454,57 @@ class App extends React.Component {
           <Header />
       </header>
       <main className="App__main">
-        <section className="Options">
-          <PlaylistOptions searchCity= {this.handleSearchCity} weather={this.state.weather} setGenre={this.handleSetGenre} setEnergy={this.handleSetEnergy} setValence={this.handleSetValence} setTempo={this.handleSetTempo} setPopularity={this.handleSetPopularity} getArtistPlaylist={this.handleArtistPlaylist} getGenrePlaylist={this.handleGenrePlaylist} targetEnergy={this.state.targetEnergy} targetValence={this.state.targetValence} targetTempo={this.state.targetTempo} targetPopularity={this.state.targetPopularity}/>
-        </section>
         <section>
-          <PlaylistResults playlistId={this.state.playlistId} snapshot={this.state.snapshot}/>
-          {error}
-        </section>
-        <section>
+          <Route 
+          exact path={'/'}
+          component={LandingPage} />
+
           <Route 
           exact path={'/redirect'}
           component={Redirect} />
+
+          <Route 
+          exact path={'/playlistSetup'}
+          component={PlaylistSetup} />
+
+          <Route 
+          exact path={'/genreOption'}
+          render={() => 
+            <GenreOption
+              setGenre={this.handleSetGenre}
+              playlistId={this.state.playlistId} 
+              snapshot={this.state.snapshot}
+              getGenrePlaylist={this.handleGenrePlaylist}
+              />} 
+            />
+
+          <Route 
+          exact path={'/artistOption'}
+          render={() => 
+            <ArtistOption
+              playlistId={this.state.playlistId} 
+              snapshot={this.state.snapshot}
+              getArtistPlaylist={this.handleArtistPlaylist}
+              />} 
+            />
+
+          <Route 
+          exact path={'/getWeather'}
+          render={() => 
+            <HomePage
+            searchCity= {this.handleSearchCity} 
+            weather={this.state.weather} 
+            />}
+            />
+
+            <Route 
+          exact path={'/playlists'}
+          render={() => 
+            <PastPlaylists
+            id={this.state.id}
+            />}
+            />
+          
         </section>
       </main>
     </div>

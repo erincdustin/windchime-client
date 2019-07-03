@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
-function Weather(props) {
+function WeatherReading(props) {
   let weather = {
     IsDayTime: null,
     Temperature: {
@@ -14,8 +13,8 @@ function Weather(props) {
     PrecipitationType: null,
     WeatherText: null,
   }
-  let weatherResults = '';
 
+  let weatherResults = '';
   if(props.weather !== null) {
     weather = props.weather;
     // let timeOfDay = '';
@@ -29,24 +28,11 @@ function Weather(props) {
           <p>{weather.WeatherText}</p>
         </div>
 }
-  let next='';
-
-  return (
+   return (
     <div>
-      <h3>Find current weather conditions:</h3>
-      <form id="weather-form" onSubmit={(e)=> {
-            e.preventDefault();
-            console.log(e.target.weatherInput.value);
-            props.searchCity(e.target.weatherInput.value);
-          }}>
-        <input id="weatherInput" name="weatherInput" className="weatherInput" type="text" placeholder="Enter a zip code" required></input>
-        <button className="btn btn-default" type="submit">Get Weather</button>
-      </form>
-      <br />
-      <div>{weatherResults}</div>
-      <button><Link to="/playlistSetup">Start making my playlist!</Link></button>
+      <p>{weatherResults}</p>
     </div>
   );
 }
 
-export default Weather;
+export default WeatherReading;
