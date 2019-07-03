@@ -11,7 +11,7 @@ function Header() {
   return (
     <div className="header">
       <Link to="/">Wind Chime</Link>
-      <Link to="/playlists">Past Playlists</Link>
+      <button className="align-right"><Link to="/playlists">My Wind Chime Playlists</Link></button>
       {/* <img className="windChime" src='https://media.istockphoto.com/vectors/wind-chimes-icon-simple-style-vector-id669585328?k=6&m=669585328&s=612x612&w=0&h=KjWQraYb3AvufwFRA8_G8XHUeBxE6hsDLEKbSQE3t88='></img> */}
     </div>
   );

@@ -6,7 +6,6 @@ import Redirect from '../../routes/Redirect';
 import TokenService from '../../services/token-service';
 import HomePage from '../../routes/HomePage';
 import LandingPage from '../../routes/LandingPage';
-import PlaylistSetup from '../../routes/PlaylistSetup';
 import GenreOption from '../../routes/GenreOption';
 import ArtistOption from '../../routes/ArtistOption';
 import PastPlaylists from '../../routes/PastPlaylists'
@@ -490,9 +489,9 @@ class App extends React.Component {
     
   return (
     <div className="App">            
-      <header className="App__header">
+      {/* <header className="App__header">
           <Header />
-      </header>
+      </header> */}
       <main className="App__main">
         <section>
           <Route 
@@ -502,10 +501,6 @@ class App extends React.Component {
           <Route 
           exact path={'/redirect'}
           component={Redirect} />
-
-          <Route 
-          exact path={'/playlistSetup'}
-          component={PlaylistSetup} />
 
           <Route 
           exact path={'/genreOption'}

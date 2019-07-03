@@ -29,7 +29,6 @@ function Weather(props) {
           <p>{weather.WeatherText}</p>
         </div>
 }
-  let next='';
 
   return (
     <div>
@@ -44,7 +43,10 @@ function Weather(props) {
       </form>
       <br />
       <div>{weatherResults}</div>
-      <button><Link to="/playlistSetup">Start making my playlist!</Link></button>
+      <h3>Then choose an option:</h3>
+        <button><Link to="/genreOption">Pick a genre</Link></button>
+        <button><Link to="/artistOption">Use my top artists</Link></button>
+        <button><Link to="/getWeather">Back to Weather</Link></button>
     </div>
   );
 }
