@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
-import config from '../../config'
-import queryString from 'query-string';
+import config from '../../config';
 import Header from '../Header/Header';
 import Redirect from '../../routes/Redirect';
 import TokenService from '../../services/token-service';
@@ -14,6 +13,7 @@ import PastPlaylists from '../../routes/PastPlaylists'
  
 class App extends React.Component {
   state= {
+      returningUser: true,
       error: '',
       songs: null,
       locationKey: null,
@@ -49,7 +49,44 @@ class App extends React.Component {
     .then(res=> {
       this.setState({ id: res.id })
       console.log(this.state.id);
-    })};
+      const URL = `${config.API_ENDPOINT}/users`;
+
+      return fetch(URL)
+        .then(res => (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+      .then(res => {
+        let user = res.filter(user => user.id === this.state.id);
+        console.log(user);
+        if (user === undefined || user.length == 0) {
+          const URL= `${config.API_ENDPOINT}/users`
+          const userBody= JSON.stringify({
+                id: this.state.id
+              })
+              console.log(userBody);
+              const myOptions = {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body:userBody
+              };
+
+              return fetch(URL, myOptions)
+              .then(res => (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
+          .then(res => {
+            console.log(`${res.id} added`);
+            this.setState({ returningUser: true })
+          })} else {
+          console.log('user found')
+          }
+        })
+      })
+    };
 
   handleGenrePlaylist = () => {
     console.log('this.state', this.state);
@@ -163,27 +200,6 @@ class App extends React.Component {
             .then(res=> {
               this.setState({ snapshot: res.snapshot_id});
 
-              const URL= `${config.API_ENDPOINT}/users`
-              const userBody= JSON.stringify({
-                id: this.state.id
-              })
-              console.log(userBody);
-              const myOptions = {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body:userBody
-              };
-
-              return fetch(URL, myOptions)
-              .then(res => (!res.ok)
-              ? res.json().then(e => Promise.reject(e))
-              : res.json()
-          )
-          .then(res => {
-            console.log(`${res.id} added`);
-
             const URL= `${config.API_ENDPOINT}/playlists`
               const playlistBody= JSON.stringify({
                 playlist_id: this.state.playlistId,
@@ -213,7 +229,6 @@ class App extends React.Component {
             })
           })
         })
-      })
       .catch(error => {
         // this.setState({error});
         console.log(error)
@@ -308,7 +323,7 @@ class App extends React.Component {
           // let parsed = queryString.parse(window.location.search);
           // let accessToken = parsed.access_token;
           // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.weather.WeatherText}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: Top Artists` })
 
           const myOptions = {
             method: 'POST',
@@ -362,6 +377,31 @@ class App extends React.Component {
         )
             .then(res=> {
               this.setState({ snapshot: res.snapshot_id});
+
+            const URL= `${config.API_ENDPOINT}/playlists`
+              const playlistBody= JSON.stringify({
+                playlist_id: this.state.playlistId,
+                user_id: this.state.id
+              });
+
+              console.log(playlistBody);
+
+              const myOptions = {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: playlistBody
+              };
+
+              return fetch(URL, myOptions)
+              .then(res => (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
+          .then(res => {
+            console.log(`User playlist ${res.playlist_id} added`);
+              })
             })
           })
         })
