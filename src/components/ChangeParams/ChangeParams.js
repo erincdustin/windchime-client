@@ -3,7 +3,7 @@ import React from 'react';
 function ChangeParams(props) {
 
     const options = [
-      '',
+      null,
       .1,
       .2,
       .3,
@@ -18,8 +18,8 @@ function ChangeParams(props) {
 
     //DRY up mapped parameter functions!
     const mappedTargetEnergy = options.map((energyOption, index) => {
-      if (energyOption === '') {
-        return <option key={index} value={''}>n/a</option>
+      if (energyOption === null) {
+        return <option key={index} value={null}>n/a</option>
       }
       return(
         <option key={index} value={energyOption}>{energyOption * 10}</option>
@@ -27,8 +27,8 @@ function ChangeParams(props) {
     })
   
     const mappedTargetValence = options.map((valenceOption, index) => {
-      if (valenceOption === '') {
-        return <option key={index} value={''}>n/a</option>
+      if (valenceOption === null) {
+        return <option key={index} value={null}>n/a</option>
       }
       return(
         <option key={index} value={valenceOption}>{valenceOption * 10}</option>
@@ -36,8 +36,8 @@ function ChangeParams(props) {
     })
   
     const mappedTargetTempo = options.map((tempoOption, index) => {
-      if (tempoOption === '') {
-        return <option key={index} value={''}>n/a</option>
+      if (tempoOption === null) {
+        return <option key={index} value={null}>n/a</option>
       }
       return(
         <option key={index} value={tempoOption}>{tempoOption * 10}</option>
@@ -45,8 +45,8 @@ function ChangeParams(props) {
     })
   
     const mappedTargetPopularity = options.map((popularityOption, index) => {
-      if (popularityOption === '') {
-        return <option key={index} value={''}>n/a</option>
+      if (popularityOption === null) {
+        return <option key={index} value={null}>n/a</option>
       }
       return(
         <option key={index} value={popularityOption * 100}>{popularityOption * 10}</option>
@@ -58,14 +58,24 @@ function ChangeParams(props) {
       <h3>Select Playlist Values Manually:</h3>
       <form>
         <label htmlFor="targetEnergy">Select Target Energy:</label>
-        <select value={props.targetEnergy} name="targetEnergy" onChange={event => props.setEnergy(event.target.value)}>{mappedTargetEnergy}</select>
+        <select value={Math.floor(props.targetEnergy*10)/10} name="targetEnergy" onChange={event => props.setEnergy(event.target.value)}>{mappedTargetEnergy}</select>
         <label htmlFor="targetValence">Select Target Happiness:</label>
-        <select value={props.targetValence} name="targetValence" onChange={event => props.setValence(event.target.value)}>{mappedTargetValence}</select>
+        <select value={Math.floor(props.targetValence*10)/10} name="targetValence" onChange={event => props.setValence(event.target.value)}>{mappedTargetValence}</select>
         <label htmlFor="targetTempo">Select Target Tempo:</label>
-        <select value={props.targetTempo} name="targetTempo" onChange={event => props.setTempo(event.target.value)}>{mappedTargetTempo}</select>
+        <select value={Math.floor(props.targetTempo*10)/10} name="targetTempo" onChange={event => props.setTempo(event.target.value)}>{mappedTargetTempo}</select>
         <label htmlFor="targetPopularity">Select Target Popularity:</label>
-        <select value={props.targetPopularity} name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
+        <select value={Math.floor(props.targetPopularity*10)/10} name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
       </form>
+      <button onClick={()=> {
+        if(props.genreOption){
+        props.getGenrePlaylist();
+        props.history.push('/results');
+        }
+        if(props.topArtists){
+        props.getArtistPlaylist(); 
+        props.history.push('/results')
+        }
+        }}>Make me a new playlist</button>
     </div>
   );
 }

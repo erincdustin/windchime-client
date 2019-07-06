@@ -26,9 +26,14 @@ class UserPlaylists extends React.Component {
 
   render() {
   console.log(this.state.userPlaylists[0])
-  const mappedPlaylists = this.state.userPlaylists.filter(playlist => playlist.user_id === this.props.id).map(playlist => {
+  const mappedPlaylists = this.state.userPlaylists.filter((playlist) => playlist.user_id === this.props.id).map((playlist, index) => {
     return (
      <div>
+       <h4>Playlist {index + 1}:</h4>
+       <p>Energy: {playlist.energy*10}</p>
+       <p>Happiness: {playlist.valence*10}</p>
+       <p>Tempo: {playlist.tempo*10}</p>
+       <p>Popularity: {playlist.popularity/10}</p>
        <Playlist key={playlist.playlist_id} playlistId={playlist.playlist_id}/>
      </div>
     );

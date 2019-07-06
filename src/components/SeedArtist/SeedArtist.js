@@ -6,7 +6,6 @@ function SeedArtist(props) {
     <div>
       <h3>Use your Top Artists:</h3>
       <button onClick={()=> props.getArtistPlaylist()}>Go!</button>
-      <button><Link to="/playlistSetup">Back to Playlist Options</Link></button>
       <button><Link to="/getWeather">Start Over</Link></button>
     </div>
   );

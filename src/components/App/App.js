@@ -1,31 +1,45 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import config from '../../config';
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 import Redirect from '../../routes/Redirect';
 import TokenService from '../../services/token-service';
 import HomePage from '../../routes/HomePage';
 import LandingPage from '../../routes/LandingPage';
 import GenreOption from '../../routes/GenreOption';
 import ArtistOption from '../../routes/ArtistOption';
-import PastPlaylists from '../../routes/PastPlaylists'
+import PastPlaylists from '../../routes/PastPlaylists';
+import ChangeGenreParams from '../../routes/ChangeGenreParams';
+import ChangeArtistParams from '../../routes/ChangeArtistParams';
+import Results from '../../routes/Results';
  
 class App extends React.Component {
   state= {
-      returningUser: true,
       error: '',
       songs: null,
       locationKey: null,
       weather: null,
+      // weather: {
+      //   IsDayTime: true,
+      //   Temperature: {
+      //     Imperial: {
+      //       Value: 92,
+      //     },
+      //   HasPrecipitation: null,
+      //   },
+      //   CloudCover: 45,
+      //   PrecipitationType: null,
+      //   WeatherText: 'Partly Cloudy',
+      // },
       genreChoice: null,
       id: null,
       topArtists: null,
       playlistId: null,
       snapshot: null,
-      targetEnergy: '',
-      targetValence: '',
-      targetTempo: '',
-      targetPopularity: '',
+      targetEnergy: null,
+      targetValence: null,
+      targetTempo: null,
+      targetPopularity: null,
   };
 
   componentDidMount() {
@@ -88,22 +102,23 @@ class App extends React.Component {
     };
 
   handleGenrePlaylist = () => {
+    this.setState({ topArtists: null })
     console.log('this.state', this.state);
     let accessToken = TokenService.getAuthToken();
 
     const BASE_URL = `https://api.spotify.com/v1/recommendations?seed_genres=${this.state.genreChoice}`;
     let FETCH_URL = BASE_URL;
    
-    if (this.state.targetEnergy !== '') {
+    if (this.state.targetEnergy !== null) {
       FETCH_URL += `&target_energy=${this.state.targetEnergy}`;
     }
-    if (this.state.targetValence !== '') {
+    if (this.state.targetValence !== null) {
       FETCH_URL += `&target_valence=${this.state.targetValence}`;
     }
-    if (this.state.targetTempo !== '') {
+    if (this.state.targetTempo !== null) {
       FETCH_URL += `&target_tempo=${this.state.targetTempo}`;
     }
-    if (this.state.targetPopularity !== '') {
+    if (this.state.targetPopularity !== null) {
       FETCH_URL += `&target_popularity=${this.state.targetPopularity}`;
     }
 
@@ -147,7 +162,7 @@ class App extends React.Component {
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
           // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${this.state.weather.WeatherText}` })
 
           const myOptions = {
             method: 'POST',
@@ -202,7 +217,11 @@ class App extends React.Component {
             const URL= `${config.API_ENDPOINT}/playlists`
               const playlistBody= JSON.stringify({
                 playlist_id: this.state.playlistId,
-                user_id: this.state.id
+                user_id: this.state.id,
+                energy: this.state.targetEnergy,
+                valence: this.state.targetValence,
+                tempo: this.state.targetTempo,
+                popularity: this.state.targetPopularity
               });
 
               console.log(playlistBody);
@@ -235,6 +254,7 @@ class App extends React.Component {
   }
 
  handleArtistPlaylist = () => {
+    this.setState({ genreChoice: null })
     const ARTISTS_URL = 'https://api.spotify.com/v1/me/top/artists?limit=5'
     let accessToken = TokenService.getAuthToken();
     
@@ -267,16 +287,16 @@ class App extends React.Component {
       // let accessToken = parsed.access_token;
       let accessToken = TokenService.getAuthToken();
 
-      if (this.state.targetEnergy !== '') {
+      if (this.state.targetEnergy !== null) {
         NEW_FETCH_URL += `&target_energy=${this.state.targetEnergy}`;
       }
-      if (this.state.targetValence !== '') {
+      if (this.state.targetValence !== null) {
         NEW_FETCH_URL += `&target_valence=${this.state.targetValence}`;
       }
-      if (this.state.targetTempo !== '') {
+      if (this.state.targetTempo !== null) {
         NEW_FETCH_URL += `&target_tempo=${this.state.targetTempo}`;
       }
-      if (this.state.targetPopularity !== '') {
+      if (this.state.targetPopularity !== null) {
         NEW_FETCH_URL += `&target_popularity=${this.state.targetPopularity}`;
       }
 
@@ -322,7 +342,7 @@ class App extends React.Component {
           // let parsed = queryString.parse(window.location.search);
           // let accessToken = parsed.access_token;
           // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: Top Artists` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: Top Artists ${this.state.weather.WeatherText}` })
 
           const myOptions = {
             method: 'POST',
@@ -380,7 +400,11 @@ class App extends React.Component {
             const URL= `${config.API_ENDPOINT}/playlists`
               const playlistBody= JSON.stringify({
                 playlist_id: this.state.playlistId,
-                user_id: this.state.id
+                user_id: this.state.id,
+                energy: this.state.targetEnergy,
+                valence: this.state.targetValence,
+                tempo: this.state.targetTempo,
+                popularity: this.state.popularity
               });
 
               console.log(playlistBody);
@@ -413,75 +437,74 @@ class App extends React.Component {
   }
 
   handleSearchCity = (postalCode) => {
-    const CITY_BASE_URL = `http://dataservice.accuweather.com/locations/v1/postalcodes/US/search?apikey=HGhQvGsArNhNHkbK4EAnuX09P8mP8Qk8&q=${postalCode}`;
-
-    fetch(CITY_BASE_URL)
-      .then(res => res.json())
+   
+   fetch(`${config.API_ENDPOINT}/weather`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ postalCode })
+    })
       .then(res => {
-        console.log(res);
-        const locationKey = res[0].Key;
-        this.setState({ locationKey })
-        console.log(this.state.locationKey);
-        const WEATHER_BASE_URL = `http://dataservice.accuweather.com/currentconditions/v1/${this.state.locationKey}?apikey=HGhQvGsArNhNHkbK4EAnuX09P8mP8Qk8&language=en-us&details=true`;
-
-        return fetch(WEATHER_BASE_URL)
-        .then(res => res.json())
-        .then(res => {
-          console.log(res);
-          const weather = res[0];
-          this.setState({ weather })
-          if(weather.CloudCover <= 25) {
-            this.setState({ targetValence: .8 })
-            this.setState({ targetTempo: .8 })
-            this.setState({ targetEnergy: .8 })
-          }
-          if(weather.CloudCover > 25 && weather.CloudCover < 50) {
-            this.setState({ targetValence: .6 })
-            this.setState({ targetTempo: .6 })
-            this.setState({ targetEnergy: .6 })
-          }
-          if(weather.CloudCover > 50 && weather.CloudCover < 75) {
-            this.setState({ targetValence: .4 })
-            // this.setState({ targetTempo: .4 })
-            this.setState({ targetEnergy: .4 })
-          }
-          if(weather.CloudCover > 75) {
-            this.setState({ targetValence: .2 })
-            // this.setState({ targetTempo: .2 })
-            this.setState({ targetEnergy: .2 })
-          }
-          // if(weather.PrecipitationType) {
-          //   this.setState({ targetValence: .4 })
-          // }
-          console.log(this.state);
-        })
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : this.setState({ weather: res.json() })
       })
+      // .then(response => {
+      //   console.log(response)
+      // })
+        // this.setState({ weather: res })
+      // .then(res=> {
+      //   console.log(res);
+        // : this.setState({ weather: res })
 
-  }
+          // if(this.state.IsDayTime === false) {
+          //   this.setState({ targetValence: .4 })
+          //   this.setState({ targetTempo: .4 })
+          //   this.setState({ targetEnergy: .4 })
+          // }
+          //   this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
+          //   this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
+    }
 
   handleSetGenre = (genreChoice) => {
     this.setState({ genreChoice });
   }
 
   handleSetEnergy = (energyLevel) => {
+    if (energyLevel !== null) {
     this.setState({ targetEnergy: Number(energyLevel) });
+    } else {
+      this.setState({ targetEnergy: null });
+    }
   }
 
   handleSetValence = (valenceLevel) => {
+    if (valenceLevel !== null) {
     this.setState({ targetValence: Number(valenceLevel) });
+  } else {
+    this.setState({ targetValence: null })
+    }
   }
 
   handleSetTempo = (tempoLevel) => {
-    this.setState({ targetTempo: Number(tempoLevel) });
-  }
+    if (tempoLevel !== null) {
+      this.setState({ targetTempo: Number(tempoLevel) });
+    } else {
+      this.setState({ targetTempo: null })
+      }
+    }
 
   handleSetPopularity = (popularityLevel) => {
-    this.setState({ targetPopularity: Number(popularityLevel) });
-  }
+    if (popularityLevel !== null) {
+      this.setState({ targetPopularity: Number(popularityLevel) });
+    } else {
+      this.setState({ targetPopularity: null })
+      }
+    }
 
   render() {
     console.log(this.state);
-    console.log(process.env.API_KEY);
     let error = '';
     if (this.state.error) {
       error = this.state.error;
@@ -504,14 +527,47 @@ class App extends React.Component {
 
           <Route 
           exact path={'/genreOption'}
-          render={() => 
+          render={props => 
             <GenreOption
               setGenre={this.handleSetGenre}
               playlistId={this.state.playlistId} 
               snapshot={this.state.snapshot}
               getGenrePlaylist={this.handleGenrePlaylist}
+              getArtistPlaylist={this.handleArtistPlaylist}
+              weather={this.state.weather} 
+              {...props}
               />} 
             />
+
+          <Route 
+          exact path={'/results'}
+          render={props => 
+            <Results
+              playlistId={this.state.playlistId} 
+              snapshot={this.state.snapshot}
+              {...props}
+              />} 
+            />
+
+          <Route 
+          exact path={'/changeGenreParams'}
+          render={props =>
+            <ChangeGenreParams
+              getGenrePlaylist={this.handleGenrePlaylist}
+              getArtistPlaylist={this.handleArtistPlaylist}
+              setEnergy={this.handleSetEnergy}
+              targetEnergy={this.state.targetEnergy}
+              setValence={this.handleSetValence}
+              targetValence={this.state.targetValence}
+              setTempo={this.handleSetTempo}
+              targetTempo={this.state.targetTempo}
+              setPopularity={this.handleSetPopularity}
+              targetPopularity={this.state.targetPopularity}
+              genreOption={this.state.genreChoice}
+              topArtists={this.state.topArtists}
+              {...props}
+          />}
+          />
 
           <Route 
           exact path={'/artistOption'}
@@ -524,11 +580,28 @@ class App extends React.Component {
             />
 
           <Route 
+          exact path={'/changeArtistParams'}
+          render={() =>
+            <ChangeArtistParams
+              getArtistPlaylist={this.handleArtistPlaylist}
+              setEnergy={this.handleSetEnergy}
+              targetEnergy={this.state.targetEnergy}
+              setValence={this.handleSetValence}
+              targetValence={this.state.targetValence}
+              setTempo={this.handleSetTempo}
+              targetTempo={this.state.targetTempo}
+              setPopularity={this.handleSetPopularity}
+              targetPopularity={this.state.targetPopularity}
+          />}
+          />
+
+          <Route 
           exact path={'/getWeather'}
-          render={() => 
+          render={props => 
             <HomePage
             searchCity= {this.handleSearchCity} 
             weather={this.state.weather} 
+            {...props}
             />}
             />
 
