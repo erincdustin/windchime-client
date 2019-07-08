@@ -18,16 +18,10 @@ class App extends React.Component {
       locationKey: null,
       // weather: null,
       weather: {
-        IsDayTime: true,
         Temperature: {
-          Imperial: {
-            Value: 92,
-          },
-        HasPrecipitation: null,
+          Imperial: '82',
         },
-        CloudCover: 45,
-        PrecipitationType: null,
-        WeatherText: 'Partly Cloudy',
+        WeatherText: 'test'
       },
       genreChoice: null,
       id: null,
@@ -439,7 +433,7 @@ class App extends React.Component {
   }
 
   handleSearchCity = (postalCode) => {
-   
+
    return fetch(`${config.API_ENDPOINT}/weather`, {
       method: 'POST',
       headers: {
@@ -448,32 +442,44 @@ class App extends React.Component {
       body: JSON.stringify({ postalCode })
     })
       .then(res => {
-        (!res.ok)
+        return (!res.ok)
           ? res.json().then(e => Promise.reject(e))
-          : console.log(res.json())
+          : res.json()
       })
-      // .then(json => {
-      //   console.log(json)
-      // })
+      .then(response => {
+        console.log(response.PrecipitationType === 'Rain')
+        this.setState({ weather: response })
+        if(this.state.weather.IsDayTime === false) {
+          this.setState({ targetValence: .4 })
+          this.setState({ targetTempo: .2 })
+          this.setState({ targetEnergy: .2 })
+        }
+        if(this.state.weather.WeatherText.toLowerCase().includes('storm')) {
+          this.setState({ targetValence: .2 })
+          this.setState({ targetEnergy: .6 })
+        }
+        if(this.state.weather.PrecipitationType === 'Rain') {
+          this.setState({ targetValence: .2 })
+          this.setState({ targetEnergy: .4 })
+        }
+        if(this.state.weather.PrecipitationType === 'Snow') {
+          this.setState({ targetValence: .6 })
+          this.setState({ targetEnergy: .4 })
+        } 
+        if(this.state.HasPrecipitation === null ) {
+          if (this.state.weather.CloudCover < 1) {
+          this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
+          this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
+          } else {
+            this.setState({ targetValence: .1 })
+            this.setState({ targetEnergy: .1 })
+          }
+      }
+    })
       .catch(err => {
         console.log(err)
       })
-      // .then(response => {
-      //   console.log(response)
-      // })
-        // this.setState({ weather: res })
-      // .then(res=> {
-      //   console.log(res);
-        // : this.setState({ weather: res })
-
-          // if(this.state.IsDayTime === false) {
-          //   this.setState({ targetValence: .4 })
-          //   this.setState({ targetTempo: .4 })
-          //   this.setState({ targetEnergy: .4 })
-          // }
-          //   this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
-          //   this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
-    }
+}
 
   handleSetGenre = (genreChoice) => {
     this.setState({ genreChoice });
@@ -512,6 +518,7 @@ class App extends React.Component {
     }
 
   render() {    
+    console.log(this.state)
   return (
     <div className="App">            
       {/* <header className="App__header">
