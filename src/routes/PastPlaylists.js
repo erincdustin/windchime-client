@@ -6,8 +6,12 @@ export default class PastPlaylists extends React.Component {
   render() {
     return(
       <div>
-        <Header />
-        <UserPlaylists id={this.props.id} />
+        <div>
+          <Header />
+        </div>
+        <div className="App__main">
+          <UserPlaylists id={this.props.id} />
+        </div>
       </div>
     )
   }

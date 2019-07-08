@@ -1,0 +1,21 @@
+.results {
+  display: block;
+  background-color: rgb(243, 243, 243);
+  border: 1px solid lightgrey;
+  height: 525px;
+  width: 100%;
+  border-radius: 10px;
+  /* margin-left: 0px; */
+  text-align: center;
+}
+
+.iframe {
+  margin: auto;
+  text-align: center;
+}
+
+.btn-results {
+  margin-bottom: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+}

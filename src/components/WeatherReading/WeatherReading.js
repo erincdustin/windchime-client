@@ -13,24 +13,20 @@ function WeatherReading(props) {
     PrecipitationType: null,
     WeatherText: null,
   }
-
   let weatherResults = '';
+
   if(props.weather !== null) {
     weather = props.weather;
-    // let timeOfDay = '';
-    // let precipitation = '';
-    // (weather.IsDayTime === true) ? timeOfDay= <p>Daytime</p> : timeOfDay= <p>Nighttime</p>;
-    // (weather.HasPrecipitation === true) ? precipitation= <p>{weather.PrecipitationType}</p> : precipitation='';
     
     weatherResults=  
-        <div>
-          <p>{weather.Temperature.Imperial.Value} Degrees</p>
-          <p>{weather.WeatherText}</p>
+        <div className="ribbon">
+          <h3>Weather<span className="ribbon-text">{weather.Temperature.Imperial.Value} Degrees, {weather.WeatherText}</span></h3>
         </div>
-}
-   return (
+  }
+
+  return (
     <div>
-      <p>{weatherResults}</p>
+      <div>{weatherResults}</div>
     </div>
   );
 }

@@ -19,9 +19,12 @@ class App extends React.Component {
       // weather: null,
       weather: {
         Temperature: {
-          Imperial: '82',
+          Imperial: {
+            Value: 82,
+          }
         },
-        WeatherText: 'test'
+        WeatherText: 'Weather Placeholder',
+        PrecipitationType: 'Rain'
       },
       genreChoice: null,
       id: null,
@@ -524,7 +527,7 @@ class App extends React.Component {
       {/* <header className="App__header">
           <Header />
       </header> */}
-      <main className="App__main">
+      <main>
         <section>
           <Route 
           exact path={'/'}
@@ -544,6 +547,8 @@ class App extends React.Component {
               getGenrePlaylist={this.handleGenrePlaylist}
               getArtistPlaylist={this.handleArtistPlaylist}
               weather={this.state.weather} 
+              topArtists={this.state.topArtists}
+              genreOption={this.state.genreChoice}
               {...props}
               />} 
             />
@@ -554,6 +559,9 @@ class App extends React.Component {
             <Results
               playlistId={this.state.playlistId} 
               snapshot={this.state.snapshot}
+              weather={this.state.weather} 
+              topArtists={this.state.topArtists}
+              genreOption={this.state.genreChoice}
               {...props}
               />} 
             />

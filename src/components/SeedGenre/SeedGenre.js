@@ -1,35 +1,13 @@
 import React from 'react';
 import GenreList from '../../GenreList';
 import { Link } from 'react-router-dom';
+import './SeedGenre.css'
 
 function SeedGenre(props) {
-  let weather = {
-    IsDayTime: null,
-    Temperature: {
-      Imperial: {
-        Value: null,
-      },
-    HasPrecipitation: null,
-    },
-    CloudCover: null,
-    PrecipitationType: null,
-    WeatherText: null,
-  }
-  let weatherResults = '';
-
-  if(props.weather !== null) {
-    weather = props.weather;
-    
-    weatherResults=  
-        <div>
-          <h3>Weather:</h3>
-          <p>{weather.Temperature.Imperial.Value} Degrees, {weather.WeatherText}</p>
-        </div>
-  }
 
   const mappedGenres = GenreList.map((genre, index) => {
     return(
-      <span className="genre-btn" key={index}>
+      <span className="genre-list" key={index}>
         <button 
         value={genre}
         onClick={async (e) =>{
@@ -48,15 +26,15 @@ function SeedGenre(props) {
 
   return (
     <div>
-      <div>{weatherResults}</div>
-      <h3>Use Top Artists OR Pick a Genre:</h3>
-      <button onClick={()=> {
-        props.getArtistPlaylist();
-        props.history.push('/results');
-        }}>Use my Top Artists!</button>
-      <div>{mappedGenres}</div>
-      <h3> </h3>
-      <button><Link to="/getWeather">Back</Link></button>
+      <span className="center">
+          <button className="inline" onClick={()=> {
+            props.getArtistPlaylist();
+            props.history.push('/results');
+            }}>Use My Top Artists!</button>
+      <h4>OR Pick a genre:</h4>
+      <div className="mapped-genres">{mappedGenres}</div>
+      <button className="btn-default btn"><Link className="link" to="/getWeather">Back</Link></button>
+      </span>
     </div>
   );
 }

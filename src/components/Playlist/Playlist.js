@@ -6,7 +6,7 @@ function Playlist(props) {
   
   return (
     <div>
-      <iframe title={props.playlistId} src={url} width="500" height="80" frameBorder="0" allowTransparency="true" ></iframe>
+      <iframe title={props.playlistId} src={url} width="250" height="80" frameBorder="0" allowTransparency="true" ></iframe>
     </div>
   );
 }

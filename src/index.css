@@ -1,3 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap')
+
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -12,3 +19,96 @@ code {
     monospace;
 }
 
+.container__centered {
+  display: block;
+}
+
+.wind-chime__text {
+  font-family: 'Abel', sans-serif;
+  font-size: 40px;
+  text-align: center;
+}
+
+.text-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.container {
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.blue {
+  color: rgb(110, 169, 173);
+}
+
+.button {
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: rgb(207, 233, 235);
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.header {
+  position: fixed;
+  background-color: lightgrey;
+  width: 100%;
+  height: 50px;
+  font-family: 'Abel', sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+.App__main {
+  width: 80%;
+  margin: auto;
+  padding-top: 50px;
+  /* border: 1px solid black; */
+}
+
+/* .btn-default {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  margin: auto 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  background-color: rgb(209, 235, 241);
+} */
+
+.error {
+  color: red;
+  font-size: 16px;
+}
+
+.ribbon {
+  height: 30px;
+  background-color: rgb(207, 233, 235);
+  padding-left: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.ribbon-text {
+  /* display: inline; */
+  font-size: 16px;
+  font-weight: normal;
+  font-style: italic;
+  float: right;
+  padding-right: 15px;
+  padding-top: 2.5px;
+}

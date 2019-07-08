@@ -1,0 +1,26 @@
+.genre-btn {
+  margin-right: 2.5px;
+  /* background-color: rgb(220, 235, 240); */
+  /* border: .5px solid lightgrey; */
+  /* border-radius: 10px; */
+  padding: 3px;
+}
+
+.center {
+  display: block;
+  text-align: center;
+}
+
+.inline {
+  display: inline-block;
+  margin: 0px 10px;
+}
+
+.mapped-genres {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  text-align: center;
+  background-color: rgb(228, 239, 240);
+  border: 1px rgb(211, 211, 211) solid;
+  border-radius: 10px;
+  padding: 20px 0px;
+}
