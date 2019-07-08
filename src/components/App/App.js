@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import config from '../../config';
-// import Header from '../Header/Header';
 import Redirect from '../../routes/Redirect';
 import TokenService from '../../services/token-service';
 import HomePage from '../../routes/HomePage';
@@ -10,7 +9,6 @@ import GenreOption from '../../routes/GenreOption';
 import ArtistOption from '../../routes/ArtistOption';
 import PastPlaylists from '../../routes/PastPlaylists';
 import ChangeGenreParams from '../../routes/ChangeGenreParams';
-import ChangeArtistParams from '../../routes/ChangeArtistParams';
 import Results from '../../routes/Results';
  
 class App extends React.Component {
@@ -18,19 +16,19 @@ class App extends React.Component {
       error: '',
       songs: null,
       locationKey: null,
-      weather: null,
-      // weather: {
-      //   IsDayTime: true,
-      //   Temperature: {
-      //     Imperial: {
-      //       Value: 92,
-      //     },
-      //   HasPrecipitation: null,
-      //   },
-      //   CloudCover: 45,
-      //   PrecipitationType: null,
-      //   WeatherText: 'Partly Cloudy',
-      // },
+      // weather: null,
+      weather: {
+        IsDayTime: true,
+        Temperature: {
+          Imperial: {
+            Value: 92,
+          },
+        HasPrecipitation: null,
+        },
+        CloudCover: 45,
+        PrecipitationType: null,
+        WeatherText: 'Partly Cloudy',
+      },
       genreChoice: null,
       id: null,
       topArtists: null,
@@ -97,6 +95,10 @@ class App extends React.Component {
           })} else {
           console.log('user found')
           }
+        })
+        .catch(error => {
+          this.setState({ error: error.message})
+          console.log(error)
         })
       })
     };
@@ -248,7 +250,7 @@ class App extends React.Component {
           })
         })
       .catch(error => {
-        // this.setState({error});
+        this.setState({ error: error.message })
         console.log(error)
       })
   }
@@ -431,14 +433,14 @@ class App extends React.Component {
       })
     })
     .catch(error => {
-      // this.setState({error});
+      this.setState({ error: error.message })
       console.log(error)
     })
   }
 
   handleSearchCity = (postalCode) => {
    
-   fetch(`${config.API_ENDPOINT}/weather`, {
+   return fetch(`${config.API_ENDPOINT}/weather`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -448,7 +450,13 @@ class App extends React.Component {
       .then(res => {
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
-          : this.setState({ weather: res.json() })
+          : console.log(res.json())
+      })
+      // .then(json => {
+      //   console.log(json)
+      // })
+      .catch(err => {
+        console.log(err)
       })
       // .then(response => {
       //   console.log(response)
@@ -503,13 +511,7 @@ class App extends React.Component {
       }
     }
 
-  render() {
-    console.log(this.state);
-    let error = '';
-    if (this.state.error) {
-      error = this.state.error;
-    }
-    
+  render() {    
   return (
     <div className="App">            
       {/* <header className="App__header">
@@ -580,22 +582,6 @@ class App extends React.Component {
             />
 
           <Route 
-          exact path={'/changeArtistParams'}
-          render={() =>
-            <ChangeArtistParams
-              getArtistPlaylist={this.handleArtistPlaylist}
-              setEnergy={this.handleSetEnergy}
-              targetEnergy={this.state.targetEnergy}
-              setValence={this.handleSetValence}
-              targetValence={this.state.targetValence}
-              setTempo={this.handleSetTempo}
-              targetTempo={this.state.targetTempo}
-              setPopularity={this.handleSetPopularity}
-              targetPopularity={this.state.targetPopularity}
-          />}
-          />
-
-          <Route 
           exact path={'/getWeather'}
           render={props => 
             <HomePage
@@ -612,7 +598,7 @@ class App extends React.Component {
             id={this.state.id}
             />}
             />
-          
+          <div className="err-message">{this.state.error}</div>
         </section>
       </main>
     </div>

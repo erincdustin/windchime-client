@@ -4,17 +4,16 @@ import { Link } from 'react-router-dom';
 
 function SeedGenre(props) {
   let weather = {
-    name: ''
-  //   IsDayTime: null,
-  //   Temperature: {
-  //     Imperial: {
-  //       Value: null,
-  //     },
-  //   HasPrecipitation: null,
-  //   },
-  //   CloudCover: null,
-  //   PrecipitationType: null,
-  //   WeatherText: null,
+    IsDayTime: null,
+    Temperature: {
+      Imperial: {
+        Value: null,
+      },
+    HasPrecipitation: null,
+    },
+    CloudCover: null,
+    PrecipitationType: null,
+    WeatherText: null,
   }
   let weatherResults = '';
 
@@ -24,8 +23,7 @@ function SeedGenre(props) {
     weatherResults=  
         <div>
           <h3>Weather:</h3>
-          {/* <p>{weather.Temperature.Imperial.Value} Degrees, {weather.WeatherText}</p> */}
-          <p>{weather.name}</p>
+          <p>{weather.Temperature.Imperial.Value} Degrees, {weather.WeatherText}</p>
         </div>
   }
 

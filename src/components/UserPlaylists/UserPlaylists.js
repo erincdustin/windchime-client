@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Playlist from '../Playlist/Playlist';
-import testData from '../../dummy-data';
 import config from '../../config'
 
 class UserPlaylists extends React.Component {
