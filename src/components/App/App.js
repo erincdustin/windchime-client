@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import config from '../../config';
 import Redirect from '../../routes/Redirect';
 import TokenService from '../../services/token-service';

@@ -2,12 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Header.css';
-import queryString from 'query-string';
 
 function Header() {
-  let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
-    const path=`/${accessToken}/test`
 
   return (
     <div className="header">

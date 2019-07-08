@@ -1,5 +1,4 @@
 import React from 'react';
-import ChangeParams from '../components/ChangeParams/ChangeParams';
 import PlaylistResults from '../components/PlaylistResults/PlaylistResults';
 import Header from '../components/Header/Header';
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from '../components/Header/Header';
 import SeedGenre from '../components/SeedGenre/SeedGenre';
-import PlaylistResults from '../components/PlaylistResults/PlaylistResults';
-import { Link } from 'react-router-dom'
 
 export default class GenreOption extends React.Component {
   render() {
