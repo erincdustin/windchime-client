@@ -16,18 +16,18 @@ class App extends React.Component {
       error: '',
       songs: null,
       locationKey: null,
-      weather: null,
-      // weather: {
-      //   Temperature: {
-      //     Imperial: {
-      //       Value: 82,
-      //     }
-      //   },
-      //   WeatherText: 'Mostly Cloudy',
-      //   PrecipitationType: 'Rain',
-      //   CloudCover: .55,
-      //   HasPrecipitation: true,
-      // },
+      // weather: null,
+      weather: {
+        Temperature: {
+          Imperial: {
+            Value: 82,
+          }
+        },
+        WeatherText: 'Mostly Cloudy',
+        PrecipitationType: 'Rain',
+        CloudCover: .55,
+        HasPrecipitation: true,
+      },
       genreChoice: null,
       id: null,
       topArtists: null,

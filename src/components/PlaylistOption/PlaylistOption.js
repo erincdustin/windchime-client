@@ -11,12 +11,13 @@ function PlaylistOption(props) {
 
   return (
     <div>
-      <h3 className="ribbon two">
-        Playlist Options
-        <span className="ribbon-text">{option}
-        <button><Link className="link" to="/genreOption">Change</Link></button>
+      <div className="ribbon two">
+      <div className="ribbon-header">Playlist Options</div>
+        <span className="ribbon-text">
+        <span className="hidden">{option}</span>
+        <button class="btn weather"><Link className="link" to="/genreOption">Change</Link></button>
         </span>
-      </h3>
+        </div>
     </div>
   );
 }

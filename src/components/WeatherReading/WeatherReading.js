@@ -21,11 +21,11 @@ function WeatherReading(props) {
     
     weatherResults=  
         <div className="ribbon one">
-          <h3>Weather<span className="ribbon-text">
-          {weather.Temperature.Imperial.Value} Degrees, {weather.WeatherText} 
-          <button><Link className="link" to="/getWeather">Change</Link></button>
+          <div className="ribbon-header">Weather</div>
+          <span className="ribbon-text">
+          <span className="hidden">{weather.Temperature.Imperial.Value}&deg;, {weather.WeatherText}</span>
+          <button class="btn weather"><Link className="link" to="/getWeather">Change</Link></button>
           </span>
-          </h3>
         </div>
   }
 

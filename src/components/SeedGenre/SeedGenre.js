@@ -20,15 +20,15 @@ function SeedGenre(props) {
             console.log(err)
           }
         }}
-        className="btn" type="button">{genre}</button>
+        className="btn genre" type="button">{genre}</button>
       </span>)
     });
 
   return (
     <div>
-      <h3 className="ribbon two">Playlist Options</h3>
+      <div className="ribbon two"><div className="ribbon-header">Playlist Options</div></div>
       <span className="center">
-          <button className="inline btn artist" onClick={()=> {
+          <button className="inline btn artist orange" onClick={()=> {
             props.getArtistPlaylist();
             props.history.push('/results');
             }}>Use My Top Artists!</button>

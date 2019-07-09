@@ -13,7 +13,7 @@ function PlayListResults(props) {
     playlist = 
     <div>
       <h3>Don't like this playlist?</h3>
-      <button className="btn-results"><Link className="link" to="/changeGenreParams">Change Playlist Mood Settings</Link></button>
+      <button className="btn"><Link className="link" to="/changeGenreParams">Change Mood Settings</Link></button>
       {/* <button className="btn-results"><Link className="link" to="/genreOption">Change Genre</Link></button> */}
       <iframe class="iframe" title={props.playlistId} src={url} width="250" height="380" frameBorder="0" allowTransparency="true" ></iframe>
     </div>;
@@ -21,7 +21,7 @@ function PlayListResults(props) {
 
   return (
     <div>
-      <h3 className="ribbon three">Your Playlist</h3>
+      <div className="ribbon three"><span className="ribbon-header">Your Playlist</span></div>
       <div className="results">{playlist}</div>
     </div>
   );
