@@ -443,41 +443,50 @@ class App extends React.Component {
       .then(response => {
         console.log(response.PrecipitationType === 'Rain')
         this.setState({ weather: response })
-        
-        // if(this.state.weather.IsDayTime === false) {
-        //   this.setState({ targetValence: .4 })
-        //   this.setState({ targetTempo: .2 })
-        //   this.setState({ targetEnergy: .2 })
-        // } 
-        // if(this.state.weather.IsDayTime === false && this.state.weather.HasPrecipitation === true) {
-        //   this.setState({ targetValence: .2 })
-        //   this.setState({ targetTempo: .2 })
-        //   this.setState({ targetEnergy: .2 })
-        // }
-        // if(this.state.weather.WeatherText.toLowerCase().includes('storm')) {
-        //   this.setState({ targetValence: .2 })
-        //   this.setState({ targetTempo: .5 })
-        //   this.setState({ targetEnergy: .6 })
-        // }
-        // if(this.state.weather.PrecipitationType === 'Rain') {
-        //   this.setState({ targetValence: .2 })
-        //   this.setState({ targetEnergy: .4 })
-        // }
-        // if(this.state.weather.PrecipitationType === 'Snow') {
-        //   this.setState({ targetValence: .6 })
-        //   this.setState({ targetEnergy: .4 })
-        // } 
-        // if(this.state.HasPrecipitation === false ) {
-        //   if (this.state.weather.CloudCover < 1) {
-        //   this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
-        //   this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
-        //   } if (!this.state.weather.CloudCover) {
-        //     this.setState({ targetValence: .9 })
-        //     this.setState({ targetEnergy: .9 })
-        //   } else {
-        //     this.setState({ targetValence: .1 })
-        //     this.setState({ targetEnergy: .1 })
-        //   }
+        const id = this.state.weather.weather[0].id;
+          if(id.toString().startsWith('2')) {
+            this.setState({ targetValence: .2 })
+            this.setState({ targetTempo: .5 })
+            this.setState({ targetEnergy: .6 })
+          }
+          if(id.toString().startsWith('3')) {
+            this.setState({ targetValence: .4 })
+            this.setState({ targetTempo: .2 })
+            this.setState({ targetEnergy: .4 })
+          } 
+          if(id.toString().startsWith('4')) {
+            this.setState({ targetValence: .3 })
+            this.setState({ targetTempo: .4 })
+            this.setState({ targetEnergy: .4 })
+          }
+          if(id.toString().startsWith('6')) {
+            this.setState({ targetValence: .6 })
+            this.setState({ targetEnergy: .6 })
+          } 
+          if(id.toString().startsWith('6')) {
+            this.setState({ targetValence: .2 })
+            this.setState({ targetEnergy: .4 })
+          }
+          if(id.toString() === ('800')) {
+            this.setState({ targetValence: .9 })
+            this.setState({ targetEnergy: .9 })
+          }
+          if(id.toString() === '801') {
+            this.setState({ targetValence: .8 })
+            this.setState({ targetEnergy: .8 })
+          }
+          if(id.toString() === '802') {
+            this.setState({ targetValence: .6 })
+            this.setState({ targetEnergy: .6 })
+          }
+          if(id.toString() === '803') {
+            this.setState({ targetValence: .45 })
+            this.setState({ targetEnergy: .45 })
+          }
+          if(id.toString() === '803') {
+            this.setState({ targetValence: .15 })
+            this.setState({ targetEnergy: .15 })
+          }
     })
       .catch(err => {
         console.log(err)
@@ -549,6 +558,7 @@ class App extends React.Component {
               weather={this.state.weather} 
               topArtists={this.state.topArtists}
               genreOption={this.state.genreChoice}
+              energy={this.state.targetEnergy}
               {...props}
               />} 
             />
