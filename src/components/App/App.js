@@ -16,18 +16,18 @@ class App extends React.Component {
       error: '',
       songs: null,
       locationKey: null,
-      // weather: null,
-      weather: {
-        Temperature: {
-          Imperial: {
-            Value: 82,
-          }
-        },
-        WeatherText: 'Mostly Cloudy',
-        PrecipitationType: 'Rain',
-        CloudCover: .55,
-        HasPrecipitation: true,
-      },
+      weather: null,
+      // weather: {
+      //   Temperature: {
+      //     Imperial: {
+      //       Value: 82,
+      //     }
+      //   },
+      //   WeatherText: 'Mostly Cloudy',
+      //   PrecipitationType: 'Rain',
+      //   CloudCover: .55,
+      //   HasPrecipitation: true,
+      // },
       genreChoice: null,
       id: null,
       topArtists: null,
@@ -459,9 +459,15 @@ class App extends React.Component {
           this.setState({ targetValence: .4 })
           this.setState({ targetTempo: .2 })
           this.setState({ targetEnergy: .2 })
+        } 
+        if(this.state.weather.IsDayTime === false && this.state.weather.HasPrecipitation === true) {
+          this.setState({ targetValence: .2 })
+          this.setState({ targetTempo: .2 })
+          this.setState({ targetEnergy: .2 })
         }
         if(this.state.weather.WeatherText.toLowerCase().includes('storm')) {
           this.setState({ targetValence: .2 })
+          this.setState({ targetTempo: .5 })
           this.setState({ targetEnergy: .6 })
         }
         if(this.state.weather.PrecipitationType === 'Rain') {
@@ -472,7 +478,7 @@ class App extends React.Component {
           this.setState({ targetValence: .6 })
           this.setState({ targetEnergy: .4 })
         } 
-        if(this.state.HasPrecipitation === null ) {
+        if(this.state.HasPrecipitation === false ) {
           if (this.state.weather.CloudCover < 1) {
           this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
           this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
@@ -594,11 +600,12 @@ class App extends React.Component {
 
           <Route 
           exact path={'/artistOption'}
-          render={() => 
+          render={props => 
             <ArtistOption
               playlistId={this.state.playlistId} 
               snapshot={this.state.snapshot}
               getArtistPlaylist={this.handleArtistPlaylist}
+              {...props}
               />} 
             />
 
@@ -614,9 +621,10 @@ class App extends React.Component {
 
             <Route 
           exact path={'/playlists'}
-          render={() => 
+          render={props => 
             <PastPlaylists
             id={this.state.id}
+            {...props}
             />}
             />
           <div className="error">{this.state.error}</div>

@@ -8,7 +8,7 @@ export default class ChangeGenreParams extends React.Component {
     return(
       <div>
         <div>
-          <Header />
+          <Header {...this.props}/>
         </div>
         <div className="App__main">
           <ChangeParams setEnergy={this.props.setEnergy}

@@ -10,7 +10,7 @@ export default class LandingPage extends React.Component {
         <h1 className="wind-chime__text">Wind Chime <FontAwesomeIcon className='blue' icon='wind' /></h1>
         <p className="text-container">Listen to playlists that fit the mood of the weather!  <br/><br/>
         Wind Chime give you the option to use your top artists or pick a specific genre to fit your music tastes. </p>
-        <button className="button"><a className="link" href={config.AUTH_ENDPOINT}>Sign Into Spotify</a></button>
+        <button className="btn sign-in"><a className="link" href={config.AUTH_ENDPOINT}>Sign Into Spotify</a></button>
       </div>
     )
   }

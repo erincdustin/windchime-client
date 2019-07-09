@@ -20,7 +20,7 @@ function SeedGenre(props) {
             console.log(err)
           }
         }}
-        className="genre-btn" type="button">{genre}</button>
+        className="btn" type="button">{genre}</button>
       </span>)
     });
 
@@ -28,13 +28,13 @@ function SeedGenre(props) {
     <div>
       <h3 className="ribbon two">Playlist Options</h3>
       <span className="center">
-          <button className="inline" onClick={()=> {
+          <button className="inline btn artist" onClick={()=> {
             props.getArtistPlaylist();
             props.history.push('/results');
             }}>Use My Top Artists!</button>
       <h4>OR Pick a genre:</h4>
       <div className="mapped-genres">{mappedGenres}</div>
-      <button className="btn-default btn"><Link className="link" to="/getWeather">Back</Link></button>
+      {/* <button className="btn-default btn"><Link className="link" to="/getWeather">Back</Link></button> */}
       </span>
     </div>
   );

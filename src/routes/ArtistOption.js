@@ -8,7 +8,7 @@ export default class ArtistOption extends React.Component {
   render() {
     return(
       <div>
-        <Header />
+        <Header {...this.props}/>
         <SeedArtist getArtistPlaylist={this.props.getArtistPlaylist} />
         <PlaylistResults playlistId={this.props.playlistId} snapshot={this.props.snapshot}/>
         <h3>Don't like this playlist?</h3>

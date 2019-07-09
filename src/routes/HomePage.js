@@ -8,7 +8,7 @@ export default class Homepage extends React.Component {
     return(
       <div className="App">
         <div>
-          <Header />
+          <Header {...this.props}/>
         </div>
         <div className="App__main">
           {/* <WeatherReading weather={this.props.weather}/> */}

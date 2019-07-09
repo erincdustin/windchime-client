@@ -9,7 +9,7 @@ export default class GenreOption extends React.Component {
     return(
       <div>
         <div>
-          <Header />
+          <Header {...this.props}/>
         </div>
         <div className="App__main">
           <WeatherReading weather={this.props.weather}/>
