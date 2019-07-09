@@ -24,3 +24,10 @@
   border-radius: 10px;
   padding: 20px 0px;
 }
+
+.top-artists {
+  background-color: rgb(228, 239, 240);
+  border: 1px rgb(211, 211, 211) solid;
+  border-radius: 10px;
+  padding: 20px 0px;
+}

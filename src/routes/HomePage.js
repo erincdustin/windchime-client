@@ -11,7 +11,7 @@ export default class Homepage extends React.Component {
           <Header />
         </div>
         <div className="App__main">
-          <WeatherReading weather={this.props.weather}/>
+          {/* <WeatherReading weather={this.props.weather}/> */}
           <Weather searchCity={this.props.searchCity} weather={this.props.weather} {...this.props}/>
         </div>
       </div>

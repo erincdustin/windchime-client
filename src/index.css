@@ -30,8 +30,9 @@ code {
 }
 
 .text-container {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .container {
@@ -97,10 +98,23 @@ code {
 
 .ribbon {
   height: 30px;
-  background-color: rgb(207, 233, 235);
+  /* background-color: rgb(207, 233, 235); */
   padding-left: 15px;
   margin-bottom: 15px;
   border-radius: 10px;
+  /* border: 1px solid lightgrey; */
+}
+
+.one {
+  background-color: rgb(235, 244, 245);
+}
+
+.two {
+  background-color: rgb(208, 237, 240);
+}
+
+.three {
+  background-color: rgb(188, 236, 240);
 }
 
 .ribbon-text {

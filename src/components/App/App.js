@@ -23,8 +23,10 @@ class App extends React.Component {
             Value: 82,
           }
         },
-        WeatherText: 'Weather Placeholder',
-        PrecipitationType: 'Rain'
+        WeatherText: 'Mostly Cloudy',
+        PrecipitationType: 'Rain',
+        CloudCover: .55,
+        HasPrecipitation: true,
       },
       genreChoice: null,
       id: null,
@@ -452,6 +454,7 @@ class App extends React.Component {
       .then(response => {
         console.log(response.PrecipitationType === 'Rain')
         this.setState({ weather: response })
+        
         if(this.state.weather.IsDayTime === false) {
           this.setState({ targetValence: .4 })
           this.setState({ targetTempo: .2 })
@@ -473,6 +476,9 @@ class App extends React.Component {
           if (this.state.weather.CloudCover < 1) {
           this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
           this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
+          } if (!this.state.weather.CloudCover) {
+            this.setState({ targetValence: .9 })
+            this.setState({ targetEnergy: .9 })
           } else {
             this.setState({ targetValence: .1 })
             this.setState({ targetEnergy: .1 })
@@ -613,7 +619,7 @@ class App extends React.Component {
             id={this.state.id}
             />}
             />
-          <div className="err-message">{this.state.error}</div>
+          <div className="error">{this.state.error}</div>
         </section>
       </main>
     </div>

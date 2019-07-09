@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function WeatherReading(props) {
   let weather = {
@@ -19,8 +20,12 @@ function WeatherReading(props) {
     weather = props.weather;
     
     weatherResults=  
-        <div className="ribbon">
-          <h3>Weather<span className="ribbon-text">{weather.Temperature.Imperial.Value} Degrees, {weather.WeatherText}</span></h3>
+        <div className="ribbon one">
+          <h3>Weather<span className="ribbon-text">
+          {weather.Temperature.Imperial.Value} Degrees, {weather.WeatherText}
+          <button><Link className="link" to="/getWeather">Change</Link></button>
+          </span>
+          </h3>
         </div>
   }
 

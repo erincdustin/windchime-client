@@ -26,6 +26,7 @@ function SeedGenre(props) {
 
   return (
     <div>
+      <h3 className="ribbon two">Playlist Options</h3>
       <span className="center">
           <button className="inline" onClick={()=> {
             props.getArtistPlaylist();

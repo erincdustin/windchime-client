@@ -7,6 +7,7 @@ class Weather extends React.Component {
 
   return (
     <div>
+      <h3 className="ribbon one">Weather</h3>
       <form id="weather-form" onSubmit={(e)=> {
             e.preventDefault();
             this.props.searchCity(e.target.weatherInput.value);   
