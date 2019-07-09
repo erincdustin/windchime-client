@@ -110,6 +110,13 @@ code {
   background-color: rgb(151, 198, 202);
 }
 
+.icon {
+  height: 40px;
+  margin: 0px;
+  padding: 0px;
+  float: right;
+}
+
 .ribbon-text {
   /* display: inline; */
   font-size: 14px;
@@ -143,7 +150,7 @@ code {
 .btn:hover,
 .btn:focus {
   /* background: rgb(77, 153, 167); */
-  background: rgb(194, 226, 229);
+  background: rgb(160, 211, 216);
 }
 
 .btn:focus {
@@ -163,7 +170,11 @@ code {
 
 .artist {
   width: 12rem;
-  background: rgb(122, 122, 122)
+  background: rgb(241, 140, 92)
+}
+
+.artist:hover {
+  background: rgb(243, 185, 157)
 }
 
 .sign-in {
@@ -187,7 +198,11 @@ h4 {
 }
 
 .genre {
-  background: rgb(122, 122, 122)
+  background: rgb(241, 140, 92)
+}
+
+.genre:hover {
+  background: rgb(243, 185, 157)
 }
 
 @media screen and (max-width: 490px) {

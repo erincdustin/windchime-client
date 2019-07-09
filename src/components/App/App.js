@@ -16,18 +16,7 @@ class App extends React.Component {
       error: '',
       songs: null,
       locationKey: null,
-      // weather: null,
-      weather: {
-        Temperature: {
-          Imperial: {
-            Value: 82,
-          }
-        },
-        WeatherText: 'Mostly Cloudy',
-        PrecipitationType: 'Rain',
-        CloudCover: .55,
-        HasPrecipitation: true,
-      },
+      weather: null,
       genreChoice: null,
       id: null,
       topArtists: null,
@@ -455,41 +444,40 @@ class App extends React.Component {
         console.log(response.PrecipitationType === 'Rain')
         this.setState({ weather: response })
         
-        if(this.state.weather.IsDayTime === false) {
-          this.setState({ targetValence: .4 })
-          this.setState({ targetTempo: .2 })
-          this.setState({ targetEnergy: .2 })
-        } 
-        if(this.state.weather.IsDayTime === false && this.state.weather.HasPrecipitation === true) {
-          this.setState({ targetValence: .2 })
-          this.setState({ targetTempo: .2 })
-          this.setState({ targetEnergy: .2 })
-        }
-        if(this.state.weather.WeatherText.toLowerCase().includes('storm')) {
-          this.setState({ targetValence: .2 })
-          this.setState({ targetTempo: .5 })
-          this.setState({ targetEnergy: .6 })
-        }
-        if(this.state.weather.PrecipitationType === 'Rain') {
-          this.setState({ targetValence: .2 })
-          this.setState({ targetEnergy: .4 })
-        }
-        if(this.state.weather.PrecipitationType === 'Snow') {
-          this.setState({ targetValence: .6 })
-          this.setState({ targetEnergy: .4 })
-        } 
-        if(this.state.HasPrecipitation === false ) {
-          if (this.state.weather.CloudCover < 1) {
-          this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
-          this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
-          } if (!this.state.weather.CloudCover) {
-            this.setState({ targetValence: .9 })
-            this.setState({ targetEnergy: .9 })
-          } else {
-            this.setState({ targetValence: .1 })
-            this.setState({ targetEnergy: .1 })
-          }
-      }
+        // if(this.state.weather.IsDayTime === false) {
+        //   this.setState({ targetValence: .4 })
+        //   this.setState({ targetTempo: .2 })
+        //   this.setState({ targetEnergy: .2 })
+        // } 
+        // if(this.state.weather.IsDayTime === false && this.state.weather.HasPrecipitation === true) {
+        //   this.setState({ targetValence: .2 })
+        //   this.setState({ targetTempo: .2 })
+        //   this.setState({ targetEnergy: .2 })
+        // }
+        // if(this.state.weather.WeatherText.toLowerCase().includes('storm')) {
+        //   this.setState({ targetValence: .2 })
+        //   this.setState({ targetTempo: .5 })
+        //   this.setState({ targetEnergy: .6 })
+        // }
+        // if(this.state.weather.PrecipitationType === 'Rain') {
+        //   this.setState({ targetValence: .2 })
+        //   this.setState({ targetEnergy: .4 })
+        // }
+        // if(this.state.weather.PrecipitationType === 'Snow') {
+        //   this.setState({ targetValence: .6 })
+        //   this.setState({ targetEnergy: .4 })
+        // } 
+        // if(this.state.HasPrecipitation === false ) {
+        //   if (this.state.weather.CloudCover < 1) {
+        //   this.setState({ targetValence: (1- (this.state.weather.CloudCover/100)) })
+        //   this.setState({ targetEnergy: (1- (this.state.weather.CloudCover/100)) })
+        //   } if (!this.state.weather.CloudCover) {
+        //     this.setState({ targetValence: .9 })
+        //     this.setState({ targetEnergy: .9 })
+        //   } else {
+        //     this.setState({ targetValence: .1 })
+        //     this.setState({ targetEnergy: .1 })
+        //   }
     })
       .catch(err => {
         console.log(err)
