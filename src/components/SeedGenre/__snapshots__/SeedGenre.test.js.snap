@@ -1,0 +1,404 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeedGenre renders as expected 1`] = `
+<div>
+  <div
+    className="ribbon two"
+  >
+    <div
+      className="ribbon-header"
+    >
+      Playlist Options
+    </div>
+  </div>
+  <span
+    className="center"
+  >
+    <button
+      className="inline btn artist orange"
+      onClick={[Function]}
+    >
+      Use My Top Artists!
+    </button>
+    <h4>
+      OR Pick a genre:
+    </h4>
+    <div
+      className="mapped-genres"
+    >
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="acoustic"
+        >
+          acoustic
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="alternative"
+        >
+          alternative
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="ambient"
+        >
+          ambient
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="bluegrass"
+        >
+          bluegrass
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="blues"
+        >
+          blues
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="classical"
+        >
+          classical
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="country"
+        >
+          country
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="edm"
+        >
+          edm
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="electronic"
+        >
+          electronic
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="folk"
+        >
+          folk
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="guitar"
+        >
+          guitar
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="hip-hop"
+        >
+          hip-hop
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="holidays"
+        >
+          holidays
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="house"
+        >
+          house
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="indie"
+        >
+          indie
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="jazz"
+        >
+          jazz
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="latino"
+        >
+          latino
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="minimal-techno"
+        >
+          minimal-techno
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="movies"
+        >
+          movies
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="piano"
+        >
+          piano
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="pop"
+        >
+          pop
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="punk-rock"
+        >
+          punk-rock
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="r-n-b"
+        >
+          r-n-b
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="road-trip"
+        >
+          road-trip
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="rock"
+        >
+          rock
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="romance"
+        >
+          romance
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="soul"
+        >
+          soul
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="soundtracks"
+        >
+          soundtracks
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="study"
+        >
+          study
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="summer"
+        >
+          summer
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
+          value="techno"
+        >
+          techno
+        </button>
+      </span>
+    </div>
+  </span>
+</div>
+`;

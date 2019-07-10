@@ -8,6 +8,8 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "date-fns": "^1.30.1",
     "dotenv": "^8.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-to-json": "^3.3.5",
     "query-string": "^6.8.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaylistResults renders as expected 1`] = `
+<div>
+  <div
+    className="ribbon three"
+  >
+    <span
+      className="ribbon-header"
+    >
+      Your Playlist
+    </span>
+  </div>
+  <div
+    className="results"
+  >
+    <div>
+      <button
+        className="btn mood"
+      >
+        <a
+          className="link"
+          href="/changeGenreParams"
+          onClick={[Function]}
+        >
+          Change Mood Settings
+        </a>
+      </button>
+      <iframe
+        allowTransparency="true"
+        class="iframe"
+        frameBorder="0"
+        src="https://open.spotify.com/embed/user/spotify/playlist/12345"
+        title="12345"
+      />
+    </div>
+  </div>
+</div>
+`;

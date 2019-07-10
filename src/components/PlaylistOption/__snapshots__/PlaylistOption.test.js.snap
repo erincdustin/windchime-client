@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaylistOption renders as expected 1`] = `
+<div>
+  <div
+    className="ribbon two"
+  >
+    <div
+      className="ribbon-header"
+    >
+      Playlist Options
+    </div>
+    <span
+      className="ribbon-text"
+    >
+      <span
+        className="hidden"
+      >
+        Top Artists
+      </span>
+      <button
+        class="btn weather"
+      >
+        <a
+          className="link"
+          href="/genreOption"
+          onClick={[Function]}
+        >
+          Change
+        </a>
+      </button>
+    </span>
+  </div>
+</div>
+`;

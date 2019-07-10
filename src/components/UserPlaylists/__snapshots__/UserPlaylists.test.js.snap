@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserPlaylists renders as expected 1`] = `
+<div>
+  <h4>
+    No past playlists to display
+  </h4>
+  <button
+    className="btn mood"
+  >
+    <a
+      className="link"
+      href="/getWeather"
+      onClick={[Function]}
+    >
+      Make Another Playlist
+    </a>
+  </button>
+</div>
+`;

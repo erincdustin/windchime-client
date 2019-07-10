@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather renders as expected 1`] = `
+<div>
+  <div
+    className="ribbon one"
+  >
+    <div
+      className="ribbon-header"
+    >
+      Weather
+    </div>
+  </div>
+  <form
+    id="weather-form"
+    onSubmit={[Function]}
+  >
+    <h4>
+      Find current conditions:
+    </h4>
+    <input
+      className="input"
+      id="weatherInput"
+      name="weatherInput"
+      placeholder="Enter a zip code"
+      required={true}
+      type="text"
+    />
+    <button
+      className="btn btn-default"
+      type="submit"
+    >
+      Get Weather
+    </button>
+  </form>
+</div>
+`;
