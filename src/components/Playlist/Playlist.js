@@ -6,8 +6,8 @@ function Playlist(props) {
   
   return (
     <div className="container">
-      <div><i class="fa fa-spinner"></i></div>
-      <iframe title={props.playlistId} src={url} frameBorder="0" height="80" width="380" allowTransparency="true" ></iframe>
+      <div className="loading"><i class="fa fa-spinner"></i></div>
+      <iframe class="iframe" title={props.playlistId} src={url} width="250" height="380" frameBorder="0" allowTransparency="true" ></iframe>
     </div>
   );
 }
