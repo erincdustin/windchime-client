@@ -6,10 +6,10 @@ import TokenService from '../../services/token-service';
 import HomePage from '../../routes/HomePage';
 import LandingPage from '../../routes/LandingPage';
 import GenreOption from '../../routes/GenreOption';
-import ArtistOption from '../../routes/ArtistOption';
 import PastPlaylists from '../../routes/PastPlaylists';
 import ChangeGenreParams from '../../routes/ChangeGenreParams';
 import Results from '../../routes/Results';
+import PrivateWeatherRoute from '../Utils/PrivateWeatherRoute';
  
 class App extends React.Component {
   state= {
@@ -20,7 +20,9 @@ class App extends React.Component {
       genreChoice: null,
       id: null,
       topArtists: null,
+      // playlistId: '5mpaswrRDbOcQJSxhheDwN',
       playlistId: null,
+      // snapshot: 'MiwyOGY3ZWYxMjY3YWY5ZmViN2Q2ZTdlMTY4NWFmY2QxZjc5MjgwMTYy',
       snapshot: null,
       targetEnergy: null,
       targetValence: null,
@@ -152,7 +154,7 @@ class App extends React.Component {
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
           // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${this.state.weather.WeatherText}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${this.state.weather.weather[0].main}` })
 
           const myOptions = {
             method: 'POST',
@@ -273,8 +275,6 @@ class App extends React.Component {
       
       const NEW_BASE_URL = `https://api.spotify.com/v1/recommendations?seed_artists=${this.state.topArtists}`;
       let NEW_FETCH_URL = NEW_BASE_URL;
-      // let parsed = queryString.parse(window.location.search);
-      // let accessToken = parsed.access_token;
       let accessToken = TokenService.getAuthToken();
 
       if (this.state.targetEnergy !== null) {
@@ -329,10 +329,7 @@ class App extends React.Component {
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
-          // let parsed = queryString.parse(window.location.search);
-          // let accessToken = parsed.access_token;
-          // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: Top Artists ${this.state.weather.WeatherText}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: Top Artists ${this.state.weather.weather[0].main}` })
 
           const myOptions = {
             method: 'POST',
@@ -595,17 +592,6 @@ class App extends React.Component {
               {...props}
           />}
           />
-
-          <Route 
-          exact path={'/artistOption'}
-          render={props => 
-            <ArtistOption
-              playlistId={this.state.playlistId} 
-              snapshot={this.state.snapshot}
-              getArtistPlaylist={this.handleArtistPlaylist}
-              {...props}
-              />} 
-            />
 
           <Route 
           exact path={'/getWeather'}

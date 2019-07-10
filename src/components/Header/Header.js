@@ -11,7 +11,6 @@ function Header(props) {
       <Link className="logo-link" to="/">Wind Chime <FontAwesomeIcon className='blue' icon='wind' /></Link>
       <div className="align-right">
         <button className="btn nav" onClick={() => props.history.push('/playlists')}>Playlists</button>
-        {/* <p> | </p> */}
         <button className="btn nav" onClick={async ()=> {
           await TokenService.clearAuthToken();
           await props.history.push('/');

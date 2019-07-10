@@ -1,0 +1,33 @@
+.change-params {
+  display: inline-block;
+  text-align: center;
+}
+.param {
+  text-align: left;
+  padding: 12px;
+  display: inline-block;
+  border-radius: 15px;
+  width: 90%;
+  height: 25px;
+  background-color: rgb(215, 240, 243);
+  margin: 10px auto;
+}
+
+select{
+  float: right;
+  height: 25px;
+  border: none;
+  border-radius: 10px;
+}
+
+.center {
+  margin-top: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+@media screen and (min-width: 650px) {
+  .param {
+    width: 450px;
+  }
+}

@@ -5,8 +5,9 @@ function Playlist(props) {
   const url =  `https://open.spotify.com/embed/user/spotify/playlist/${props.playlistId}`;
   
   return (
-    <div>
-      <iframe title={props.playlistId} src={url} width="250" height="80" frameBorder="0" allowTransparency="true" ></iframe>
+    <div className="container">
+      <div><i class="fa fa-spinner"></i></div>
+      <iframe title={props.playlistId} src={url} frameBorder="0" allowTransparency="true" ></iframe>
     </div>
   );
 }

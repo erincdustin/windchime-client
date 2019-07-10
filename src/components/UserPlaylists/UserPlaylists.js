@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Playlist from '../Playlist/Playlist';
 import config from '../../config'
+import { format } from 'date-fns'
+import './UserPlaylists.css';
 
 class UserPlaylists extends React.Component {
 
@@ -24,33 +26,31 @@ class UserPlaylists extends React.Component {
 }
 
   render() {
-  console.log(this.state.userPlaylists[0])
   const mappedPlaylists = this.state.userPlaylists.filter((playlist) => playlist.user_id === this.props.id).map((playlist, index) => {
     return (
-     <div>
-       <h4>Playlist {index + 1}:</h4>
-       <p>Energy: {playlist.energy*10}</p>
-       <p>Happiness: {playlist.valence*10}</p>
-       <p>Tempo: {playlist.tempo*10}</p>
-       <p>Popularity: {playlist.popularity/10}</p>
+     <div className="result">
+       <div class="banner">Playlist {index + 1}: {format(playlist.date_created, 'Do MMM YYYY')}</div>
+       <p>Energy: {!playlist.energy ? '' : playlist.energy*10}</p>
+       <p>Happiness: {!playlist.valence ? '' : playlist.valence*10}</p>
+       <p>Tempo: {!playlist.tempo ? '' : playlist.tempo*10}</p>
+       <p>Popularity: {!playlist.popularity ? '' : playlist.popularity/10}</p>
        <Playlist key={playlist.playlist_id} playlistId={playlist.playlist_id}/>
+       <button className="btn mood"><Link className="link" to="/getWeather">Make Another Playlist</Link></button>
      </div>
     );
   });
-  // const mappedPlaylists = testData.filter(playlist => playlist.user_id === props.id).map(playlist => 'hello');
+  
   if (this.state.userPlaylists == 0 || this.state.userPlaylists == undefined ) {
     return (
     <div>
-      <h3>No past playlists to display</h3>
-      <button><Link to="/getWeather">Make Another Playlist</Link></button>
+      <h4>No past playlists to display</h4>
+      <button className="btn mood"><Link className="link" to="/getWeather">Make Another Playlist</Link></button>
     </div>
       )
   }
   return (
-    <div >
-      <h3>Playlist Results:</h3>
+    <div className="center">
       {mappedPlaylists}
-      <button><Link to="/getWeather">Make Another Playlist</Link></button>
     </div>
   );
 }

@@ -11,9 +11,8 @@ function PlayListResults(props) {
   const url =  `https://open.spotify.com/embed/user/spotify/playlist/${props.playlistId}`;
   if(props.snapshot !== null) {
     playlist = 
-    <div>
+    <div c>
       <button className="btn mood"><Link className="link" to="/changeGenreParams">Change Mood Settings</Link></button>
-      {/* <button className="btn-results"><Link className="link" to="/genreOption">Change Genre</Link></button> */}
       <iframe class="iframe" title={props.playlistId} src={url} width="250" height="380" frameBorder="0" allowTransparency="true" ></iframe>
     </div>;
   }

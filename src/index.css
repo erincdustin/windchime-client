@@ -45,16 +45,6 @@ code {
   color: rgb(110, 169, 173);
 }
 
-/* .button {
-  border-radius: 5px;
-  font-size: 14px;
-  text-align: center;
-  display: block;
-  margin: 20px auto;
-  padding: 10px;
-  background-color: rgb(207, 233, 235);
-} */
-
 .link {
   text-decoration: none;
   color: white;
@@ -199,7 +189,6 @@ h4 {
   font-family: sans-serif;
   font-weight: normal;
   font-size: 16px;
-  text-decoration: underline;
   margin: 20px auto;
 }
 

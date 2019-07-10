@@ -6,6 +6,7 @@ import App from './components/App/App';
 import './index.css';
 
 import {
+  faSpinner,
   faWind,
   faBookOpen,
   faComment,
@@ -29,6 +30,7 @@ library.add(
   faQuoteLeft,
   fasStar,
   faWind,
+  faSpinner,
 )
 
 ReactDOM.render(

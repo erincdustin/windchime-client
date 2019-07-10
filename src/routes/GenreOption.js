@@ -12,7 +12,7 @@ export default class GenreOption extends React.Component {
           <Header {...this.props}/>
         </div>
         <div className="App__main">
-          <WeatherReading weather={this.props.weather}/>
+          <WeatherReading weather={this.props.weather} {...this.props}/>
           {/* <PlaylistOption genreOption={this.props.genreOption} topArtists={this.props.topArtists}/> */}
           <SeedGenre weather={this.props.weather} energy={this.props.energy} setGenre={this.props.setGenre} getGenrePlaylist={this.props.getGenrePlaylist} {...this.props}/>
         </div>

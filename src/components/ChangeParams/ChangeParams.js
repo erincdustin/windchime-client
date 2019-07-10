@@ -1,4 +1,5 @@
 import React from 'react';
+import './ChangeParams.css';
 
 function ChangeParams(props) {
 
@@ -54,19 +55,27 @@ function ChangeParams(props) {
     })
 
   return (
-    <div>
-      <h3>Select Playlist Values Manually:</h3>
+    <div className="change-params">
+      <h4>Select Playlist Values Manually:</h4>
       <form>
+        <span className="param">
         <label htmlFor="targetEnergy">Select Target Energy:</label>
         <select value={Math.floor(props.targetEnergy*10)/10} name="targetEnergy" onChange={event => props.setEnergy(event.target.value)}>{mappedTargetEnergy}</select>
+        </span>
+        <span className="param">
         <label htmlFor="targetValence">Select Target Happiness:</label>
         <select value={Math.floor(props.targetValence*10)/10} name="targetValence" onChange={event => props.setValence(event.target.value)}>{mappedTargetValence}</select>
+        </span>
+        <span className="param">
         <label htmlFor="targetTempo">Select Target Tempo:</label>
         <select value={Math.floor(props.targetTempo*10)/10} name="targetTempo" onChange={event => props.setTempo(event.target.value)}>{mappedTargetTempo}</select>
+        </span>
+        <span className="param">
         <label htmlFor="targetPopularity">Select Target Popularity:</label>
         <select value={Math.floor(props.targetPopularity*10)/10} name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
+        </span>
       </form>
-      <button onClick={()=> {
+      <button className="btn mood center" onClick={()=> {
         if(props.genreOption){
         props.getGenrePlaylist();
         props.history.push('/results');
@@ -75,7 +84,7 @@ function ChangeParams(props) {
         props.getArtistPlaylist(); 
         props.history.push('/results')
         }
-        }}>Make me a new playlist</button>
+        }}>Make me a new playlist!</button>
     </div>
   );
 }
