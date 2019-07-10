@@ -1,10 +1,12 @@
 .result {
   background-color: rgb(232, 234, 235);
   border-radius: 10px;
-  width: 90%;
-  margin: 10px;
+  width: 100%;
+  margin: 10px auto;
   text-align: center;
   display: inline-block;
+  min-width: 275px;
+  /* max-width: 450px; */
 }
 
 p {
@@ -39,11 +41,5 @@ p {
 @media screen and (min-width: 450px) {
   p {
     font-size: 14px;
-  }
-}
-
-@media screen and (min-width: 650px) {
-  .result {
-    width: 450px;
   }
 }

@@ -13,7 +13,7 @@ function PlayListResults(props) {
     playlist = 
     <div c>
       <button className="btn mood"><Link className="link" to="/changeGenreParams">Change Mood Settings</Link></button>
-      <iframe class="iframe" title={props.playlistId} src={url} width="250" height="380" frameBorder="0" allowTransparency="true" ></iframe>
+      <iframe class="iframe" title={props.playlistId} src={url} frameBorder="0" allowTransparency="true" ></iframe>
     </div>;
   }
 

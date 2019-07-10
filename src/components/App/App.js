@@ -154,7 +154,7 @@ class App extends React.Component {
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
           // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${this.state.weather.weather[0].main}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${(this.state.weather.weather[0].main).toLowerCase()}` })
 
           const myOptions = {
             method: 'POST',
@@ -329,7 +329,7 @@ class App extends React.Component {
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: Top Artists ${this.state.weather.weather[0].main}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: top artists ${(this.state.weather.weather[0].main).toLowerCase()}` })
 
           const myOptions = {
             method: 'POST',
@@ -451,7 +451,7 @@ class App extends React.Component {
             this.setState({ targetTempo: .2 })
             this.setState({ targetEnergy: .4 })
           } 
-          if(id.toString().startsWith('4')) {
+          if(id.toString().startsWith('5')) {
             this.setState({ targetValence: .3 })
             this.setState({ targetTempo: .4 })
             this.setState({ targetEnergy: .4 })
@@ -460,7 +460,7 @@ class App extends React.Component {
             this.setState({ targetValence: .6 })
             this.setState({ targetEnergy: .6 })
           } 
-          if(id.toString().startsWith('6')) {
+          if(id.toString().startsWith('7')) {
             this.setState({ targetValence: .2 })
             this.setState({ targetEnergy: .4 })
           }

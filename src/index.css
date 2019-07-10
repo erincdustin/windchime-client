@@ -225,3 +225,47 @@ h4 {
     /* font-weight: bold; */
   }
 }
+
+@media screen and (max-width: 375px) {
+  .ribbon-header{
+    padding-top: 8px;
+    font-size: 14px;
+  }
+  .weather {
+    width: 4.25rem;
+    padding: .4rem 0rem; 
+    margin: .45rem .4rem;
+    font-size: .7rem;
+  }
+  .ribbon-text {
+    font-size: 14px;
+    font-weight: normal;
+    font-style: italic;
+    float: right;
+    padding-right: 5px;
+    /* width: 150px; */
+  }
+  h4 {
+    font-size: 14px;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .App__main {
+    width: 60%;
+    margin: auto;
+    padding-top: 50px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .App__main {
+    width: 50%;
+    margin: auto;
+    padding-top: 50px;
+  }
+}

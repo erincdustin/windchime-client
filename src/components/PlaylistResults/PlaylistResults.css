@@ -3,22 +3,37 @@
 .results {
   display: block;
   background-color: rgb(243, 243, 243);
-  height: 525px;
+  height: 500px;
   width: 100%;
   border-radius: 10px;
   /* margin-left: 0px; */
   text-align: center;
+  margin-bottom: 25px;
 }
 
 .iframe {
   margin: auto;
   text-align: center;
+  width: 250px;
+  height: 380px;
 }
 
 .btn-results {
   margin-bottom: 15px;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+@media screen and (min-width: 900px) {
+  .iframe {
+    width: 350px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .iframe {
+    width: 400px;
+  }
 }
 
 /* .container {

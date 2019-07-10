@@ -49,7 +49,7 @@ class UserPlaylists extends React.Component {
       )
   }
   return (
-    <div className="center">
+    <div>
       {mappedPlaylists}
     </div>
   );
