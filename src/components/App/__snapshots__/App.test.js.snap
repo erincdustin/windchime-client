@@ -39,6 +39,11 @@ exports[`App renders the UI as expected 1`] = `
           <br />
           Wind Chime combines the current weather conditions with a genre of your choice to make a custom Spotify playlist that fits the mood of the weather. 
         </h4>
+        <img
+          alt="screenshot of app"
+          className="image"
+          src="playlist.PNG"
+        />
         <button
           className="btn sign-in"
         >

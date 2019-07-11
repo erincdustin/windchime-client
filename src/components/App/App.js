@@ -10,6 +10,7 @@ import PastPlaylists from '../../routes/PastPlaylists';
 import ChangeGenreParams from '../../routes/ChangeGenreParams';
 import Results from '../../routes/Results';
 import NotFoundPage from '../../routes/NotFoundPage';
+import PrivateRoute from '../Utils/PrivateRoute';
  
 class App extends React.Component {
   state= {
@@ -594,9 +595,9 @@ class App extends React.Component {
             />}
             />
 
-            <Route 
+            <PrivateRoute 
             exact path={'/getWeather'}
-            render={props => 
+            component={props => 
               <HomePage
               searchCity= {this.handleSearchCity} 
               weather={this.state.weather} 

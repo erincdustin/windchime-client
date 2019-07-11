@@ -14,7 +14,11 @@ exports[`ChangeParams renders as expected 1`] = `
       <label
         htmlFor="targetEnergy"
       >
-        Select Target Energy:
+        <h4
+          className="align"
+        >
+          Select Target Energy:
+        </h4>
       </label>
       <select
         name="targetEnergy"
@@ -84,7 +88,11 @@ exports[`ChangeParams renders as expected 1`] = `
       <label
         htmlFor="targetValence"
       >
-        Select Target Happiness:
+        <h4
+          className="align"
+        >
+          Select Target Happiness:
+        </h4>
       </label>
       <select
         name="targetValence"
@@ -154,7 +162,11 @@ exports[`ChangeParams renders as expected 1`] = `
       <label
         htmlFor="targetTempo"
       >
-        Select Target Tempo:
+        <h4
+          className="align"
+        >
+          Select Target Tempo:
+        </h4>
       </label>
       <select
         name="targetTempo"
@@ -224,7 +236,11 @@ exports[`ChangeParams renders as expected 1`] = `
       <label
         htmlFor="targetPopularity"
       >
-        Select Target Popularity:
+        <h4
+          className="align"
+        >
+          Select Target Popularity:
+        </h4>
       </label>
       <select
         name="targetPopularity"

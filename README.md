@@ -17,6 +17,8 @@ Wind Chime combines the current weather conditions with a genre of your choice t
 
 ## Technology Used
 
-React, CSS, Node, Express, and PostgreSQL
+React and CSS
+
+## Instructions
 
 
