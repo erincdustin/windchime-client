@@ -4,6 +4,7 @@ import Playlist from '../Playlist/Playlist';
 import config from '../../config'
 import { format } from 'date-fns'
 import './UserPlaylists.css';
+import TokenService from '../../services/token-service';
 
 class UserPlaylists extends React.Component {
 
@@ -35,7 +36,11 @@ class UserPlaylists extends React.Component {
        <p>Tempo: {!playlist.tempo ? '' : playlist.tempo*10}</p>
        <p>Popularity: {!playlist.popularity ? '' : playlist.popularity/10}</p>
        <Playlist key={playlist.playlist_id} playlistId={playlist.playlist_id}/>
-       <button className="btn mood"><Link className="link" to="/getWeather">Make Another Playlist</Link></button>
+       <button className="btn mood" onClick={() => {
+         TokenService.clearGenreToken();
+         TokenService.clearPlaylistToken();
+         this.props.history.push('/getWeather');
+       }}>Make Another Playlist</button>
      </div>
     );
   });

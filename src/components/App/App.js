@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import config from '../../config';
 import Redirect from '../../routes/Redirect';
 import TokenService from '../../services/token-service';
@@ -9,7 +9,7 @@ import GenreOption from '../../routes/GenreOption';
 import PastPlaylists from '../../routes/PastPlaylists';
 import ChangeGenreParams from '../../routes/ChangeGenreParams';
 import Results from '../../routes/Results';
-import PrivateWeatherRoute from '../Utils/PrivateWeatherRoute';
+import NotFoundPage from '../../routes/NotFoundPage';
  
 class App extends React.Component {
   state= {
@@ -20,9 +20,7 @@ class App extends React.Component {
       genreChoice: null,
       id: null,
       topArtists: null,
-      // playlistId: '5mpaswrRDbOcQJSxhheDwN',
       playlistId: null,
-      // snapshot: 'MiwyOGY3ZWYxMjY3YWY5ZmViN2Q2ZTdlMTY4NWFmY2QxZjc5MjgwMTYy',
       snapshot: null,
       targetEnergy: null,
       targetValence: null,
@@ -91,7 +89,7 @@ class App extends React.Component {
           console.log(error)
         })
       })
-    };
+  }
 
   handleGenrePlaylist = () => {
     this.setState({ topArtists: null })
@@ -154,7 +152,7 @@ class App extends React.Component {
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
           // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice} ${(this.state.weather.weather[0].main).toLowerCase()}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice}, ${(this.state.weather.weather[0].description).toLowerCase()}` })
 
           const myOptions = {
             method: 'POST',
@@ -233,7 +231,7 @@ class App extends React.Component {
           )
           .then(res => {
             console.log(`User playlist ${res.playlist_id} added`);
-
+            TokenService.savePlaylistToken(res.playlist_id);
                 })
               })
             })
@@ -245,7 +243,7 @@ class App extends React.Component {
       })
   }
 
- handleArtistPlaylist = () => {
+  handleArtistPlaylist = () => {
     this.setState({ genreChoice: null })
     const ARTISTS_URL = 'https://api.spotify.com/v1/me/top/artists?limit=5'
     let accessToken = TokenService.getAuthToken();
@@ -329,7 +327,7 @@ class App extends React.Component {
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: top artists ${(this.state.weather.weather[0].main).toLowerCase()}` })
+          const playlistBody = JSON.stringify({ name: `Wind Chime: top artists, ${(this.state.weather.weather[0].description).toLowerCase()}` })
 
           const myOptions = {
             method: 'POST',
@@ -411,6 +409,7 @@ class App extends React.Component {
           )
           .then(res => {
             console.log(`User playlist ${res.playlist_id} added`);
+            TokenService.savePlaylistToken(res.playlist_id);
               })
             })
           })
@@ -438,9 +437,14 @@ class App extends React.Component {
           : res.json()
       })
       .then(response => {
-        console.log(response.PrecipitationType === 'Rain')
         this.setState({ weather: response })
+        const icon = this.state.weather.weather[0].icon;
         const id = this.state.weather.weather[0].id;
+          if(icon.endsWith('n')) {
+            this.setState({ targetValence: .2 })
+            this.setState({ targetTempo: .2 })
+            this.setState({ targetEnergy: .2 })
+          }
           if(id.toString().startsWith('2')) {
             this.setState({ targetValence: .2 })
             this.setState({ targetTempo: .5 })
@@ -480,7 +484,7 @@ class App extends React.Component {
             this.setState({ targetValence: .45 })
             this.setState({ targetEnergy: .45 })
           }
-          if(id.toString() === '803') {
+          if(id.toString() === '804') {
             this.setState({ targetValence: .15 })
             this.setState({ targetEnergy: .15 })
           }
@@ -488,7 +492,7 @@ class App extends React.Component {
       .catch(err => {
         console.log(err)
       })
-}
+  }
 
   handleSetGenre = (genreChoice) => {
     this.setState({ genreChoice });
@@ -529,87 +533,90 @@ class App extends React.Component {
   render() {    
   return (
     <div className="App">            
-      {/* <header className="App__header">
-          <Header />
-      </header> */}
       <main>
         <section>
-          <Route 
-          exact path={'/'}
-          component={LandingPage} />
+          <Switch>
+            <Route 
+            exact path={'/'}
+            component={LandingPage} />
 
-          <Route 
-          exact path={'/redirect'}
-          component={Redirect} />
+            <Route 
+            exact path={'/redirect'}
+            component={Redirect} />
 
-          <Route 
-          exact path={'/genreOption'}
-          render={props => 
-            <GenreOption
-              setGenre={this.handleSetGenre}
-              playlistId={this.state.playlistId} 
-              snapshot={this.state.snapshot}
-              getGenrePlaylist={this.handleGenrePlaylist}
-              getArtistPlaylist={this.handleArtistPlaylist}
-              weather={this.state.weather} 
-              topArtists={this.state.topArtists}
-              genreOption={this.state.genreChoice}
-              energy={this.state.targetEnergy}
-              {...props}
-              />} 
-            />
+            <Route 
+            exact path={'/genreOption'}
+            render={props => 
+              <GenreOption
+                setGenre={this.handleSetGenre}
+                playlistId={this.state.playlistId} 
+                snapshot={this.state.snapshot}
+                getGenrePlaylist={this.handleGenrePlaylist}
+                getArtistPlaylist={this.handleArtistPlaylist}
+                weather={this.state.weather} 
+                topArtists={this.state.topArtists}
+                genreOption={this.state.genreChoice}
+                energy={this.state.targetEnergy}
+                {...props}
+                />} 
+              />
 
-          <Route 
-          exact path={'/results'}
-          render={props => 
-            <Results
-              playlistId={this.state.playlistId} 
-              snapshot={this.state.snapshot}
-              weather={this.state.weather} 
-              topArtists={this.state.topArtists}
-              genreOption={this.state.genreChoice}
-              {...props}
-              />} 
-            />
+            <Route 
+            exact path={'/results'}
+            render={props => 
+              <Results
+                playlistId={this.state.playlistId} 
+                snapshot={this.state.snapshot}
+                weather={this.state.weather} 
+                topArtists={this.state.topArtists}
+                genreOption={this.state.genreChoice}
+                {...props}
+                />} 
+              />
 
-          <Route 
-          exact path={'/changeGenreParams'}
-          render={props =>
-            <ChangeGenreParams
-              getGenrePlaylist={this.handleGenrePlaylist}
-              getArtistPlaylist={this.handleArtistPlaylist}
-              setEnergy={this.handleSetEnergy}
-              targetEnergy={this.state.targetEnergy}
-              setValence={this.handleSetValence}
-              targetValence={this.state.targetValence}
-              setTempo={this.handleSetTempo}
-              targetTempo={this.state.targetTempo}
-              setPopularity={this.handleSetPopularity}
-              targetPopularity={this.state.targetPopularity}
-              genreOption={this.state.genreChoice}
-              topArtists={this.state.topArtists}
-              {...props}
-          />}
-          />
-
-          <Route 
-          exact path={'/getWeather'}
-          render={props => 
-            <HomePage
-            searchCity= {this.handleSearchCity} 
-            weather={this.state.weather} 
-            {...props}
+            <Route 
+            exact path={'/changeGenreParams'}
+            render={props =>
+              <ChangeGenreParams
+                getGenrePlaylist={this.handleGenrePlaylist}
+                getArtistPlaylist={this.handleArtistPlaylist}
+                setEnergy={this.handleSetEnergy}
+                targetEnergy={this.state.targetEnergy}
+                setValence={this.handleSetValence}
+                targetValence={this.state.targetValence}
+                setTempo={this.handleSetTempo}
+                targetTempo={this.state.targetTempo}
+                setPopularity={this.handleSetPopularity}
+                targetPopularity={this.state.targetPopularity}
+                genreOption={this.state.genreChoice}
+                topArtists={this.state.topArtists}
+                {...props}
             />}
             />
 
             <Route 
-          exact path={'/playlists'}
-          render={props => 
-            <PastPlaylists
-            id={this.state.id}
-            {...props}
-            />}
-            />
+            exact path={'/getWeather'}
+            render={props => 
+              <HomePage
+              searchCity= {this.handleSearchCity} 
+              weather={this.state.weather} 
+              {...props}
+              />}
+              />
+
+              <Route 
+            exact path={'/playlists'}
+            render={props => 
+              <PastPlaylists
+              id={this.state.id}
+              {...props}
+              />}
+              />
+
+              <Route
+              component={NotFoundPage}
+              />
+            </Switch>
           <div className="error">{this.state.error}</div>
         </section>
       </main>

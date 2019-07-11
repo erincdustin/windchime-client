@@ -15,8 +15,15 @@ class Weather extends React.Component {
             TokenService.saveWeatherToken(e.target.weatherInput.value);   
             this.props.history.push('/genreOption');  
           }}>
-        <h4>Find current conditions:</h4>
-        <input className="input" id="weatherInput" name="weatherInput" type="text" placeholder="Enter a zip code" required></input>
+        <label htmlFor="weatherInput"><h4>Find current conditions:</h4></label>
+        <input className="input" 
+        id="weatherInput" 
+        name="weatherInput" 
+        type="text" 
+        placeholder="Enter a zip code" 
+        aria-label="Zip code entry"
+        aria-required="true"
+        required></input>
         <button className="btn btn-default" type="submit" >Get Weather</button>
       </form>
     </div>

@@ -1,10 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap')
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap');
 
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -83,13 +84,13 @@ code {
 }
 
 .ribbon-header{
-  padding-top: 4px;
-  font-size: 20px;
+  padding-top: 6.5px;
+  font-size: 18px;
   display: inline-block;
 }
 
 .one {
-  background-color: rgb(235, 244, 245);
+  background-color: rgb(167, 209, 212);
 }
 
 .two {
@@ -97,7 +98,7 @@ code {
 }
 
 .three {
-  background-color: rgb(151, 198, 202);
+  background-color: rgb(226, 238, 240);
 }
 
 .icon {
@@ -108,13 +109,11 @@ code {
 }
 
 .ribbon-text {
-  /* display: inline; */
   font-size: 14px;
   font-weight: normal;
   font-style: italic;
   float: right;
   padding-right: 5px;
-  /* padding-top: 2.5px; */
 }
 
 .btn {
@@ -211,10 +210,6 @@ h4 {
     visibility: hidden;
   }
 
-  .ribbon-text {
-    /* float: none; */
-  }
-
   .App__main {
     width: 90%;
   }
@@ -229,7 +224,7 @@ h4 {
 @media screen and (max-width: 375px) {
   .ribbon-header{
     padding-top: 8px;
-    font-size: 14px;
+    font-size: 15px;
   }
   .weather {
     width: 4.25rem;

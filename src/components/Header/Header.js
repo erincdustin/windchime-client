@@ -12,6 +12,8 @@ function Header(props) {
       <div className="align-right">
         <button className="btn nav" onClick={() => props.history.push('/playlists')}>Playlists</button>
         <button className="btn nav" onClick={async ()=> {
+          await TokenService.clearWeatherToken();
+          await TokenService.clearGenreToken();
           await TokenService.clearAuthToken();
           await props.history.push('/');
           }}>

@@ -213,6 +213,18 @@ exports[`SeedGenre renders as expected 1`] = `
           className="btn genre"
           onClick={[Function]}
           type="button"
+          value="indie-pop"
+        >
+          indie-pop
+        </button>
+      </span>
+      <span
+        className="genre-list"
+      >
+        <button
+          className="btn genre"
+          onClick={[Function]}
+          type="button"
           value="jazz"
         >
           jazz

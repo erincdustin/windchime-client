@@ -59,19 +59,19 @@ function ChangeParams(props) {
       <h4>Select Playlist Values Manually:</h4>
       <form>
         <span className="param">
-        <label htmlFor="targetEnergy">Select Target Energy:</label>
+        <label htmlFor="targetEnergy"><h4 className="align">Select Target Energy:</h4></label>
         <select value={Math.floor(props.targetEnergy*10)/10} name="targetEnergy" onChange={event => props.setEnergy(event.target.value)}>{mappedTargetEnergy}</select>
         </span>
         <span className="param">
-        <label htmlFor="targetValence">Select Target Happiness:</label>
+        <label htmlFor="targetValence"><h4 className="align">Select Target Happiness:</h4></label>
         <select value={Math.floor(props.targetValence*10)/10} name="targetValence" onChange={event => props.setValence(event.target.value)}>{mappedTargetValence}</select>
         </span>
         <span className="param">
-        <label htmlFor="targetTempo">Select Target Tempo:</label>
+        <label htmlFor="targetTempo"><h4 className="align">Select Target Tempo:</h4></label>
         <select value={Math.floor(props.targetTempo*10)/10} name="targetTempo" onChange={event => props.setTempo(event.target.value)}>{mappedTargetTempo}</select>
         </span>
         <span className="param">
-        <label htmlFor="targetPopularity">Select Target Popularity:</label>
+        <label htmlFor="targetPopularity"><h4 className="align">Select Target Popularity:</h4></label>
         <select value={Math.floor(props.targetPopularity*10)/10} name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
         </span>
       </form>

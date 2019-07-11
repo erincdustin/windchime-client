@@ -8,9 +8,14 @@
   display: inline-block;
   border-radius: 15px;
   width: 90%;
-  height: 25px;
+  height: 50px;
   background-color: rgb(215, 240, 243);
   margin: 10px auto;
+}
+
+.align {
+  margin: 0px;
+  display: inline-block;
 }
 
 select{
@@ -18,6 +23,7 @@ select{
   height: 25px;
   border: none;
   border-radius: 10px;
+  top: 5px;
 }
 
 .center {

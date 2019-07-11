@@ -18,11 +18,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "react-scripts test --watchAll=false",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "now ./build"
+    "deploy": "now ./build",
+    "postdeploy": "now --target production"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -16,18 +16,13 @@ exports[`PlaylistOption renders as expected 1`] = `
       <span
         className="hidden"
       >
-        Top Artists
+        my top artists
       </span>
       <button
         class="btn weather"
+        onClick={[Function]}
       >
-        <a
-          className="link"
-          href="/genreOption"
-          onClick={[Function]}
-        >
-          Change
-        </a>
+        Change
       </button>
     </span>
   </div>

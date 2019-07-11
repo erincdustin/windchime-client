@@ -16,7 +16,7 @@ function PlayListResults(props) {
   return (
     <div>
       <div className="ribbon three"><span className="ribbon-header">Your Playlist</span></div>
-      <div className="results">{playlist}</div>
+      <div className="results">{props.errorMessage}{playlist}</div>
     </div>
   );
 }

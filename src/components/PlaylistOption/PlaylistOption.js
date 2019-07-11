@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import TokenService from '../../services/token-service';
 
 function PlaylistOption(props) {
   let option='';
   if (props.genreOption){
     option = props.genreOption
   } if (props.topArtists){
-    option = 'Top Artists'
+    option = 'my top artists'
   }
 
   return (
@@ -15,7 +15,10 @@ function PlaylistOption(props) {
       <div className="ribbon-header">Playlist Options</div>
         <span className="ribbon-text">
         <span className="hidden">{option}</span>
-        <button class="btn weather"><Link className="link" to="/genreOption">Change</Link></button>
+        <button class="btn weather" onClick={() => {
+          TokenService.clearGenreToken();
+          props.history.push('/genreOption');
+        }}>Change</button>
         </span>
         </div>
     </div>
