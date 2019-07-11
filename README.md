@@ -9,7 +9,17 @@ Third party APIs used:
 https://developer.spotify.com/documentation/web-api/reference/
 https://openweathermap.org/current
 
-![Screenshot of weather input](/src/images/get-weather.PNG "Weather Form")
+## Summary
+
+Wind Chime combines the current weather conditions with a genre of your choice to make a custom Spotify playlist that fits the mood of the weather.
+
+## Technology Used
+
+React, CSS, Node, Express, and PostgreSQL
+
+## User Guide
+
+![Screenshot of generated playlist](/src/images/playlist.PNG "App Example")
 
 
 

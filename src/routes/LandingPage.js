@@ -1,7 +1,7 @@
 import React from 'react';
 import config from '../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import PlaylistOptions from '../components/PlaylistOptions/PlaylistOptions';
+import screenshot from '../images/playlist.PNG'
 
 export default class LandingPage extends React.Component {
   render() {
@@ -10,6 +10,7 @@ export default class LandingPage extends React.Component {
         <h1 className="wind-chime__text">Wind Chime <FontAwesomeIcon className='blue' icon='wind' /></h1>
         <h4 className="text-container">Make playlists that match the weather!  <br/><br/>
         Wind Chime combines the current weather conditions with a genre of your choice to make a custom Spotify playlist that fits the mood of the weather. </h4>
+        <img src={screenshot} className="image" alt="screenshot of app"></img>
         <button className="btn sign-in"><a className="link" href={config.AUTH_ENDPOINT}>Sign Into Spotify</a></button>
       </div>
     )
