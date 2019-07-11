@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Wind Chime
 
+![Screenshot of generated playlist](/src/images/playlist-resized.PNG "App Example")
+
 Link to live app: 
 https://erins-windchime-app.erincdustin.now.sh
 
@@ -16,10 +18,5 @@ Wind Chime combines the current weather conditions with a genre of your choice t
 ## Technology Used
 
 React, CSS, Node, Express, and PostgreSQL
-
-## User Guide
-
-![Screenshot of generated playlist](/src/images/playlist.PNG "App Example")
-
 
 
