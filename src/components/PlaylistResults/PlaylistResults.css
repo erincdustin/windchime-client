@@ -11,7 +11,6 @@
 }
 
 .iframe {
-  width: 250px;
   height: 380px;
   left: 12.5%;
   position: absolute;
@@ -35,16 +34,4 @@
   width: 75%;
   height: 380px;
   background-color: rgb(243, 243, 243);
-}
-
-@media screen and (min-width: 900px) {
-  .iframe {
-    width: 350px;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .iframe {
-    width: 400px;
-  }
 }
