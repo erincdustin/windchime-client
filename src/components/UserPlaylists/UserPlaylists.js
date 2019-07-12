@@ -29,13 +29,13 @@ class UserPlaylists extends React.Component {
   render() {
   const mappedPlaylists = this.state.userPlaylists.filter((playlist) => playlist.user_id === this.props.id).map((playlist, index) => {
     return (
-     <div className="result">
+     <div className="result" key={playlist.playlist_id}>
        <div class="banner">Playlist {index + 1}: {format(playlist.date_created, 'Do MMM YYYY')}</div>
        <p>Energy: {!playlist.energy ? '' : playlist.energy*10}</p>
        <p>Happiness: {!playlist.valence ? '' : playlist.valence*10}</p>
        <p>Tempo: {!playlist.tempo ? '' : playlist.tempo*10}</p>
        <p>Popularity: {!playlist.popularity ? '' : playlist.popularity/10}</p>
-       <Playlist key={playlist.playlist_id} playlistId={playlist.playlist_id}/>
+       <Playlist playlistId={playlist.playlist_id}/>
        <button className="btn mood" onClick={() => {
          TokenService.clearGenreToken();
          TokenService.clearPlaylistToken();

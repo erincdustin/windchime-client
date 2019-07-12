@@ -9,14 +9,17 @@ function PlayListResults(props) {
     playlist = 
     <div>
       <button className="btn mood"><Link className="link" to="/changeGenreParams">Change Mood Settings</Link></button>
-      <iframe class="iframe" title={props.playlistId} src={url} frameBorder="0" allowTransparency="true" ></iframe>
+      <div className="loading-result">Loading...</div>
+      <iframe className="iframe" title={props.playlistId} src={url} frameBorder="0" allowTransparency="true" ></iframe>
     </div>;
   }
 
   return (
     <div>
       <div className="ribbon three"><span className="ribbon-header">Your Playlist</span></div>
-      <div className="results">{playlist}</div>
+      <div className="results">
+      {playlist}
+      </div>
     </div>
   );
 }

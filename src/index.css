@@ -64,6 +64,7 @@ code {
   font-family: 'Abel', sans-serif;
   padding: 0px;
   margin: 0px;
+  z-index: 3;
 }
 
 .App__main {

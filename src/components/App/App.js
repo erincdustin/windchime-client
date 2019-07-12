@@ -203,6 +203,7 @@ class App extends React.Component {
             : res.json()
         )
             .then(res=> {
+              console.log(res.snapshot_id);
               this.setState({ snapshot: res.snapshot_id});
 
             const URL= `${config.API_ENDPOINT}/playlists`
