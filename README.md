@@ -32,7 +32,7 @@ Run tests with `npm test`
 
 ## Deployment  
 
-1. To deploy, 
+When your project is ready for deployment, `npm run deploy` will run the build
 
 ## Technology Used
 
