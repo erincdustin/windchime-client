@@ -21,7 +21,6 @@ class UserPlaylists extends React.Component {
     : res.json()
 )
     .then(res=> {
-      console.log(res);
       this.setState({ userPlaylists: res })
   })
 }

@@ -16,7 +16,6 @@ class App extends React.Component {
   state= {
       error: '',
       songs: null,
-      locationKey: null,
       weather: null,
       genreChoice: null,
       id: null,
@@ -29,6 +28,9 @@ class App extends React.Component {
       targetPopularity: null,
   };
 
+  //makes GET call to spotify user endpoint and sets state
+  //crosschecks user ID against database
+  //if user id not found, post to /api/user endpoint to add to DB
   componentDidMount() {
     let accessToken = TokenService.getAuthToken();
     const myOptions = {
@@ -47,8 +49,7 @@ class App extends React.Component {
     : res.json()
 )
     .then(res=> {
-      this.setState({ id: res.id })
-      console.log(this.state.id);
+      this.setState({ id: res.id });
       const URL = `${config.API_ENDPOINT}/users`;
 
       return fetch(URL)
@@ -58,20 +59,18 @@ class App extends React.Component {
     )
       .then(res => {
         let user = res.filter(user => user.id === this.state.id);
-        console.log(user);
-        if (user === undefined || user.length == 0) {
+        if (user === undefined || user.length === 0) {
           const URL= `${config.API_ENDPOINT}/users`
           const userBody= JSON.stringify({
                 id: this.state.id
               })
-              console.log(userBody);
-              const myOptions = {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body:userBody
-              };
+          const myOptions = {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body:userBody
+            };
 
               return fetch(URL, myOptions)
               .then(res => (!res.ok)
@@ -87,14 +86,14 @@ class App extends React.Component {
         })
         .catch(error => {
           this.setState({ error: error.message})
-          console.log(error)
         })
       })
   }
 
+  // gets recommended songs, creates playlist, & adds to playlist
+  // stores results to DB
   handleGenrePlaylist = () => {
-    this.setState({ topArtists: null })
-    console.log('this.state', this.state);
+    this.setState({ topArtists: null });
     let accessToken = TokenService.getAuthToken();
 
     const BASE_URL = `https://api.spotify.com/v1/recommendations?seed_genres=${this.state.genreChoice}`;
@@ -147,8 +146,7 @@ class App extends React.Component {
         : res.json()
     )
         .then(res=> {
-          this.setState({ id: res.id })
-          console.log(this.state.id);
+          this.setState({ id: res.id });
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
@@ -173,7 +171,6 @@ class App extends React.Component {
       )
           .then(res=> {
             this.setState({ playlistId: res.id });
-            console.log(this.state.playlistId);
 
             let songs = null;
             let mappedSongs = null;
@@ -183,7 +180,6 @@ class App extends React.Component {
               const songId = result.id;
               return `spotify:track:${songId}`;
               }).join(',');
-              console.log(mappedSongs);
             }
             const URL = `https://api.spotify.com/v1/playlists/${this.state.playlistId}/tracks?uris=${mappedSongs}`;
 
@@ -203,7 +199,6 @@ class App extends React.Component {
             : res.json()
         )
             .then(res=> {
-              console.log(res.snapshot_id);
               this.setState({ snapshot: res.snapshot_id});
 
             const URL= `${config.API_ENDPOINT}/playlists`
@@ -215,8 +210,6 @@ class App extends React.Component {
                 tempo: this.state.targetTempo,
                 popularity: this.state.targetPopularity
               });
-
-              console.log(playlistBody);
 
               const myOptions = {
                 method: 'POST',
@@ -245,6 +238,8 @@ class App extends React.Component {
       })
   }
 
+  // gets user to artists, gets recommendations, creates playlist, & adds to playlist
+  // stores results to DB
   handleArtistPlaylist = () => {
     this.setState({ genreChoice: null })
     const ARTISTS_URL = 'https://api.spotify.com/v1/me/top/artists?limit=5'
@@ -270,7 +265,6 @@ class App extends React.Component {
         const artistString = artists.map(artist => {
           return artist.id;
         }).join(',');
-        console.log(artistString)
         this.setState({ topArtists: artistString })
       
       const NEW_BASE_URL = `https://api.spotify.com/v1/recommendations?seed_artists=${this.state.topArtists}`;
@@ -325,7 +319,6 @@ class App extends React.Component {
     )
         .then(res=> {
           this.setState({ id: res.id })
-          console.log(this.state.id);
 
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
@@ -349,7 +342,6 @@ class App extends React.Component {
       )
           .then(res=> {
             this.setState({ playlistId: res.id });
-            console.log(this.state.playlistId);
 
             let songs = null;
             let mappedSongs = null;
@@ -359,7 +351,6 @@ class App extends React.Component {
               const songId = result.id;
               return `spotify:track:${songId}`;
               }).join(',');
-              console.log(mappedSongs);
             }
             const URL = `https://api.spotify.com/v1/playlists/${this.state.playlistId}/tracks?uris=${mappedSongs}`;
             // let parsed = queryString.parse(window.location.search);
@@ -394,8 +385,6 @@ class App extends React.Component {
                 popularity: this.state.popularity
               });
 
-              console.log(playlistBody);
-
               const myOptions = {
                 method: 'POST',
                 headers: {
@@ -424,6 +413,7 @@ class App extends React.Component {
     })
   }
 
+  //sends to /api/weather endpoint for proxy
   handleSearchCity = (postalCode) => {
 
    return fetch(`${config.API_ENDPOINT}/weather`, {
@@ -546,9 +536,9 @@ class App extends React.Component {
             exact path={'/redirect'}
             component={Redirect} />
 
-            <Route 
+            <PrivateRoute 
             exact path={'/genreOption'}
-            render={props => 
+            component={props => 
               <GenreOption
                 setGenre={this.handleSetGenre}
                 playlistId={this.state.playlistId} 
@@ -563,9 +553,9 @@ class App extends React.Component {
                 />} 
               />
 
-            <Route 
+            <PrivateRoute 
             exact path={'/results'}
-            render={props => 
+            component={props => 
               <Results
                 playlistId={this.state.playlistId} 
                 snapshot={this.state.snapshot}
@@ -576,9 +566,9 @@ class App extends React.Component {
                 />} 
               />
 
-            <Route 
+            <PrivateRoute 
             exact path={'/changeGenreParams'}
-            render={props =>
+            component={props =>
               <ChangeGenreParams
                 getGenrePlaylist={this.handleGenrePlaylist}
                 getArtistPlaylist={this.handleArtistPlaylist}
@@ -606,9 +596,9 @@ class App extends React.Component {
               />}
               />
 
-              <Route 
+              <PrivateRoute 
             exact path={'/playlists'}
-            render={props => 
+            component={props => 
               <PastPlaylists
               id={this.state.id}
               {...props}

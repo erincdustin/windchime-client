@@ -7,10 +7,11 @@ class Weather extends React.Component {
   state = {
     notValid: false,
   }
+
   render() {
 
-  function isValidUSZip(sZip) {
-      return /^\d{5}(-\d{4})?$/.test(sZip);
+  function isValidUSZip(zip) {
+      return /^\d{5}(-\d{4})?$/.test(zip);
    }
 
   let validationError = '';

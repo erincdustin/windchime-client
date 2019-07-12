@@ -26,9 +26,14 @@ exports[`PlaylistResults renders as expected 1`] = `
           Change Mood Settings
         </a>
       </button>
+      <div
+        className="loading-result"
+      >
+        Loading...
+      </div>
       <iframe
         allowTransparency="true"
-        class="iframe"
+        className="iframe"
         frameBorder="0"
         src="https://open.spotify.com/embed/user/spotify/playlist/12345"
         title="12345"

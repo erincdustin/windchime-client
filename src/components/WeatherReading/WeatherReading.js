@@ -20,7 +20,6 @@ function WeatherReading(props) {
   if(props.weather !== null) {
     weather = props.weather;
     imageUrl = `http://openweathermap.org/img/wn/${props.weather.weather[0].icon}@2x.png`
-    console.log(imageUrl);
     
     weatherResults=  
         <div className="ribbon one">
