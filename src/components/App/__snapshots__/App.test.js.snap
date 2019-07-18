@@ -37,7 +37,7 @@ exports[`App renders the UI as expected 1`] = `
           Make playlists that match the weather!  
           <br />
           <br />
-          Wind Chime combines the current weather conditions with a genre of your choice to make a custom Spotify playlist that fits the mood of the weather. 
+          Wind Chime uses current weather conditions to manipulate Spotify's recommendations algorithm, providing you with a custom playlist that fits the weather "mood".  Choose from a list of genres or your top Spotify artists to seed the playlist.
         </h4>
         <img
           alt="screenshot of app"
