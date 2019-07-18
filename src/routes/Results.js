@@ -27,7 +27,7 @@ export default class Results extends React.Component {
           <Header {...this.props}/>
         </div>
         <div className="App__main">
-          <WeatherReading weather={this.props.weather}/>
+          <WeatherReading weather={this.props.weather}  {...this.props}/>
           <PlaylistOption genreOption={this.props.genreOption} topArtists={this.props.topArtists} {...this.props}/>
           <PlaylistResults weather={this.props.weather} playlistId={this.props.playlistId} snapshot={this.props.snapshot}/>
         </div>

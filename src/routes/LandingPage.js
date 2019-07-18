@@ -9,7 +9,9 @@ export default class LandingPage extends React.Component {
       <div className="container__centered">
         <h1 className="wind-chime__text">Wind Chime <FontAwesomeIcon className='blue' icon='wind' /></h1>
         <h4 className="text-container">Make playlists that match the weather!  <br/><br/>
-        Wind Chime combines the current weather conditions with a genre of your choice to make a custom Spotify playlist that fits the mood of the weather. </h4>
+          Wind Chime uses current weather conditions to manipulate Spotify's recommendations algorithm, 
+          providing you with a custom playlist that fits the weather "mood".  Choose from a list of genres 
+          or your top Spotify artists to seed the playlist.</h4>
         <img src={screenshot} className="image" alt="screenshot of app"></img>
         <button className="btn sign-in"><a className="link" href={config.AUTH_ENDPOINT}>Sign Into Spotify</a></button>
       </div>
