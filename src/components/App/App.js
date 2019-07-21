@@ -17,6 +17,49 @@ class App extends React.Component {
       error: '',
       songs: null,
       weather: null,
+    //   weather: {
+    //     "coord": {
+    //         "lon": -82.37,
+    //         "lat": 27.09
+    //     },
+    //     "weather": [
+    //         {
+    //             "id": 800,
+    //             "main": "Clear",
+    //             "description": "clear sky",
+    //             "icon": "01n"
+    //         }
+    //     ],
+    //     "base": "stations",
+    //     "main": {
+    //         "temp": 89.4,
+    //         "pressure": 1020,
+    //         "humidity": 66,
+    //         "temp_min": 87.8,
+    //         "temp_max": 91.99
+    //     },
+    //     "visibility": 16093,
+    //     "wind": {
+    //         "speed": 9.17,
+    //         "deg": 200
+    //     },
+    //     "clouds": {
+    //         "all": 1
+    //     },
+    //     "dt": 1563467754,
+    //     "sys": {
+    //         "type": 1,
+    //         "id": 6184,
+    //         "message": 0.0108,
+    //         "country": "US",
+    //         "sunrise": 1563446762,
+    //         "sunset": 1563495897
+    //     },
+    //     "timezone": -14400,
+    //     "id": 0,
+    //     "name": "Venice",
+    //     "cod": 200
+    // },
       genreChoice: null,
       id: null,
       topArtists: null,
@@ -81,7 +124,7 @@ class App extends React.Component {
             console.log(`${res.id} added`);
             this.setState({ returningUser: true })
           })} else {
-          console.log('user found')
+          console.log('User found')
           }
         })
         .catch(error => {
@@ -210,6 +253,8 @@ class App extends React.Component {
                 tempo: this.state.targetTempo,
                 popularity: this.state.targetPopularity
               });
+
+            console.log(URL);
 
               const myOptions = {
                 method: 'POST',
@@ -413,7 +458,9 @@ class App extends React.Component {
     })
   }
 
-  //sends to /api/weather endpoint for proxy
+  //sends to /api/weather endpoint for proxy, then sets state for targetEnergy, 
+  //targetValence, etc. according to weather conditions.  These values
+  //are then used for the recommendations API call
   handleSearchCity = (postalCode) => {
 
    return fetch(`${config.API_ENDPOINT}/weather`, {
@@ -431,12 +478,14 @@ class App extends React.Component {
       .then(response => {
         this.setState({ weather: response })
         const icon = this.state.weather.weather[0].icon;
+        console.log(icon)
         const id = this.state.weather.weather[0].id;
           if(icon.endsWith('n')) {
             this.setState({ targetValence: .2 })
             this.setState({ targetTempo: .2 })
             this.setState({ targetEnergy: .2 })
           }
+          if(icon.endsWith('d')) {
           if(id.toString().startsWith('2')) {
             this.setState({ targetValence: .2 })
             this.setState({ targetTempo: .5 })
@@ -480,6 +529,7 @@ class App extends React.Component {
             this.setState({ targetValence: .15 })
             this.setState({ targetEnergy: .15 })
           }
+        }
     })
       .catch(err => {
         console.log(err)
@@ -523,6 +573,7 @@ class App extends React.Component {
     }
 
   render() {    
+    console.log(this.state.targetTempo)
   return (
     <div className="App">            
       <main>

@@ -15,7 +15,7 @@ function PlaylistOption(props) {
       <div className="ribbon-header">Playlist Options</div>
         <span className="ribbon-text">
         <span className="hidden">{option}</span>
-        <button class="btn weather" onClick={() => {
+        <button className="btn weather" onClick={() => {
           TokenService.clearGenreToken();
           props.history.push('/genreOption');
         }}>Change</button>

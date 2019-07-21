@@ -44,6 +44,7 @@ class UserPlaylists extends React.Component {
     );
   });
   
+  /*eslint-disable-next-line*/
   if (this.state.userPlaylists == 0 || this.state.userPlaylists == undefined ) {
     return (
     <div>

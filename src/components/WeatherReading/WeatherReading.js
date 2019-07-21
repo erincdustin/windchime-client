@@ -19,14 +19,14 @@ function WeatherReading(props) {
 
   if(props.weather !== null) {
     weather = props.weather;
-    imageUrl = `http://openweathermap.org/img/wn/${props.weather.weather[0].icon}@2x.png`
+    imageUrl = `https://openweathermap.org/img/wn/${props.weather.weather[0].icon}@2x.png`
     
     weatherResults=  
         <div className="ribbon one">
           <div className="ribbon-header">Weather</div>
           <span className="ribbon-text">
           <span className="hidden">{Math.floor(weather.main.temp)}&deg;</span>
-          <button class="btn weather" onClick={() => {
+          <button className="btn weather" onClick={() => {
             TokenService.clearWeatherToken();
             props.history.push('/getWeather')
           }}>Change</button>

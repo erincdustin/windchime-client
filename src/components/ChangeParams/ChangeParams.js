@@ -84,7 +84,7 @@ function ChangeParams(props) {
         props.getArtistPlaylist(); 
         props.history.push('/results')
         }
-        }}>Make me a new playlist!</button>
+        }}>Update</button>
     </div>
   );
 }
