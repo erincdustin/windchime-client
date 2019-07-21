@@ -75,7 +75,10 @@ function ChangeParams(props) {
         <select value={Math.floor(props.targetPopularity*10)/10} name="targetPopularity" onChange={event => props.setPopularity(event.target.value)}>{mappedTargetPopularity}</select>
         </span>
       </form>
-      <button className="btn mood center" onClick={()=> {
+      <button className="btn center" onClick={()=> {
+        props.history.goBack();
+        }}>Back</button>
+      <button className="btn center" onClick={()=> {
         if(props.genreOption){
         props.getGenrePlaylist();
         props.history.push('/results');

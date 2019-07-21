@@ -306,7 +306,13 @@ exports[`ChangeParams renders as expected 1`] = `
     </span>
   </form>
   <button
-    className="btn mood center"
+    className="btn center"
+    onClick={[Function]}
+  >
+    Back
+  </button>
+  <button
+    className="btn center"
     onClick={[Function]}
   >
     Update
