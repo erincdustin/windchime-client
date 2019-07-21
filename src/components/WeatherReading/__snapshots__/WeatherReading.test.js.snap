@@ -21,7 +21,7 @@ exports[`Weather Reading renders as expected 1`] = `
           °
         </span>
         <button
-          class="btn weather"
+          className="btn weather"
           onClick={[Function]}
         >
           Change
@@ -30,7 +30,7 @@ exports[`Weather Reading renders as expected 1`] = `
       <img
         alt="weather icon"
         className="icon"
-        src="http://openweathermap.org/img/wn/10n@2x.png"
+        src="https://openweathermap.org/img/wn/10n@2x.png"
       />
     </div>
   </div>

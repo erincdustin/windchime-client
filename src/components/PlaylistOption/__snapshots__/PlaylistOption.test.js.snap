@@ -19,7 +19,7 @@ exports[`PlaylistOption renders as expected 1`] = `
         my top artists
       </span>
       <button
-        class="btn weather"
+        className="btn weather"
         onClick={[Function]}
       >
         Change

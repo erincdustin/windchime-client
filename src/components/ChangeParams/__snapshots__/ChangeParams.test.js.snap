@@ -309,7 +309,7 @@ exports[`ChangeParams renders as expected 1`] = `
     className="btn mood center"
     onClick={[Function]}
   >
-    Make me a new playlist!
+    Update
   </button>
 </div>
 `;
