@@ -17,49 +17,6 @@ class App extends React.Component {
       error: '',
       songs: null,
       weather: null,
-    //   weather: {
-    //     "coord": {
-    //         "lon": -82.37,
-    //         "lat": 27.09
-    //     },
-    //     "weather": [
-    //         {
-    //             "id": 800,
-    //             "main": "Clear",
-    //             "description": "clear sky",
-    //             "icon": "01n"
-    //         }
-    //     ],
-    //     "base": "stations",
-    //     "main": {
-    //         "temp": 89.4,
-    //         "pressure": 1020,
-    //         "humidity": 66,
-    //         "temp_min": 87.8,
-    //         "temp_max": 91.99
-    //     },
-    //     "visibility": 16093,
-    //     "wind": {
-    //         "speed": 9.17,
-    //         "deg": 200
-    //     },
-    //     "clouds": {
-    //         "all": 1
-    //     },
-    //     "dt": 1563467754,
-    //     "sys": {
-    //         "type": 1,
-    //         "id": 6184,
-    //         "message": 0.0108,
-    //         "country": "US",
-    //         "sunrise": 1563446762,
-    //         "sunset": 1563495897
-    //     },
-    //     "timezone": -14400,
-    //     "id": 0,
-    //     "name": "Venice",
-    //     "cod": 200
-    // },
       genreChoice: null,
       id: null,
       topArtists: null,
@@ -174,27 +131,39 @@ class App extends React.Component {
         const songs = res.tracks;        
         this.setState({ songs });
 
+        const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
+        let accessToken = TokenService.getAuthToken();
+        const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice}, ${(this.state.weather.weather[0].description).toLowerCase()}` })
+
         const myOptions = {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + accessToken
           },
+          body: playlistBody,
           mode: 'cors',
           cache: 'default'
         };
-        return fetch('https://api.spotify.com/v1/me', myOptions)
+
+        return fetch(PLAYLIST_URL, myOptions)
         .then(res => (!res.ok)
         ? res.json().then(e => Promise.reject(e))
         : res.json()
     )
         .then(res=> {
-          this.setState({ id: res.id });
+          this.setState({ playlistId: res.id });
 
-          const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
-          let accessToken = TokenService.getAuthToken();
-          // const newDate = new Date();
-          const playlistBody = JSON.stringify({ name: `Wind Chime: ${this.state.genreChoice}, ${(this.state.weather.weather[0].description).toLowerCase()}` })
+          let songs = null;
+          let mappedSongs = null;
+          if (this.state.songs !== null) {
+            songs = this.state.songs;
+            mappedSongs = songs.map(result => {
+            const songId = result.id;
+            return `spotify:track:${songId}`;
+            }).join(',');
+          }
+          const URL = `https://api.spotify.com/v1/playlists/${this.state.playlistId}/tracks?uris=${mappedSongs}`;
 
           const myOptions = {
             method: 'POST',
@@ -202,38 +171,34 @@ class App extends React.Component {
               'Content-Type': 'application/json',
               'Authorization': 'Bearer ' + accessToken
             },
-            body: playlistBody,
             mode: 'cors',
             cache: 'default'
           };
 
-          return fetch(PLAYLIST_URL, myOptions)
+          return fetch(URL, myOptions)
           .then(res => (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
           .then(res=> {
-            this.setState({ playlistId: res.id });
+            this.setState({ snapshot: res.snapshot_id});
 
-            let songs = null;
-            let mappedSongs = null;
-            if (this.state.songs !== null) {
-              songs = this.state.songs;
-              mappedSongs = songs.map(result => {
-              const songId = result.id;
-              return `spotify:track:${songId}`;
-              }).join(',');
-            }
-            const URL = `https://api.spotify.com/v1/playlists/${this.state.playlistId}/tracks?uris=${mappedSongs}`;
+          const URL= `${config.API_ENDPOINT}/playlists`
+            const playlistBody= JSON.stringify({
+              playlist_id: this.state.playlistId,
+              user_id: this.state.id,
+              energy: this.state.targetEnergy,
+              valence: this.state.targetValence,
+              tempo: this.state.targetTempo,
+              popularity: this.state.targetPopularity
+            });
 
             const myOptions = {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + accessToken
               },
-              mode: 'cors',
-              cache: 'default'
+              body: playlistBody
             };
 
             return fetch(URL, myOptions)
@@ -241,38 +206,9 @@ class App extends React.Component {
             ? res.json().then(e => Promise.reject(e))
             : res.json()
         )
-            .then(res=> {
-              this.setState({ snapshot: res.snapshot_id});
-
-            const URL= `${config.API_ENDPOINT}/playlists`
-              const playlistBody= JSON.stringify({
-                playlist_id: this.state.playlistId,
-                user_id: this.state.id,
-                energy: this.state.targetEnergy,
-                valence: this.state.targetValence,
-                tempo: this.state.targetTempo,
-                popularity: this.state.targetPopularity
-              });
-
-            console.log(URL);
-
-              const myOptions = {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: playlistBody
-              };
-
-              return fetch(URL, myOptions)
-              .then(res => (!res.ok)
-              ? res.json().then(e => Promise.reject(e))
-              : res.json()
-          )
-          .then(res => {
-            console.log(`User playlist ${res.playlist_id} added`);
-            TokenService.savePlaylistToken(res.playlist_id);
-                })
+        .then(res => {
+          console.log(`User playlist ${res.playlist_id} added`);
+          TokenService.savePlaylistToken(res.playlist_id);
               })
             })
           })
@@ -348,23 +284,6 @@ class App extends React.Component {
           const songs = res.tracks;        
           this.setState({ songs });
 
-        const myOptions = {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + accessToken
-          },
-          mode: 'cors',
-          cache: 'default'
-        };
-        return fetch('https://api.spotify.com/v1/me', myOptions)
-        .then(res => (!res.ok)
-        ? res.json().then(e => Promise.reject(e))
-        : res.json()
-    )
-        .then(res=> {
-          this.setState({ id: res.id })
-
           const PLAYLIST_URL = `https://api.spotify.com/v1/users/${this.state.id}/playlists`;
           let accessToken = TokenService.getAuthToken();
           const playlistBody = JSON.stringify({ name: `Wind Chime: top artists, ${(this.state.weather.weather[0].description).toLowerCase()}` })
@@ -398,8 +317,6 @@ class App extends React.Component {
               }).join(',');
             }
             const URL = `https://api.spotify.com/v1/playlists/${this.state.playlistId}/tracks?uris=${mappedSongs}`;
-            // let parsed = queryString.parse(window.location.search);
-            // let accessToken = parsed.access_token;
             let accessToken = TokenService.getAuthToken();
 
             const myOptions = {
@@ -451,7 +368,6 @@ class App extends React.Component {
           })
         })
       })
-    })
     .catch(error => {
       this.setState({ error: error.message })
       console.log(error)
@@ -478,7 +394,6 @@ class App extends React.Component {
       .then(response => {
         this.setState({ weather: response })
         const icon = this.state.weather.weather[0].icon;
-        console.log(icon)
         const id = this.state.weather.weather[0].id;
           if(icon.endsWith('n')) {
             this.setState({ targetValence: .2 })
@@ -573,7 +488,6 @@ class App extends React.Component {
     }
 
   render() {    
-    console.log(this.state.targetTempo)
   return (
     <div className="App">            
       <main>
