@@ -4,7 +4,6 @@ import Header from '../components/Header/Header';
 
 export default class ChangeGenreParams extends React.Component {
   render() {
-    console.log(this.props.targetValence)
     return(
       <div>
         <div>

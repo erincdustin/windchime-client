@@ -11,7 +11,8 @@
 }
 
 .iframe {
-  height: 380px;
+  height: 76%;
+  top: 16%;
   left: 12.5%;
   position: absolute;
   z-index: 1;
@@ -32,6 +33,7 @@
   position: absolute;
   z-index: 0;
   width: 75%;
-  height: 380px;
+  height: 76%;
+  top: 16%;
   background-color: rgb(243, 243, 243);
 }
