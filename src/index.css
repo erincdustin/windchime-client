@@ -194,6 +194,39 @@ h4 {
   margin: 20px auto;
 }
 
+.demo-credentials {
+  background: rgb(245, 243, 243);
+  border-radius: 10px;
+  width: 50%;
+  margin: 25px auto;
+  padding: 10px;
+}
+
+h5 {
+  color: rgb(77, 153, 167);  
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+h6 {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  margin: 10px auto;
+}
+
+.italic {
+  font-style: italic;
+  font-size: 12px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .genre {
   background: rgb(241, 140, 92)
 }
@@ -204,7 +237,7 @@ h4 {
 
 .image {
   height: 300px;
-  margin: 10px auto 40px auto;
+  margin: 10px auto;
   border: 4px solid rgb(77, 153, 167);
   border-radius: 10px;  
 }
@@ -220,14 +253,13 @@ h4 {
     visibility: hidden;
   }
 
-  .App__main {
+  .App__main, .demo-credentials {
     width: 90%;
   }
 
   .ribbon-header{
     padding-top: 5.5px;
     font-size: 18px;
-    /* font-weight: bold; */
   }
 }
 

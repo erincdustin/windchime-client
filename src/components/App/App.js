@@ -243,9 +243,14 @@ class App extends React.Component {
   )
       .then(res=> {
         const artists = res.items;
-        const artistString = artists.map(artist => {
+        let artistString = '';
+        if(res.total === 0) {
+          artistString = '3WrFJ7ztbogyGnTHbHJFl2,08GQAI4eElDnROBrJRGE0X,0ECwFtbIWEVNwjlrfc6xoL'
+        } else {
+        artistString = artists.map(artist => {
           return artist.id;
         }).join(',');
+      }
         this.setState({ topArtists: artistString })
       
       const NEW_BASE_URL = `https://api.spotify.com/v1/recommendations?seed_artists=${this.state.topArtists}`;

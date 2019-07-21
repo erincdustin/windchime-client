@@ -44,6 +44,34 @@ exports[`App renders the UI as expected 1`] = `
           className="image"
           src="playlist.PNG"
         />
+        <section
+          className="demo-credentials"
+        >
+          <h5>
+            Demo Credentials
+          </h5>
+          <h6>
+            <span
+              className="blue bold"
+            >
+              Email:
+            </span>
+             wind.chime.app@gmail.com
+          </h6>
+          <h6>
+            <span
+              className="blue bold"
+            >
+              Spotify password:
+            </span>
+             windchime123
+          </h6>
+          <h6
+            className="italic"
+          >
+            *This is a free Spotify account set up for Wind Chime demo users only*
+          </h6>
+        </section>
         <button
           className="btn sign-in"
         >

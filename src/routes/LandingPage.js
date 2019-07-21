@@ -13,6 +13,13 @@ export default class LandingPage extends React.Component {
           providing you with a custom playlist that fits the weather "mood".  Choose from a list of genres 
           or your top Spotify artists to seed the playlist.</h4>
         <img src={screenshot} className="image" alt="screenshot of app"></img>
+   
+        <section className="demo-credentials">
+          <h5>Demo Credentials</h5>
+          <h6><span className="blue bold">Email:</span> wind.chime.app@gmail.com</h6>
+          <h6><span className="blue bold">Spotify password:</span> windchime123</h6>
+          <h6 className="italic">*This is a free Spotify account set up for Wind Chime demo users only*</h6>
+        </section>
         <button className="btn sign-in"><a className="link" href={config.AUTH_ENDPOINT}>Sign Into Spotify</a></button>
       </div>
     )
