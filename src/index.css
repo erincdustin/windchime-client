@@ -242,8 +242,8 @@ h6 {
   border-radius: 10px;  
 }
 
-img[alt='Screenshot of generated playlist']{
-  width: 300px;
+img[alt=windchime]{
+  width: 200px;
 }
 
 @media screen and (max-width: 490px) {

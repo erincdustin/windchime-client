@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Wind Chime combines your current weather conditions with a selected genre (or your top artists) to make a custom Spotify playlist that fits the mood of the weather.
 
-![Screenshot of generated playlist](/src/images/playlist.PNG "App Example")
+![windchime](/src/images/playlist.PNG "App Example")
 
 [Link to live app](https://erins-windchime-app.erincdustin.now.sh)
 
