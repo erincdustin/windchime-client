@@ -8,13 +8,13 @@ Wind Chime combines your current weather conditions with a selected genre (or yo
 
 [Link to live app](https://erins-windchime-app.erincdustin.now.sh)
 
-##Third party APIs used:
+## Third party APIs used:
 
 [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
 
 [OpenWeatherMap](https://openweathermap.org/current)
 
-##Links to Backend Repos:
+## Links to Backend Repos:
 
 [Spotify Auth Server](https://github.com/erincdustin/spotify-auth-server)
 
