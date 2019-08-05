@@ -8,21 +8,28 @@ Wind Chime combines your current weather conditions with a selected genre (or yo
 
 [Link to live app](https://erins-windchime-app.erincdustin.now.sh)
 
-Third party APIs used:
+##Third party APIs used:
 
 [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
 
 [OpenWeatherMap](https://openweathermap.org/current)
 
-Links to Backend Repos:
+##Links to Backend Repos:
 
 [Spotify Auth Server](https://github.com/erincdustin/spotify-auth-server)
 
 [Wind Chime Server](https://github.com/erincdustin/windchime-server)
 
+
+Enter Zip Code for Weather Conditions:
+
 ![Screenshot of weather route](/src/images/weather-rs.png "Enter Zip Code for Weather Conditions")
 
+Choose from a list of genres or your top artists:
+
 ![Screenshot of playlist route](/src/images/playlist-options-rs.png "Choose from a list of genres or your top artists")
+
+Update the mood setting on your playlist:
 
 ![Screenshot of update route](/src/images/update-rs.png "Update the mood setting on your playlist")
 
