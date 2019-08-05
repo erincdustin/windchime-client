@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Wind Chime combines your current weather conditions with a selected genre (or your top artists) to make a custom Spotify playlist that fits the mood of the weather.
 
-![windchime](/src/images/playlist.PNG "App Example")
+![windchime](/src/images/playlist-rs.png "App Example")
 
 [Link to live app](https://erins-windchime-app.erincdustin.now.sh)
 
@@ -20,11 +20,11 @@ Links to Backend Repos:
 
 [Wind Chime Server](https://github.com/erincdustin/windchime-server)
 
-![Screenshot of weather route](/src/images/weather.PNG "Enter Zip Code for Weather Conditions")
+![Screenshot of weather route](/src/images/weather-rs.png "Enter Zip Code for Weather Conditions")
 
-![Screenshot of playlist route](/src/images/playlist-options.PNG "Choose from a list of genres or your top artists")
+![Screenshot of playlist route](/src/images/playlist-options-rs.png "Choose from a list of genres or your top artists")
 
-![Screenshot of update route](/src/images/update.PNG "Update the mood setting on your playlist")
+![Screenshot of update route](/src/images/update-rs.png "Update the mood setting on your playlist")
 
 ## Set up
 
