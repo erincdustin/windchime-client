@@ -14,6 +14,18 @@ Third party APIs used:
 
 [OpenWeatherMap](https://openweathermap.org/current)
 
+Links to Backend Repos:
+
+[Spotify Auth Server](https://github.com/erincdustin/spotify-auth-server)
+
+[Wind Chime Server](https://github.com/erincdustin/windchime-server)
+
+![Screenshot of weather route](/src/images/weather.png "Enter Zip Code for Weather Conditions")
+
+![Screenshot of playlist route](/src/images/playlist-options.png "Choose from a list of genres or your top artists")
+
+![Screenshot of update route](/src/images/update.png "Update the mood setting on your playlist")
+
 ## Set up
 
 Complete the following steps:
@@ -36,6 +48,6 @@ When your project is ready for deployment, `npm run deploy` will run the build
 
 ## Technology Used
 
-React and CSS
+React, React Router, CSS3
 
 

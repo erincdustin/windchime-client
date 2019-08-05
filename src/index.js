@@ -8,11 +8,13 @@ import './index.css';
 import {
   faSpinner,
   faWind,
+  faCircle,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faWind,
   faSpinner,
+  faCircle,
 )
 
 ReactDOM.render(

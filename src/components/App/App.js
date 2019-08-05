@@ -6,7 +6,7 @@ import TokenService from '../../services/token-service';
 import HomePage from '../../routes/HomePage';
 import LandingPage from '../../routes/LandingPage';
 import GenreOption from '../../routes/GenreOption';
-// import PastPlaylists from '../../routes/PastPlaylists';
+import PastPlaylists from '../../routes/PastPlaylists';
 import ChangeGenreParams from '../../routes/ChangeGenreParams';
 import Results from '../../routes/Results';
 import NotFoundPage from '../../routes/NotFoundPage';
@@ -566,14 +566,14 @@ class App extends React.Component {
               />}
               />
 
-              {/* <PrivateRoute 
+              <PrivateRoute 
             exact path={'/playlists'}
             component={props => 
               <PastPlaylists
               id={this.state.id}
               {...props}
               />}
-              /> */}
+              />
 
               <Route
               component={NotFoundPage}

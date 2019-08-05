@@ -300,11 +300,6 @@ h6 {
 }
 
 @media screen and (min-width: 850px) {
-  .App__main {
-    width: 50%;
-    margin: auto;
-    padding-top: 50px;
-  }
 
   .container__centered {
     width: 60%;

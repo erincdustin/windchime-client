@@ -3,10 +3,10 @@
   border-radius: 10px;
   width: 100%;
   margin: 10px auto;
+  padding-bottom: 25px;
   text-align: center;
   display: inline-block;
   min-width: 275px;
-  /* max-width: 450px; */
 }
 
 p {
@@ -20,7 +20,6 @@ p {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-bottom: 15px;
-  
   height: 25px;
   width: 100%;
   color: white;
@@ -33,13 +32,69 @@ p {
 }
 
 .iframe{
-  margin-top: 20px auto;
+  margin: auto;
   text-align: center;
   display: block;
+}
+
+.rating{
+  height: 10px;
+  margin: 2px 1px;
+}
+
+.result p{
+  display: block;
+  text-align: left;
+  padding-left: 12.5%;
+}
+
+.playlist-center{
+  text-align: center;
+}
+
+.none{
+  margin: 25px auto;
+  font-weight: bold;
+  text-align: center;
+}
+
+.playlist-center h4{
+  font-weight: bold;
+  margin: 10px auto;
+}
+
+.playlist-center p{
+  display: block;
+  margin: 10px auto;
 }
 
 @media screen and (min-width: 450px) {
   p {
     font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+
+  .playlist-center{
+    width: 100%;
+  }
+
+  .flex{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .result{
+      background-color: rgb(232, 234, 235);
+      border-radius: 10px;
+      /* width: 100%; */
+      margin: 10px 2%;
+      padding-bottom: 25px;
+      text-align: center;
+      flex: 45%;
+      /* display: inline-block; */
+      /* min-width: 275px; */
   }
 }
