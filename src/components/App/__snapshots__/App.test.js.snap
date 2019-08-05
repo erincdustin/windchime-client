@@ -66,11 +66,6 @@ exports[`App renders the UI as expected 1`] = `
             </span>
              windchime123
           </h6>
-          <h6
-            className="italic"
-          >
-            *This is a free Spotify account set up for Wind Chime demo users only*
-          </h6>
         </section>
         <button
           className="btn sign-in"

@@ -35,6 +35,12 @@ exports[`Header renders as expected 1`] = `
       className="btn nav"
       onClick={[Function]}
     >
+      Playlists
+    </button>
+    <button
+      className="btn nav"
+      onClick={[Function]}
+    >
       Logout
     </button>
   </div>

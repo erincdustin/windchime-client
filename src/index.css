@@ -242,6 +242,10 @@ h6 {
   border-radius: 10px;  
 }
 
+img[alt='Screenshot of generated playlist']{
+  width: 300px;
+}
+
 @media screen and (max-width: 490px) {
   .nav {
     width: 4.5rem;

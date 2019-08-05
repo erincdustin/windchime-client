@@ -2,19 +2,16 @@
 
 exports[`UserPlaylists renders as expected 1`] = `
 <div>
-  <h4>
+  <h4
+    className="none"
+  >
     No past playlists to display
   </h4>
   <button
     className="btn mood"
+    onClick={[Function]}
   >
-    <a
-      className="link"
-      href="/getWeather"
-      onClick={[Function]}
-    >
-      Make Another Playlist
-    </a>
+    Make a Playlist
   </button>
 </div>
 `;
