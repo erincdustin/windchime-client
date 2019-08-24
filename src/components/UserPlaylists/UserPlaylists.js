@@ -80,7 +80,7 @@ class UserPlaylists extends React.Component {
   /*eslint-disable-next-line*/
   if (this.state.userPlaylists == 0 || this.state.userPlaylists == undefined ) {
     return (
-    <div>
+    <div className="no-playlists">
       <h4 className="none">No past playlists to display</h4>
       <button className="btn mood" onClick={() => {
          TokenService.clearGenreToken();
@@ -93,7 +93,7 @@ class UserPlaylists extends React.Component {
   return (
     <div className="playlist-center">
       <h4>Welcome Back!</h4>
-      <p>See your past Wind Chime playlists below for mood levels and play buttons</p>
+      <p>See your past Wind Chime playlists below for mood levels and Spotify play buttons</p>
       <button className="btn" onClick={() => {
          this.props.history.goBack();
        }}>Back</button>

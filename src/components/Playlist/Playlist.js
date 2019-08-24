@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Playlist.css';
 
 function Playlist(props) {
@@ -7,7 +8,7 @@ function Playlist(props) {
   
   return (
     <div className="container">
-      <div className="loading">Loading...</div>
+      <div className="loading">Loading <FontAwesomeIcon className="blue spinner fa-spin" icon='spinner' /></div>
       <iframe className="iframe-box" title={props.playlistId} src={url} frameBorder="0"></iframe>
     </div>
   );

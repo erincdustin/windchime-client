@@ -24,7 +24,7 @@ class Weather extends React.Component {
       <div className="ribbon one"><div className="ribbon-header">Weather</div></div>
       <form id="weather-form" onSubmit={(e)=> {
         if (isValidUSZip(e.target.weatherInput.value)) {
-            e.preventDefault();
+          e.preventDefault();
             this.props.searchCity(e.target.weatherInput.value);
             TokenService.saveWeatherToken(e.target.weatherInput.value);   
             this.props.history.push('/genreOption');

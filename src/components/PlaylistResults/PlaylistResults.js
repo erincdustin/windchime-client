@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './PlaylistResults.css';
 
 function PlayListResults(props) {
@@ -9,7 +10,7 @@ function PlayListResults(props) {
     playlist = 
     <div>
       <button className="btn mood"><Link className="link" to="/changeGenreParams">Change Mood Settings</Link></button>
-      <div className="loading-result">Loading...</div>
+      <div className="loading-result">Loading <FontAwesomeIcon className="blue spinner fa-spin" icon='spinner' /></div>
       <iframe className="iframe" title={props.playlistId} src={url} frameBorder="0" allowtransparency="true" ></iframe>
     </div>;
   }
