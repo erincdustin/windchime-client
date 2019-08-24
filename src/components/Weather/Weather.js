@@ -34,12 +34,11 @@ class Weather extends React.Component {
         }  
           }}>
         {validationError}
-        <label htmlFor="weatherInput"><h4>Find current conditions:</h4></label>
         <input className="input" 
         id="weatherInput" 
         name="weatherInput" 
         type="text" 
-        placeholder="Enter a zip code" 
+        placeholder="Enter zip code" 
         aria-label="Zip code entry"
         aria-required="true"
         aria-invalid={this.state.notValid}

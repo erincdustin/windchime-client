@@ -19,7 +19,8 @@ class App extends React.Component {
       weather: null,
       genreChoice: null,
       id: null,
-      topArtists: null,
+      artists: null,
+      fiveArtists: null,
       playlistId: null,
       snapshot: null,
       targetEnergy: null,
@@ -72,22 +73,47 @@ class App extends React.Component {
               body:userBody
             };
 
-              return fetch(URL, myOptions)
-              .then(res => (!res.ok)
-              ? res.json().then(e => Promise.reject(e))
-              : res.json()
-          )
-          .then(res => {
-            console.log(`${res.id} added`);
-            this.setState({ returningUser: true })
-          })} else {
-          console.log('User found')
-          }
+            return fetch(URL, myOptions)
+            .then(res => (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
+        .then(res => {
+          console.log(`${res.id} added`);
+          this.setState({ returningUser: true })
+        })} else {
+        console.log('User found')
+        }
+
+        const ARTISTS_URL = 'https://api.spotify.com/v1/me/top/artists?limit=5'
+        let accessToken = TokenService.getAuthToken();
+    
+      const myOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        },
+        mode: 'cors',
+        cache: 'default'
+      };
+
+      fetch(ARTISTS_URL, myOptions)
+        .then(res => (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+        .then(res=> {
+          const artists = res.items;
+          console.log(res.items)
+          this.setState({ artists })
+
         })
         .catch(error => {
           this.setState({ error: error.message})
         })
       })
+    })
   }
 
   // gets recommended songs, creates playlist, & adds to playlist
@@ -251,6 +277,7 @@ class App extends React.Component {
           return artist.id;
         }).join(',');
       }
+        this.setState({ topFive: res.items })
         this.setState({ topArtists: artistString })
       
       const NEW_BASE_URL = `https://api.spotify.com/v1/recommendations?seed_artists=${this.state.topArtists}`;
@@ -517,6 +544,7 @@ class App extends React.Component {
                 getArtistPlaylist={this.handleArtistPlaylist}
                 weather={this.state.weather} 
                 topArtists={this.state.topArtists}
+                artists={this.state.artists}
                 genreOption={this.state.genreChoice}
                 energy={this.state.targetEnergy}
                 {...props}

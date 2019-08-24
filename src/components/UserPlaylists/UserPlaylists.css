@@ -76,7 +76,7 @@ p {
 
 .playlist-center .btn{
  width: 200px;
- margin: 10px auto;
+ margin: 10px 5px;
 }
 
 @media screen and (min-width: 450px) {
