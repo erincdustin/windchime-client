@@ -93,7 +93,6 @@ export class WindChimeProvider extends Component {
     }
 
     setGenreChoice = (genreChoice) => {
-      console.log(`setting genre choice to ${genreChoice}`)
       this.setState({ genreChoice })
     }
 

@@ -27,7 +27,7 @@ class ChangeParams extends React.Component {
           return `spotify:track:${songId}`;
           }).join(',');
 
-        WindChimeApiService.makeGenrePlaylist(this.context.id, this.context.genreChoice, this.context.weather)
+        WindChimeApiService.makeGenrePlaylist(this.context.id, genre, this.context.weather)
           .then(res => {
             this.context.setPlaylistId(res.id)
             const playlistId = res.id
@@ -61,7 +61,7 @@ class ChangeParams extends React.Component {
     this.context.setGenreChoice(null);
     WindChimeApiService.getUserArtists()
       .then(res => {
-        const artists = res.artists;
+        const artists = res.items;
         let artistString = '';
         if(!artists) {
           artistString = '3WrFJ7ztbogyGnTHbHJFl2,08GQAI4eElDnROBrJRGE0X,0ECwFtbIWEVNwjlrfc6xoL'
