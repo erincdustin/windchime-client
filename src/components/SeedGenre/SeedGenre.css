@@ -22,6 +22,11 @@
 .top-five{
   text-align: center;
   margin: auto;
+  color: rgb(90, 90, 90);
+  font-family: 'Abel', sans-serif;
+  font-style: italic;
+  font-size: 18px;
+  margin: 20px auto;
 }
 
 .top-five img{

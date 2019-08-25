@@ -60,13 +60,15 @@ class SeedGenre extends React.Component {
       .then(res => {
         const artists = res.items;
         let artistString = '';
-        if(!artists) {
+        if(artists !== []) {
           artistString = '3WrFJ7ztbogyGnTHbHJFl2,08GQAI4eElDnROBrJRGE0X,0ECwFtbIWEVNwjlrfc6xoL'
         } else {
           artistString = artists.map(artist => {
             return artist.id;
           }).join(',');
         }
+        console.log(artistString)
+        debugger;
         this.context.setTopArtists(artistString)
 
       WindChimeApiService.getArtistTracks(artistString, this.context.targetEnergy, this.context.targetValence, this.context.targetTempo, this.context.targetPopularity)
@@ -124,8 +126,14 @@ class SeedGenre extends React.Component {
       });
   
       let mappedArtists = this.context.artists
-      if(!mappedArtists){
-        mappedArtists = 'No Top Artists to Display';
+      if(mappedArtists !== []){
+        mappedArtists = 
+        <div>
+          <h4>No Top User Artists- Using Default</h4>
+          <img src="https://i.scdn.co/image/6b2a709752ef9c7aaf0d270344157f6cd2e0f1a7" alt="The Beatles"></img>
+          <img src="https://i.scdn.co/image/8976b6b0aacba6f7859b1f0ab7bc0adcd6ea7444" alt="Fleetwood Mac"></img>
+          <img src="https://i.scdn.co/image/6b215464b769958ef1d7d9f163e3f49ebacf8842" alt="Eagles"></img>
+        </div>;
       } else {
         mappedArtists = mappedArtists.map((artist, index) =>
             <img key={index} src={artist.images[0].url} alt={artist.name} />
