@@ -63,7 +63,7 @@ class ChangeParams extends React.Component {
       .then(res => {
         const artists = res.items;
         let artistString = '';
-        if(!artists) {
+        if(artists !== []) {
           artistString = '3WrFJ7ztbogyGnTHbHJFl2,08GQAI4eElDnROBrJRGE0X,0ECwFtbIWEVNwjlrfc6xoL'
         } else {
           artistString = artists.map(artist => {

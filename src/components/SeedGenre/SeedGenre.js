@@ -67,8 +67,6 @@ class SeedGenre extends React.Component {
             return artist.id;
           }).join(',');
         }
-        console.log(artistString)
-        debugger;
         this.context.setTopArtists(artistString)
 
       WindChimeApiService.getArtistTracks(artistString, this.context.targetEnergy, this.context.targetValence, this.context.targetTempo, this.context.targetPopularity)

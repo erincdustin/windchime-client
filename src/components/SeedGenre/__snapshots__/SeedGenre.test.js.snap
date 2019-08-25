@@ -20,7 +20,23 @@ exports[`SeedGenre renders as expected 1`] = `
     <div
       className="top-five"
     >
-      No Top Artists to Display
+      <div>
+        <h4>
+          No Top User Artists- Using Default
+        </h4>
+        <img
+          alt="The Beatles"
+          src="https://i.scdn.co/image/6b2a709752ef9c7aaf0d270344157f6cd2e0f1a7"
+        />
+        <img
+          alt="Fleetwood Mac"
+          src="https://i.scdn.co/image/8976b6b0aacba6f7859b1f0ab7bc0adcd6ea7444"
+        />
+        <img
+          alt="Eagles"
+          src="https://i.scdn.co/image/6b215464b769958ef1d7d9f163e3f49ebacf8842"
+        />
+      </div>
     </div>
     <button
       className="inline btn artist orange"
