@@ -23,7 +23,7 @@ exports[`ChangeParams renders as expected 1`] = `
       <select
         name="targetEnergy"
         onChange={[Function]}
-        value={0.5}
+        value={0}
       >
         <option
           value={null}
@@ -97,7 +97,7 @@ exports[`ChangeParams renders as expected 1`] = `
       <select
         name="targetValence"
         onChange={[Function]}
-        value={0.2}
+        value={0}
       >
         <option
           value={null}
@@ -171,7 +171,7 @@ exports[`ChangeParams renders as expected 1`] = `
       <select
         name="targetTempo"
         onChange={[Function]}
-        value={0.3}
+        value={0}
       >
         <option
           value={null}

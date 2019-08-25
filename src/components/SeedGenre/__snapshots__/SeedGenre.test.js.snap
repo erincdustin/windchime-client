@@ -14,14 +14,22 @@ exports[`SeedGenre renders as expected 1`] = `
   <span
     className="center"
   >
+    <h4>
+      Seed the playlist Using your top Spotify artists:
+    </h4>
+    <div
+      className="top-five"
+    >
+      No Top Artists to Display
+    </div>
     <button
       className="inline btn artist orange"
       onClick={[Function]}
     >
-      Use My Top Artists!
+      Use My Top Artists
     </button>
     <h4>
-      OR Pick a genre:
+      OR Pick from a list of genres:
     </h4>
     <div
       className="mapped-genres"

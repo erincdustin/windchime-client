@@ -7,13 +7,12 @@ exports[`Playlist renders as expected 1`] = `
   <div
     className="loading"
   >
-    Loading...
+    Loading 
   </div>
   <iframe
     className="iframe-box"
     frameBorder="0"
-    src="https://open.spotify.com/embed/user/spotify/playlist/12345"
-    title="12345"
+    src="https://open.spotify.com/embed/user/spotify/playlist/undefined"
   />
 </div>
 `;

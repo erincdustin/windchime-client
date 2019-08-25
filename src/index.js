@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { WindChimeProvider } from './contexts/windchime-context';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import App from './components/App/App';
 import './index.css';
@@ -18,7 +19,9 @@ library.add(
 )
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <WindChimeProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </WindChimeProvider>,
  document.getElementById('root'));

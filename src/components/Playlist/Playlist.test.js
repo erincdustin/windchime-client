@@ -2,20 +2,15 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faWind } from '@fortawesome/free-solid-svg-icons'
+import { WindChimeProvider } from '../../contexts/windchime-context';
 import Playlist from './Playlist';
 
 library.add(faWind)
 
 describe(`Playlist`, () => {
-  const props = {
-    playlistId: '12345'
-  }
-
   it('renders as expected', () => {
     const tree = renderer
-      .create(<Playlist 
-        playlistId={props.playlistId}
-        />)
+      .create(<WindChimeProvider><Playlist /></WindChimeProvider>)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

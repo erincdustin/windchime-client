@@ -3,12 +3,9 @@
 #weather-form {
   font-family: 'Helvetica', 'Arial', sans-serif;
   text-align: center;
-  padding: 0px;
-}
-
-.weather-container {
-  background-color: #d9ecec;
-  text-align: center;
+  padding: 25px 15px;
+  background-color: rgb(243, 243, 243);
+  border-radius: 10px;
 }
 
 input{

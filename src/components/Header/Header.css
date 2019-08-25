@@ -4,7 +4,6 @@
   display: inline-block;
   position: absolute;
   right: 10px;
-  /* top: 10px; */
   color: black;
   font-size: 1.25rem;
 }
@@ -23,11 +22,10 @@
 }
 
 .logo-link {
-  /* margin: 10px 15px 15px 15px; */
   display: inline-block;
   position: absolute;
   left: 10px;
-  top: 5px;
+  top: 7px;
   color: black;
   font-size: 1.75rem;
   text-decoration: none;
@@ -37,11 +35,10 @@
 @media screen and (max-width: 490px) {
   .align-right {
     font-size: 1rem;
-    /* top: 12px; */
   } 
 
   .logo-link {
-  font-size: 1.50rem;
-  top: 8px;
+  font-size: 1.4rem;
+  top: 10px;
   }
 }

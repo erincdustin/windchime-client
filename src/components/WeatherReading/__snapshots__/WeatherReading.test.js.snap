@@ -3,36 +3,7 @@
 exports[`Weather Reading renders as expected 1`] = `
 <div>
   <div>
-    <div
-      className="ribbon one"
-    >
-      <div
-        className="ribbon-header"
-      >
-        Weather
-      </div>
-      <span
-        className="ribbon-text"
-      >
-        <span
-          className="hidden"
-        >
-          79
-          °
-        </span>
-        <button
-          className="btn weather"
-          onClick={[Function]}
-        >
-          Change
-        </button>
-      </span>
-      <img
-        alt="weather icon"
-        className="icon"
-        src="https://openweathermap.org/img/wn/10n@2x.png"
-      />
-    </div>
+    
   </div>
 </div>
 `;

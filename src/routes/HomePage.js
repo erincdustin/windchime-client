@@ -10,7 +10,7 @@ export default class Homepage extends React.Component {
           <Header {...this.props}/>
         </div>
         <div className="App__main">
-          <Weather searchCity={this.props.searchCity} weather={this.props.weather} {...this.props}/>
+          <Weather {...this.props}/>
         </div>
       </div>
     )

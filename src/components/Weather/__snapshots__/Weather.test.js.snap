@@ -16,13 +16,6 @@ exports[`Weather renders as expected 1`] = `
     onSubmit={[Function]}
   >
     
-    <label
-      htmlFor="weatherInput"
-    >
-      <h4>
-        Find current conditions:
-      </h4>
-    </label>
     <input
       aria-invalid={false}
       aria-label="Zip code entry"
@@ -30,7 +23,7 @@ exports[`Weather renders as expected 1`] = `
       className="input"
       id="weatherInput"
       name="weatherInput"
-      placeholder="Enter a zip code"
+      placeholder="Enter zip code"
       required={true}
       type="text"
     />
