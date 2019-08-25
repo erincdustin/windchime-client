@@ -10,7 +10,7 @@ export default class PastPlaylists extends React.Component {
           <Header {...this.props}/>
         </div>
         <div className="App__main">
-          <UserPlaylists id={this.props.id} {...this.props}/>
+          <UserPlaylists {...this.props}/>
         </div>
       </div>
     )

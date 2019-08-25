@@ -88,7 +88,8 @@ code {
 
 .ribbon-header{
   padding-top: 6.5px;
-  font-size: 18px;
+  font-size: 20px;
+  font-family: 'Abel', sans-serif;
   display: inline-block;
 }
 
@@ -141,7 +142,6 @@ code {
 
 .btn:hover,
 .btn:focus {
-  /* background: rgb(77, 153, 167); */
   background: rgb(160, 211, 216);
 }
 
@@ -188,9 +188,9 @@ code {
 
 h4 {
   color: rgb(90, 90, 90);
-  font-family: sans-serif;
+  font-family: 'Abel', sans-serif;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 18px;
   margin: 20px auto;
 }
 
@@ -284,7 +284,6 @@ img[alt=windchime]{
     font-style: italic;
     float: right;
     padding-right: 5px;
-    /* width: 150px; */
   }
   h4 {
     font-size: 14px;

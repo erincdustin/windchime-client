@@ -25,12 +25,6 @@ p {
   color: white;
 }
 
-.center {
-  display: inline-block;
-  text-align: center;
-  margin: 0px auto;
-}
-
 .iframe{
   margin: auto;
   text-align: center;
@@ -58,25 +52,15 @@ p {
   text-align: center;
 }
 
-.playlist-center h4{
-  font-weight: bold;
-  margin: 10px auto;
-}
-
-.playlist-center p{
-  display: block;
-  margin: 10px auto;
-}
-
-.no-playlists{
-  width: 80%;
+.user-playlists{
   text-align: center;
   margin: auto;
 }
 
-.playlist-center .btn{
- width: 200px;
- margin: 10px 5px;
+.user-playlists .btn{
+ width: 40%;
+ margin: 15px 5px;
+ display: inline-block;
 }
 
 @media screen and (min-width: 450px) {
@@ -105,4 +89,9 @@ p {
       text-align: center;
       flex: 45%;
   }
+
+  .user-playlists .btn{
+    width: 35%;
+    margin: 15px;
+   }
 }

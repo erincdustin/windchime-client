@@ -10,19 +10,7 @@ export default class ChangeGenreParams extends React.Component {
           <Header {...this.props}/>
         </div>
         <div className="App__main">
-          <ChangeParams setEnergy={this.props.setEnergy}
-                targetEnergy={this.props.targetEnergy}
-                setValence={this.props.setValence}
-                targetValence={this.props.targetValence}
-                setTempo={this.props.setTempo}
-                targetTempo={this.props.targetTempo}
-                setPopularity={this.props.setPopularity}
-                targetPopularity={this.props.targetPopularity}
-                getGenrePlaylist={this.props.getGenrePlaylist}
-                getArtistPlaylist={this.props.getArtistPlaylist}
-                topArtists={this.props.topArtists}
-                genreOption={this.props.genreOption}
-                {...this.props}/>
+          <ChangeParams {...this.props}/>
         </div>
       </div>
     )

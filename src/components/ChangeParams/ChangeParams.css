@@ -1,16 +1,17 @@
 .change-params {
   display: inline-block;
   text-align: center;
+  width: 100%;
 }
 .param {
   text-align: left;
   padding: 12px;
-  display: inline-block;
+  display: block;
   border-radius: 15px;
   width: 90%;
   height: 50px;
   background-color: rgb(215, 240, 243);
-  margin: 10px auto;
+  margin: 15px auto;
 }
 
 .align {
@@ -34,6 +35,6 @@ select{
 
 @media screen and (min-width: 650px) {
   .param {
-    width: 450px;
+    width: 80%;
   }
 }

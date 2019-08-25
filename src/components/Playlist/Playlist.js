@@ -2,16 +2,18 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Playlist.css';
 
-function Playlist(props) {
+class Playlist extends React.Component {
 
-  const url = `https://open.spotify.com/embed/user/spotify/playlist/${props.playlistId}`;
+  render() {
+    const url = `https://open.spotify.com/embed/user/spotify/playlist/${this.props.playlistId}`;
   
-  return (
-    <div className="container">
-      <div className="loading">Loading <FontAwesomeIcon className="blue spinner fa-spin" icon='spinner' /></div>
-      <iframe className="iframe-box" title={props.playlistId} src={url} frameBorder="0"></iframe>
-    </div>
-  );
+    return (
+      <div className="container">
+        <div className="loading">Loading <FontAwesomeIcon className="blue spinner fa-spin" icon='spinner' /></div>
+        <iframe className="iframe-box" title={this.props.playlistId} src={url} frameBorder="0"></iframe>
+      </div>
+    );
+  }
 }
 
 export default Playlist;
