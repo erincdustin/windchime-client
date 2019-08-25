@@ -7,6 +7,9 @@ exports[`App renders the UI as expected 1`] = `
   <main>
     <section>
       <div
+        className="error"
+      />
+      <div
         className="container__centered"
       >
         <h1
@@ -77,11 +80,6 @@ exports[`App renders the UI as expected 1`] = `
             Sign Into Spotify
           </a>
         </button>
-      </div>
-      <div
-        className="error"
-      >
-        
       </div>
     </section>
   </main>

@@ -4,6 +4,7 @@
   padding: 15px;
   background-color: rgb(243, 243, 243);
   border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .inline {
@@ -24,8 +25,7 @@
 }
 
 .top-five img{
-  height: 40px;
-  width: 40px;
+  height: 45px;
   margin: 2.5px;
   display: inline-block;
   border-radius: 10px;
