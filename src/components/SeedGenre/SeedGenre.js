@@ -108,6 +108,26 @@ class SeedGenre extends React.Component {
       })
   }
 
+  renderTopArtists(){
+    let mappedArtists = this.context.artists || []
+    if(mappedArtists !== []){
+      mappedArtists = mappedArtists.map((artist, index) =>
+          <img key={index} src={artist.images[0].url} alt={artist.name} />
+        );
+    } else {
+      mappedArtists = 
+      <div>
+        <h4>No Top User Artists- Using Default</h4>
+        <img src="https://i.scdn.co/image/6b2a709752ef9c7aaf0d270344157f6cd2e0f1a7" alt="The Beatles"></img>
+        <img src="https://i.scdn.co/image/8976b6b0aacba6f7859b1f0ab7bc0adcd6ea7444" alt="Fleetwood Mac"></img>
+        <img src="https://i.scdn.co/image/6b215464b769958ef1d7d9f163e3f49ebacf8842" alt="Eagles"></img>
+      </div>;
+    }
+
+    return mappedArtists;
+  }
+
+
   render() {
     const mappedGenres = GenreList.map((genre, index) => {
       return(
@@ -123,27 +143,12 @@ class SeedGenre extends React.Component {
         </span>)
       });
   
-      let mappedArtists = this.context.artists
-      if(mappedArtists !== []){
-        mappedArtists = 
-        <div>
-          <h4>No Top User Artists- Using Default</h4>
-          <img src="https://i.scdn.co/image/6b2a709752ef9c7aaf0d270344157f6cd2e0f1a7" alt="The Beatles"></img>
-          <img src="https://i.scdn.co/image/8976b6b0aacba6f7859b1f0ab7bc0adcd6ea7444" alt="Fleetwood Mac"></img>
-          <img src="https://i.scdn.co/image/6b215464b769958ef1d7d9f163e3f49ebacf8842" alt="Eagles"></img>
-        </div>;
-      } else {
-        mappedArtists = mappedArtists.map((artist, index) =>
-            <img key={index} src={artist.images[0].url} alt={artist.name} />
-          );
-      }
-  
     return (
       <div>
         <div className="ribbon two"><div className="ribbon-header">Playlist Options</div></div>
         <span className="center">
         <h4>Seed the playlist Using your top Spotify artists:</h4>
-            <div className="top-five">{mappedArtists}</div>
+            <div className="top-five">{this.renderTopArtists()}</div>
             <button className="inline btn artist orange" onClick={async ()=> {
               await TokenService.saveGenreToken('top artists');
               await this.handleArtistPlaylist();
