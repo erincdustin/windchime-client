@@ -75,7 +75,7 @@ exports[`App renders the UI as expected 1`] = `
         >
           <a
             className="link"
-            href="https://glacial-ridge-65782.herokuapp.com/login"
+            href="http://localhost:8888/login"
           >
             Sign Into Spotify
           </a>
