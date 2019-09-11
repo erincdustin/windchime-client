@@ -8,23 +8,27 @@ class PlayListResults extends React.Component {
 
   static contextType = WindChimeContext;
 
-  render() {
+  renderPlaylist(){
     let playlist = '';
-    const url =  `https://open.spotify.com/embed/user/spotify/playlist/${this.context.playlistId}`;
-    if(this.context.snapshot !== null) {
+    const { playlistId, snapshot} = this.context
+    const url =  `https://open.spotify.com/embed/user/spotify/playlist/${playlistId}`;
+    if(snapshot !== null) {
       playlist = 
       <div>
         <button className="btn mood"><Link className="link" to="/changeGenreParams">Change Mood Settings</Link></button>
         <div className="loading-result">Loading <FontAwesomeIcon className="blue spinner fa-spin" icon='spinner' /></div>
-        <iframe className="iframe" title={this.context.playlistId} src={url} frameBorder="0" allowtransparency="true" ></iframe>
+        <iframe className="iframe" title={playlistId} src={url} frameBorder="0" allowtransparency="true" ></iframe>
       </div>;
     }
+    return playlist
+  }
 
+  render() {
     return (
       <div>
         <div className="ribbon three"><span className="ribbon-header">Your Playlist</span></div>
         <div className="results">
-        {playlist}
+        {this.renderPlaylist()}
         </div>
       </div>
     );

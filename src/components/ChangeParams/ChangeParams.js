@@ -8,14 +8,6 @@ class ChangeParams extends React.Component {
 
   static contextType = WindChimeContext;
 
-  state = {
-    genre: null,
-  }
-
-  componentDidMount() {
-    this.setState({ genre: this.context.genreChoice})
-  }
-
   handleGenrePlaylist = (genre) => {
     this.context.setTopArtists(null);
     WindChimeApiService.getGenreTracks(genre, this.context.targetEnergy, this.context.targetValence, this.context.targetTempo, this.context.targetPopularity)
@@ -62,7 +54,7 @@ class ChangeParams extends React.Component {
       .then(res => {
         const artists = res.items;
         let artistString = '';
-        if(artists === []) {
+        if(artists.length === 0) {
           artistString = '3WrFJ7ztbogyGnTHbHJFl2,08GQAI4eElDnROBrJRGE0X,0ECwFtbIWEVNwjlrfc6xoL'
         } else {
           artistString = artists.map(artist => {
@@ -143,19 +135,7 @@ class ChangeParams extends React.Component {
   }
 
   render() {
-    const options = [
-      null,
-      .1,
-      .2,
-      .3,
-      .4,
-      .5,
-      .6,
-      .7,
-      .8,
-      .9,
-      1
-    ];
+    const options = [null,.1,.2,.3,.4,.5,.6,.7,.8,.9,1];
 
     const mappedTargetEnergy = options.map((energyOption, index) => {
       if (energyOption === null) {
@@ -219,7 +199,7 @@ class ChangeParams extends React.Component {
         }}>Back</button>
       <button className="btn center" onClick={()=> {
         if(!this.context.topArtists){
-        this.handleGenrePlaylist(this.state.genre);
+        this.handleGenrePlaylist(this.context.genreChoice);
         this.props.history.push('/results');
         }
         if(this.context.topArtists){

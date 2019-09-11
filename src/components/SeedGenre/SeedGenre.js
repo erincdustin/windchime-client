@@ -143,7 +143,6 @@ class SeedGenre extends React.Component {
       return mappedGenres
   }
 
-
   render() {  
     return (
       <div>
@@ -151,10 +150,10 @@ class SeedGenre extends React.Component {
         <span className="center">
         <h4>Seed the playlist Using your top Spotify artists:</h4>
             <div className="top-five">{this.renderTopArtists()}</div>
-            <button className="inline btn artist orange" onClick={async ()=> {
-              await TokenService.saveGenreToken('top artists');
-              await this.handleArtistPlaylist();
-              await this.props.history.push('/results');
+            <button className="inline btn artist orange" onClick={()=> {
+              TokenService.saveGenreToken('top artists');
+              this.handleArtistPlaylist();
+              this.props.history.push('/results');
               }}>Use My Top Artists</button>
         <h4>OR Pick from a list of genres:</h4>
         <div className="mapped-genres">{this.renderGenres()}</div>

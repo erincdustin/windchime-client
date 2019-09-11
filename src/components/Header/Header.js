@@ -11,11 +11,11 @@ function Header(props) {
       <Link className="logo-link" to="/">Wind Chime <FontAwesomeIcon className='blue' icon='wind' /></Link>
       <div className="align-right">
         <button className="btn nav" onClick={() => props.history.push('/playlists')}>Playlists</button>
-        <button className="btn nav" onClick={async ()=> {
-          await TokenService.clearWeatherToken();
-          await TokenService.clearGenreToken();
-          await TokenService.clearAuthToken();
-          await props.history.push('/');
+        <button className="btn nav" onClick={ ()=> {
+          TokenService.clearWeatherToken();
+          TokenService.clearGenreToken();
+          TokenService.clearAuthToken();
+          props.history.push('/');
           }}>
             Logout
         </button>

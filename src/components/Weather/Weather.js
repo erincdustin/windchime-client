@@ -73,36 +73,40 @@ class Weather extends React.Component {
         }
     })
       .catch(err => {
-        console.log(err)
+        this.context.setError(err)
       })
   }
 
-  render() {
+  isValidUSZip = (zip) => {
+    return /^\d{5}(-\d{4})?$/.test(zip);
+  }
 
-  function isValidUSZip(zip) {
-      return /^\d{5}(-\d{4})?$/.test(zip);
-   }
+  handleSubmit(e){
+    e.preventDefault();
+    if (this.isValidUSZip(e.target.weatherInput.value)) {
+      this.handleSearchCity(e.target.weatherInput.value);
+      TokenService.saveWeatherToken(e.target.weatherInput.value);   
+      this.props.history.push('/genreOption');
+    } else {
+      this.setState({notValid: true})
+    }  
+  }
 
-  let validationError = '';
-  if(this.state.notValid) {
-    validationError = <div className="error">Please enter valid zipcode</div>
+  renderValidationError(){
+    let { notValid } = this.state
+    let validationError = ''
+     if(notValid) {
+      validationError = <div className="error">Please enter valid zipcode</div>
+    }
+    return validationError
   } 
 
+  render() {
   return (
     <div>
       <div className="ribbon one"><div className="ribbon-header">Weather</div></div>
-      <form id="weather-form" onSubmit={(e)=> {
-        if (isValidUSZip(e.target.weatherInput.value)) {
-          e.preventDefault();
-            this.handleSearchCity(e.target.weatherInput.value);
-            TokenService.saveWeatherToken(e.target.weatherInput.value);   
-            this.props.history.push('/genreOption');
-        } else {
-          e.preventDefault();
-          this.setState({notValid: true})
-        }  
-          }}>
-        {validationError}
+      <form id="weather-form" onSubmit={e => this.handleSubmit(e)}>          
+        {this.renderValidationError()}
         <input className="input" 
         id="weatherInput" 
         name="weatherInput" 

@@ -6,20 +6,22 @@ class PlaylistOption extends React.Component {
 
   static contextType = WindChimeContext;
 
-  render() {
+  renderOption(){
+    let { genreChoice } = this.context
     let option='';
-    if (this.context.genreOption){
-      option = this.context.genreOption
-    } if (this.context.topArtists){
-      option = 'my top artists'
-    }
-  
+    (genreChoice)
+      ? option = this.context.genreChoice
+      : option = 'my top artists'
+    return option
+  }
+
+  render() {  
     return (
       <div>
         <div className="ribbon two">
         <div className="ribbon-header">Playlist Options</div>
           <span className="ribbon-text">
-          <span className="hidden">{option}</span>
+          <span className="hidden">{this.renderOption()}</span>
           <button className="btn weather" onClick={() => {
             TokenService.clearGenreToken();
             this.props.history.push('/genreOption');

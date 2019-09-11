@@ -18,7 +18,7 @@ class UserPlaylists extends React.Component {
   componentDidMount() {
     WindChimeApiService.getPlaylists()
     .then(res => {
-      if(res !== []){
+      if(res.length !== 0){
        this.setState({ playlists: res})
       }})
     .catch(err => {

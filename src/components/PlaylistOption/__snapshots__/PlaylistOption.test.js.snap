@@ -16,7 +16,7 @@ exports[`PlaylistOption renders as expected 1`] = `
       <span
         className="hidden"
       >
-        
+        my top artists
       </span>
       <button
         className="btn weather"
