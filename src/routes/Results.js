@@ -7,10 +7,6 @@ import TokenService from '../services/token-service';
 
 export default class Results extends React.Component {
 
-  state = {
-    error: ''
-  }
-
   componentDidMount() {
     if(!TokenService.hasWeatherToken()) {
       this.props.history.push('/getWeather');
