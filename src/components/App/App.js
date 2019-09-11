@@ -49,6 +49,15 @@ class App extends React.Component {
       .catch(err => {
         this.context.setError(err)
       })
+
+    WindChimeApiService.getPlaylists()
+    .then(res => {
+      if(res.length !== 0){
+        this.context.setUserPlaylists(res)
+      }})
+    .catch(err => {
+      this.context.setError(err)
+    })
     }
 
   render() {   

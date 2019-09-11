@@ -6,7 +6,7 @@ class WeatherReading extends React.Component {
 
   static contextType = WindChimeContext;
 
-  render() {
+  renderWeather(){
     let imageUrl = '';
 
     let weather = {
@@ -21,7 +21,6 @@ class WeatherReading extends React.Component {
       }]
     }
     let weatherResults = '';
-  
     if(this.context.weather !== null) {
       weather = this.context.weather;
       imageUrl = `https://openweathermap.org/img/wn/${this.context.weather.weather[0].icon}@2x.png`
@@ -39,10 +38,13 @@ class WeatherReading extends React.Component {
             <img className="icon" src={imageUrl} alt="weather icon"></img>
           </div>
     }
-  
+    return weatherResults
+  }
+
+  render() {
     return (
       <div>
-        <div>{weatherResults}</div>
+        <div>{this.renderWeather()}</div>
       </div>
     );
   }

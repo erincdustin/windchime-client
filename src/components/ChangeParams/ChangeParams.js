@@ -134,81 +134,75 @@ class ChangeParams extends React.Component {
     }
   }
 
-  render() {
+  mapValues = (value) => {
     const options = [null,.1,.2,.3,.4,.5,.6,.7,.8,.9,1];
-
-    const mappedTargetEnergy = options.map((energyOption, index) => {
-      if (energyOption === null) {
+    let mappedOptions = options.map((option, index) => {
+      if (!option) {
         return <option key={index} value={null}>n/a</option>
-      }
-      return(
-        <option key={index} value={energyOption}>{energyOption * 10}</option>
-      )
-    })
-  
-    const mappedTargetValence = options.map((valenceOption, index) => {
-      if (valenceOption === null) {
-        return <option key={index} value={null}>n/a</option>
-      }
-      return(
-        <option key={index} value={valenceOption}>{valenceOption * 10}</option>
-      )
-    })
-  
-    const mappedTargetTempo = options.map((tempoOption, index) => {
-      if (tempoOption === null) {
-        return <option key={index} value={null}>n/a</option>
-      }
-      return(
-        <option key={index} value={tempoOption}>{tempoOption * 10}</option>
-      )
-    })
-  
-    const mappedTargetPopularity = options.map((popularityOption, index) => {
-      if (popularityOption === null) {
-        return <option key={index} value={null}>n/a</option>
-      }
-      return(
-        <option key={index} value={popularityOption * 100}>{popularityOption * 10}</option>
-      )
-    })
-
-  return (
-    <div className="change-params">
-      <h4>Select Playlist Values Manually:</h4>
-      <form>
-        <span className="param">
-        <label htmlFor="targetEnergy"><h4 className="align">Select Target Energy:</h4></label>
-        <select value={Math.floor(this.context.targetEnergy*10)/10} name="targetEnergy" onChange={event => this.handleSetEnergy(event.target.value)}>{mappedTargetEnergy}</select>
-        </span>
-        <span className="param">
-        <label htmlFor="targetValence"><h4 className="align">Select Target Happiness:</h4></label>
-        <select value={Math.floor(this.context.targetValence*10)/10} name="targetValence" onChange={event => this.handleSetValence(event.target.value)}>{mappedTargetValence}</select>
-        </span>
-        <span className="param">
-        <label htmlFor="targetTempo"><h4 className="align">Select Target Tempo:</h4></label>
-        <select value={Math.floor(this.context.targetTempo*10)/10} name="targetTempo" onChange={event => this.handleSetTempo(event.target.value)}>{mappedTargetTempo}</select>
-        </span>
-        <span className="param">
-        <label htmlFor="targetPopularity"><h4 className="align">Select Target Popularity:</h4></label>
-        <select value={Math.floor(this.context.targetPopularity*10)/10} name="targetPopularity" onChange={event => this.handleSetPopularity(event.target.value)}>{mappedTargetPopularity}</select>
-        </span>
-      </form>
-      <button className="btn center" onClick={()=> {
-        this.props.history.goBack();
-        }}>Back</button>
-      <button className="btn center" onClick={()=> {
-        if(!this.context.topArtists){
-        this.handleGenrePlaylist(this.context.genreChoice);
-        this.props.history.push('/results');
+      } else {
+        if(value === 'popularity'){
+          return <option key={index} value={option * 100}>{option * 10}</option>
+        } else {
+          return <option key={index} value={option}>{option * 10}</option>
         }
-        if(this.context.topArtists){
-        this.handleArtistPlaylist(); 
-        this.props.history.push('/results')
-        }
-        }}>Update</button>
-    </div>
-  );
+      }
+    })
+    return mappedOptions
+  }
+
+  render() {
+    return (
+      <div className="change-params">
+        <h4>Select Playlist Values Manually:</h4>
+        <form>
+          <span className="param">
+          <label htmlFor="targetEnergy"><h4 className="align">Select Target Energy:</h4></label>
+          <select 
+            value={Math.floor(this.context.targetEnergy*10)/10} 
+            name="targetEnergy" 
+            onChange={event => this.handleSetEnergy(event.target.value)}>{this.mapValues('energy')}
+          </select>
+          </span>
+          <span className="param">
+          <label htmlFor="targetValence"><h4 className="align">Select Target Happiness:</h4></label>
+          <select 
+            value={Math.floor(this.context.targetValence*10)/10} 
+            name="targetValence" 
+            onChange={event => this.handleSetValence(event.target.value)}>{this.mapValues('valence')}
+          </select>
+          </span>
+          <span className="param">
+          <label htmlFor="targetTempo"><h4 className="align">Select Target Tempo:</h4></label>
+          <select 
+            value={Math.floor(this.context.targetTempo*10)/10} 
+            name="targetTempo" 
+            onChange={event => this.handleSetTempo(event.target.value)}>{this.mapValues('tempo')}
+          </select>
+          </span>
+          <span className="param">
+          <label htmlFor="targetPopularity"><h4 className="align">Select Target Popularity:</h4></label>
+          <select 
+            value={Math.floor(this.context.targetPopularity*10)/10} 
+            name="targetPopularity" 
+            onChange={event => this.handleSetPopularity(event.target.value)}>{this.mapValues('popularity')}
+          </select>
+          </span>
+        </form>
+        <button className="btn center" 
+          onClick={()=> this.props.history.goBack()}>Back</button>
+        <button className="btn center" 
+          onClick={()=> {
+            if(!this.context.topArtists){
+            this.handleGenrePlaylist(this.context.genreChoice);
+            this.props.history.push('/results');
+            }
+            if(this.context.topArtists){
+            this.handleArtistPlaylist(); 
+            this.props.history.push('/results')
+            }
+          }}>Update</button>
+      </div>
+    );
   }
 }
 
