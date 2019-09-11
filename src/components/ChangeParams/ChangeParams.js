@@ -13,7 +13,6 @@ class ChangeParams extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.context.genreChoice)
     this.setState({ genre: this.context.genreChoice})
   }
 

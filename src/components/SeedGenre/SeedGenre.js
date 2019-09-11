@@ -60,7 +60,7 @@ class SeedGenre extends React.Component {
       .then(res => {
         const artists = res.items;
         let artistString = '';
-        if(artists === []) {
+        if(artists.length === 0) {
           artistString = '3WrFJ7ztbogyGnTHbHJFl2,08GQAI4eElDnROBrJRGE0X,0ECwFtbIWEVNwjlrfc6xoL'
         } else {
           artistString = artists.map(artist => {
@@ -99,9 +99,9 @@ class SeedGenre extends React.Component {
                         console.log(`User playlist ${res.playlist_id} added`);
                         TokenService.savePlaylistToken(res.playlist_id);
                       })
-                })
-            })
-        })
+                  })
+              })
+          })
       })
       .catch(err => {
         this.context.setError(err)
@@ -110,7 +110,7 @@ class SeedGenre extends React.Component {
 
   renderTopArtists(){
     let mappedArtists = this.context.artists || []
-    if(mappedArtists !== []){
+    if(mappedArtists.length !== 0){
       mappedArtists = mappedArtists.map((artist, index) =>
           <img key={index} src={artist.images[0].url} alt={artist.name} />
         );
@@ -123,26 +123,28 @@ class SeedGenre extends React.Component {
         <img src="https://i.scdn.co/image/6b215464b769958ef1d7d9f163e3f49ebacf8842" alt="Eagles"></img>
       </div>;
     }
-
     return mappedArtists;
   }
 
-
-  render() {
+  renderGenres(){
     const mappedGenres = GenreList.map((genre, index) => {
       return(
         <span className="genre-list" key={index}>
           <button 
           value={genre}
           onClick={async (e) =>{
-            await this.handleGenrePlaylist(e.target.value);
-            await TokenService.saveGenreToken('genre');
-            await this.props.history.push('/results');
+            this.handleGenrePlaylist(e.target.value);
+            TokenService.saveGenreToken('genre');
+            this.props.history.push('/results');
           }}
           className="btn genre" type="button">{genre}</button>
         </span>)
       });
-  
+      return mappedGenres
+  }
+
+
+  render() {  
     return (
       <div>
         <div className="ribbon two"><div className="ribbon-header">Playlist Options</div></div>
@@ -155,7 +157,7 @@ class SeedGenre extends React.Component {
               await this.props.history.push('/results');
               }}>Use My Top Artists</button>
         <h4>OR Pick from a list of genres:</h4>
-        <div className="mapped-genres">{mappedGenres}</div>
+        <div className="mapped-genres">{this.renderGenres()}</div>
         </span>
       </div>
     );
